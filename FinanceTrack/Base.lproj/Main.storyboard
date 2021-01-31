@@ -64,24 +64,25 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="TrJ-vc-Bff"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Добавить новую" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="stw-jm-5hE">
-                                <rect key="frame" x="243" y="210.5" width="151" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <color key="highlightedColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kOb-w7-WMZ">
+                                <rect key="frame" x="245" y="207.5" width="149" height="30"/>
+                                <state key="normal" title="Добавить категорию"/>
+                                <connections>
+                                    <action selector="onTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KD4-wu-U4q"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="sOM-fy-buK" secondAttribute="bottom" constant="49" id="3yn-1J-tns"/>
                             <constraint firstItem="5tZ-3U-VCd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="5t4-6E-cVJ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kOb-w7-WMZ" secondAttribute="trailing" constant="20" id="92H-nH-KZh"/>
+                            <constraint firstItem="kOb-w7-WMZ" firstAttribute="centerY" secondItem="J5L-V6-gaG" secondAttribute="centerY" id="Dn0-Sf-s3Y"/>
                             <constraint firstItem="Ye1-ip-QA2" firstAttribute="leading" secondItem="5tZ-3U-VCd" secondAttribute="trailing" constant="34" id="Eo9-Ji-fvj"/>
                             <constraint firstItem="5tZ-3U-VCd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="52" id="JVn-8W-0rn"/>
                             <constraint firstItem="J5L-V6-gaG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Lxa-KG-wKO"/>
                             <constraint firstItem="sOM-fy-buK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="O14-LG-6s3"/>
-                            <constraint firstItem="stw-jm-5hE" firstAttribute="centerY" secondItem="J5L-V6-gaG" secondAttribute="centerY" id="QgT-mG-oDj"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="stw-jm-5hE" secondAttribute="trailing" constant="20" id="SV0-PB-eb4"/>
                             <constraint firstItem="J5L-V6-gaG" firstAttribute="top" secondItem="5tZ-3U-VCd" secondAttribute="bottom" constant="78" id="UOG-Iw-8Xb"/>
                             <constraint firstItem="sOM-fy-buK" firstAttribute="top" secondItem="J5L-V6-gaG" secondAttribute="bottom" constant="7.5" id="Zh4-MR-mEf"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="sOM-fy-buK" secondAttribute="trailing" constant="20" id="kso-h2-J87"/>
@@ -96,10 +97,75 @@
             </objects>
             <point key="canvasLocation" x="95.652173913043484" y="78.348214285714278"/>
         </scene>
+        <!--New Category View Controller-->
+        <scene sceneID="Ms6-I8-ooN">
+            <objects>
+                <viewController storyboardIdentifier="newCategory" id="eoB-OI-jgy" customClass="NewCategoryViewController" customModule="FinanceTrack" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HXy-qM-Ewt">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="350"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите название" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="inC-Jb-Y6y">
+                                <rect key="frame" x="16" y="69" width="382" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ET-uR-BEZ">
+                                <rect key="frame" x="16" y="131" width="382" height="48"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="68d-f0-8yy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Добавить">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onAddCategory:" destination="eoB-OI-jgy" eventType="touchUpInside" id="NXq-am-s0L"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Новая категория" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dfv-Qc-gEY">
+                                <rect key="frame" x="115.5" y="21" width="183" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="lcp-TF-Tat"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Dfv-Qc-gEY" firstAttribute="top" secondItem="HXy-qM-Ewt" secondAttribute="top" constant="21" id="7jA-7m-9OS"/>
+                            <constraint firstItem="lcp-TF-Tat" firstAttribute="trailing" secondItem="inC-Jb-Y6y" secondAttribute="trailing" constant="16" id="9OA-bg-CY3"/>
+                            <constraint firstItem="inC-Jb-Y6y" firstAttribute="leading" secondItem="lcp-TF-Tat" secondAttribute="leading" constant="16" id="ORn-Mc-aSS"/>
+                            <constraint firstItem="inC-Jb-Y6y" firstAttribute="top" secondItem="Dfv-Qc-gEY" secondAttribute="bottom" constant="19" id="f2R-kS-Shb"/>
+                            <constraint firstItem="1ET-uR-BEZ" firstAttribute="top" secondItem="inC-Jb-Y6y" secondAttribute="bottom" constant="28" id="fXu-Pp-zyM"/>
+                            <constraint firstItem="lcp-TF-Tat" firstAttribute="trailing" secondItem="1ET-uR-BEZ" secondAttribute="trailing" constant="16" id="ivS-Y0-GFf"/>
+                            <constraint firstItem="Dfv-Qc-gEY" firstAttribute="centerX" secondItem="HXy-qM-Ewt" secondAttribute="centerX" id="s7z-hu-CaX"/>
+                            <constraint firstItem="1ET-uR-BEZ" firstAttribute="leading" secondItem="lcp-TF-Tat" secondAttribute="leading" constant="16" id="zrY-jn-0XM"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="414" height="350"/>
+                    <connections>
+                        <outlet property="categoryTextField" destination="inC-Jb-Y6y" id="ijK-GQ-TFs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Her-Xk-uLD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="889.85507246376824" y="66.964285714285708"/>
+        </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

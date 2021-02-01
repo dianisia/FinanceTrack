@@ -11,22 +11,18 @@ class Category: Object {
 }
 
 class ViewController: UIViewController, FloatingPanelControllerDelegate {
-    static let realm = try! Realm()
+    let realm = try! Realm()
     private var categories: [Category] = []
     private var currentBalance = 0
     
     @IBOutlet weak var currentBalanceLabel: UILabel!
     
     var newCategoryVC: NewCategoryViewController!
+    var fpc: FloatingPanelController!
     
     @IBAction func onTap(_ sender: Any) {
-        fpc.isRemovalInteractionEnabled = true
-        fpc.show(animated: true) {
-            self.fpc.didMove(toParent: self)
-        }
+        openPanel()
     }
-    
-    var fpc: FloatingPanelController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,13 +33,28 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
         fpc.surfaceView.appearance.cornerRadius = 24.0
         
         currentBalanceLabel.text = "100500"
-        self.categories = Array(ViewController.realm.objects(Category.self))
+        self.categories = Array(realm.objects(Category.self))
+        initPanel()
         
-        newCategoryVC = storyboard?.instantiateViewController(withIdentifier: "newCategory") as? NewCategoryViewController
-        newCategoryVC.closeButtonAction = { [unowned self] in
-            fpc.willMove(toParent: nil)
-            fpc.hide(animated: true)
+//        try! realm.write {
+//           realm.add(category)
+//        }
+    }
+    
+    func openPanel() {
+        fpc.show(animated: true) {
+            self.fpc.didMove(toParent: self)
         }
+    }
+    
+    func closePanel() {
+        fpc.willMove(toParent: nil)
+        fpc.hide(animated: true)
+    }
+    
+    func initPanel() {
+        newCategoryVC = storyboard?.instantiateViewController(withIdentifier: "newCategory") as? NewCategoryViewController
+        newCategoryVC.closePanel = closePanel;
         fpc.set(contentViewController: newCategoryVC)
        
         self.view.addSubview(fpc.view)
@@ -58,13 +69,6 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
         ])
 
         self.addChild(fpc)
-
-        let category = Category()
-        category.name = "Продукты"
-        
-//        try! ViewController.realm.write {
-//            ViewController.realm.add(category)
-//        }
     }
 
 }
@@ -82,11 +86,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 class NewCategoryViewController: UIViewController {
-    
-    var closeButtonAction: (() -> ())?
+    var closePanel: (() -> ())?
     
     @IBAction func onCloseButtonTap(_ sender: Any) {
-        closeButtonAction?();
+        closePanel?();
     }
     
     @IBAction func onAddCategory(_ sender: Any) {

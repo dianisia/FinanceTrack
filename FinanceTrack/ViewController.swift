@@ -21,7 +21,9 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
     
     @IBAction func onTap(_ sender: Any) {
         fpc.isRemovalInteractionEnabled = true
-        self.present(fpc, animated: true, completion: nil)
+        fpc.show(animated: true) {
+            self.fpc.didMove(toParent: self)
+        }
     }
     
     var fpc: FloatingPanelController!
@@ -38,8 +40,25 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
         self.categories = Array(ViewController.realm.objects(Category.self))
         
         newCategoryVC = storyboard?.instantiateViewController(withIdentifier: "newCategory") as? NewCategoryViewController
+        newCategoryVC.closeButtonAction = { [unowned self] in
+            fpc.willMove(toParent: nil)
+            fpc.hide(animated: true)
+        }
         fpc.set(contentViewController: newCategoryVC)
-        
+       
+        self.view.addSubview(fpc.view)
+        fpc.view.frame = self.view.bounds
+
+        fpc.view.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+          fpc.view.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0.0),
+          fpc.view.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 0.0),
+          fpc.view.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 0.0),
+          fpc.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0.0),
+        ])
+
+        self.addChild(fpc)
+
         let category = Category()
         category.name = "Продукты"
         
@@ -63,6 +82,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 class NewCategoryViewController: UIViewController {
+    
+    var closeButtonAction: (() -> ())?
+    
+    @IBAction func onCloseButtonTap(_ sender: Any) {
+        closeButtonAction?();
+    }
     
     @IBAction func onAddCategory(_ sender: Any) {
     }

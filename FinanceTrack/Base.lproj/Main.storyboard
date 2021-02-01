@@ -102,7 +102,7 @@
             <objects>
                 <viewController storyboardIdentifier="newCategory" id="eoB-OI-jgy" customClass="NewCategoryViewController" customModule="FinanceTrack" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HXy-qM-Ewt">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="350"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите название" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="inC-Jb-Y6y">
@@ -135,13 +135,22 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJS-Qg-TUN">
+                                <rect key="frame" x="378" y="7" width="24" height="24"/>
+                                <state key="normal" image="close-black-24dp"/>
+                                <connections>
+                                    <action selector="onCloseButtonTap:" destination="eoB-OI-jgy" eventType="touchUpInside" id="eje-Mc-ken"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="lcp-TF-Tat"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Dfv-Qc-gEY" firstAttribute="top" secondItem="HXy-qM-Ewt" secondAttribute="top" constant="21" id="7jA-7m-9OS"/>
                             <constraint firstItem="lcp-TF-Tat" firstAttribute="trailing" secondItem="inC-Jb-Y6y" secondAttribute="trailing" constant="16" id="9OA-bg-CY3"/>
+                            <constraint firstAttribute="trailing" secondItem="gJS-Qg-TUN" secondAttribute="trailing" constant="12" id="BWj-Z4-S0C"/>
                             <constraint firstItem="inC-Jb-Y6y" firstAttribute="leading" secondItem="lcp-TF-Tat" secondAttribute="leading" constant="16" id="ORn-Mc-aSS"/>
+                            <constraint firstItem="gJS-Qg-TUN" firstAttribute="top" secondItem="HXy-qM-Ewt" secondAttribute="top" constant="7" id="bCe-Rq-1zW"/>
                             <constraint firstItem="inC-Jb-Y6y" firstAttribute="top" secondItem="Dfv-Qc-gEY" secondAttribute="bottom" constant="19" id="f2R-kS-Shb"/>
                             <constraint firstItem="1ET-uR-BEZ" firstAttribute="top" secondItem="inC-Jb-Y6y" secondAttribute="bottom" constant="28" id="fXu-Pp-zyM"/>
                             <constraint firstItem="lcp-TF-Tat" firstAttribute="trailing" secondItem="1ET-uR-BEZ" secondAttribute="trailing" constant="16" id="ivS-Y0-GFf"/>
@@ -150,7 +159,7 @@
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="414" height="350"/>
+                    <size key="freeformSize" width="414" height="200"/>
                     <connections>
                         <outlet property="categoryTextField" destination="inC-Jb-Y6y" id="ijK-GQ-TFs"/>
                     </connections>
@@ -161,6 +170,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="close-black-24dp" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

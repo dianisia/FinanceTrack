@@ -103,25 +103,44 @@ extension ViewController: AddNewCategoryDelegate {
     }
 }
 
-class NewCategoryViewController: UIViewController {
+class NewCategoryViewController: UIViewController, UITextFieldDelegate {
     var closePanel: (() -> ())?
     var addNewCategoryDelegate: AddNewCategoryDelegate?
     
+    @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var categoryNameTextField: UITextField!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        categoryNameTextField.delegate = self
+        addButton.isUserInteractionEnabled = false
+    }
     
     @IBAction func onCloseButtonTap(_ sender: Any) {
         closePanel?()
     }
     
     @IBAction func onAddCategory(_ sender: Any) {
-        guard let categoryName = categoryTextField.text, !categoryName.isEmpty else {
+        guard let categoryName = categoryNameTextField.text, !categoryName.isEmpty else {
             return
         }
         addNewCategoryDelegate?.addNewCategory(categoryName: categoryName)
-        categoryTextField.text = ""
+        categoryNameTextField.text = ""
         closePanel?()
     }
     
-    @IBOutlet weak var categoryTextField: UITextField!
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+
+        let text = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+
+        if !text.isEmpty{
+            addButton.isUserInteractionEnabled = true
+        } else {
+            addButton.isUserInteractionEnabled = false
+        }
+
+        return true
+    }
 }
 

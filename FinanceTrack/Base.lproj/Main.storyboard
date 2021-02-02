@@ -162,8 +162,8 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="414" height="200"/>
                     <connections>
+                        <outlet property="addButton" destination="1ET-uR-BEZ" id="E4I-XU-qZU"/>
                         <outlet property="categoryNameTextField" destination="inC-Jb-Y6y" id="nbK-gY-snc"/>
-                        <outlet property="categoryTextField" destination="inC-Jb-Y6y" id="ijK-GQ-TFs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Her-Xk-uLD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

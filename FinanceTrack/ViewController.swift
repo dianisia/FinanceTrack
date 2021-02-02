@@ -118,6 +118,7 @@ class NewCategoryViewController: UIViewController {
             return
         }
         addNewCategoryDelegate?.addNewCategory(categoryName: categoryName)
+        categoryTextField.text = ""
         closePanel?()
     }
     

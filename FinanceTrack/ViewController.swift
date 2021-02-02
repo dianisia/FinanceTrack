@@ -10,11 +10,16 @@ class Category: Object {
     @objc dynamic var name = ""
 }
 
+protocol AddNewCategoryDelegate {
+    func addNewCategory(categoryName: String);
+}
+
 class ViewController: UIViewController, FloatingPanelControllerDelegate {
     let realm = try! Realm()
     private var categories: [Category] = []
     private var currentBalance = 0
     
+    @IBOutlet weak var categoriesTableView: UITableView!
     @IBOutlet weak var currentBalanceLabel: UILabel!
     
     var newCategoryVC: NewCategoryViewController!
@@ -35,10 +40,6 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
         currentBalanceLabel.text = "100500"
         self.categories = Array(realm.objects(Category.self))
         initPanel()
-        
-//        try! realm.write {
-//           realm.add(category)
-//        }
     }
     
     func openPanel() {
@@ -54,7 +55,8 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
     
     func initPanel() {
         newCategoryVC = storyboard?.instantiateViewController(withIdentifier: "newCategory") as? NewCategoryViewController
-        newCategoryVC.closePanel = closePanel;
+        newCategoryVC.closePanel = closePanel
+        newCategoryVC.addNewCategoryDelegate = self
         fpc.set(contentViewController: newCategoryVC)
        
         self.view.addSubview(fpc.view)
@@ -69,6 +71,11 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
         ])
 
         self.addChild(fpc)
+    }
+    
+    func updateData() {
+        self.categories = Array(realm.objects(Category.self))
+        categoriesTableView.reloadData()
     }
 
 }
@@ -85,14 +92,33 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+extension ViewController: AddNewCategoryDelegate {
+    func addNewCategory(categoryName: String) {
+        let category = Category()
+        category.name = categoryName
+        try! realm.write {
+           realm.add(category)
+        }
+        updateData()
+    }
+}
+
 class NewCategoryViewController: UIViewController {
     var closePanel: (() -> ())?
+    var addNewCategoryDelegate: AddNewCategoryDelegate?
+    
+    @IBOutlet weak var categoryNameTextField: UITextField!
     
     @IBAction func onCloseButtonTap(_ sender: Any) {
-        closePanel?();
+        closePanel?()
     }
     
     @IBAction func onAddCategory(_ sender: Any) {
+        guard let categoryName = categoryTextField.text, !categoryName.isEmpty else {
+            return
+        }
+        addNewCategoryDelegate?.addNewCategory(categoryName: categoryName)
+        closePanel?()
     }
     
     @IBOutlet weak var categoryTextField: UITextField!

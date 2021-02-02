@@ -90,6 +90,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="categoriesTableView" destination="sOM-fy-buK" id="VGN-kz-bG3"/>
                         <outlet property="currentBalanceLabel" destination="Ye1-ip-QA2" id="b2j-m4-SsQ"/>
                     </connections>
                 </viewController>
@@ -161,6 +162,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="414" height="200"/>
                     <connections>
+                        <outlet property="categoryNameTextField" destination="inC-Jb-Y6y" id="nbK-gY-snc"/>
                         <outlet property="categoryTextField" destination="inC-Jb-Y6y" id="ijK-GQ-TFs"/>
                     </connections>
                 </viewController>

@@ -71,20 +71,22 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9nX-Sb-28J">
-                                <rect key="frame" x="168.5" y="90.5" width="77" height="13"/>
+                                <rect key="frame" x="162.5" y="90.5" width="89.5" height="13"/>
+                                <color key="tintColor" systemColor="opaqueSeparatorColor"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Текущий баланс">
                                         <attributes>
-                                            <font key="NSFont" size="11" name=".SFNS-Regular"/>
+                                            <color key="NSColor" red="0.72941176470588232" green="0.72549019607843135" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" metaFont="smallSystem"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
-                                <color key="highlightedColor" systemColor="systemGrayColor"/>
+                                <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="4o1-3J-21A">
                                 <rect key="frame" x="16" y="123.5" width="382" height="37"/>
-                                <color key="backgroundColor" red="0.88895316549471337" green="0.94117647058823528" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.96862745098039216" green="0.97254901960784312" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="L7f-dp-PZf"/>
                                 </constraints>
@@ -131,35 +133,41 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Qt-rP-9rv">
-                                        <rect key="frame" x="42" y="43.5" width="143" height="17"/>
+                                        <rect key="frame" x="42" y="43.5" width="152" height="17"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Доход">
                                                 <attributes>
-                                                    <font key="NSFont" size="14" name=".SFNS-Regular"/>
+                                                    <color key="NSColor" red="0.72941176470588232" green="0.72549019607843135" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <font key="NSFont" metaFont="menu" size="14"/>
                                                 </attributes>
                                             </fragment>
                                             <fragment content=" ">
                                                 <attributes>
+                                                    <color key="NSColor" red="0.72941176470588232" green="0.72549019607843135" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <font key="NSFont" size="14" name="Poppins-Regular"/>
                                                 </attributes>
                                             </fragment>
                                             <fragment content="с">
                                                 <attributes>
-                                                    <font key="NSFont" size="14" name=".SFNS-Regular"/>
+                                                    <color key="NSColor" red="0.72941176470588232" green="0.72549019607843135" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <font key="NSFont" metaFont="menu" size="14"/>
                                                 </attributes>
                                             </fragment>
                                             <fragment content=" 01.02 ">
                                                 <attributes>
+                                                    <color key="NSColor" red="0.72941176470588232" green="0.72549019607843135" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <font key="NSFont" size="14" name="Poppins-Regular"/>
                                                 </attributes>
                                             </fragment>
                                             <fragment content="по">
                                                 <attributes>
-                                                    <font key="NSFont" size="14" name=".SFNS-Regular"/>
+                                                    <color key="NSColor" red="0.72941176470588232" green="0.72549019607843135" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <font key="NSFont" metaFont="menu" size="14"/>
                                                 </attributes>
                                             </fragment>
                                             <fragment content=" 07.02">
                                                 <attributes>
+                                                    <color key="NSColor" red="0.72941176470588232" green="0.72549019607843135" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <font key="NSFont" size="14" name="Poppins-Regular"/>
                                                 </attributes>
                                             </fragment>
@@ -300,14 +308,14 @@
         <image name="Dot" width="10" height="10"/>
         <image name="Plus" width="17" height="17"/>
         <image name="close-black-24dp" width="24" height="24"/>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tertiarySystemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

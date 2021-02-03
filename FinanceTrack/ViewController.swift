@@ -21,6 +21,8 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
     
     @IBOutlet weak var categoriesTableView: UITableView!
     @IBOutlet weak var currentBalanceLabel: UILabel!
+    @IBOutlet weak var incomeView: UIView!
+    @IBOutlet weak var addIncomeButton: UIButton!
     
     var newCategoryVC: NewCategoryViewController!
     var fpc: FloatingPanelController!
@@ -31,6 +33,8 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        incomeView.layer.cornerRadius = 16
+        addIncomeButton.layer.cornerRadius = 8
         
         fpc = FloatingPanelController()
         fpc.delegate = self

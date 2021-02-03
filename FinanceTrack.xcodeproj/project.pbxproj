@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,7 @@
 		E49D3CFE25C5C7900057C5A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E49D3CFD25C5C7900057C5A3 /* Assets.xcassets */; };
 		E49D3D0125C5C7900057C5A3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E49D3CFF25C5C7900057C5A3 /* LaunchScreen.storyboard */; };
 		E49D3D0F25C5CF0D0057C5A3 /* CategoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49D3D0E25C5CF0D0057C5A3 /* CategoriesTableViewCell.swift */; };
+		E49D3D2525CA45240057C5A3 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E49D3D2425CA45240057C5A3 /* Poppins-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,8 @@
 		E49D3D0025C5C7900057C5A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E49D3D0225C5C7900057C5A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E49D3D0E25C5CF0D0057C5A3 /* CategoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewCell.swift; sourceTree = "<group>"; };
+		E49D3D2425CA45240057C5A3 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-SemiBold.ttf"; path = "../../../../Downloads/Poppins/Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		E49D3D2825CA45380057C5A3 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +58,7 @@
 		E49D3CE825C5C78D0057C5A3 = {
 			isa = PBXGroup;
 			children = (
+				E49D3D2725CA45300057C5A3 /* Fonts */,
 				E49D3CF325C5C78D0057C5A3 /* FinanceTrack */,
 				E49D3CF225C5C78D0057C5A3 /* Products */,
 				F665D5D7E257E66A74E9C51B /* Pods */,
@@ -73,6 +77,7 @@
 		E49D3CF325C5C78D0057C5A3 /* FinanceTrack */ = {
 			isa = PBXGroup;
 			children = (
+				E49D3D2425CA45240057C5A3 /* Poppins-SemiBold.ttf */,
 				E49D3CF425C5C78D0057C5A3 /* AppDelegate.swift */,
 				E49D3CF625C5C78D0057C5A3 /* SceneDelegate.swift */,
 				E49D3CF825C5C78D0057C5A3 /* ViewController.swift */,
@@ -85,13 +90,20 @@
 			path = FinanceTrack;
 			sourceTree = "<group>";
 		};
+		E49D3D2725CA45300057C5A3 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				E49D3D2825CA45380057C5A3 /* Poppins-SemiBold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		F665D5D7E257E66A74E9C51B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				3293A4ABFE836951C15ABD7F /* Pods-FinanceTrack.debug.xcconfig */,
 				910BA1954BC675CD4FFEEB10 /* Pods-FinanceTrack.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -155,6 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E49D3D0125C5C7900057C5A3 /* LaunchScreen.storyboard in Resources */,
+				E49D3D2525CA45240057C5A3 /* Poppins-SemiBold.ttf in Resources */,
 				E49D3CFE25C5C7900057C5A3 /* Assets.xcassets in Resources */,
 				E49D3CFC25C5C78D0057C5A3 /* Main.storyboard in Resources */,
 			);

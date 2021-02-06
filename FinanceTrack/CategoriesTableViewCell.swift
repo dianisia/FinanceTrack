@@ -13,6 +13,8 @@ class CategoriesTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         iconBackUIView.layer.cornerRadius = iconBackUIView.frame.width / 2
+        iconBackUIView.layer.cornerRadius = 7
+        iconBackUIView.layer.masksToBounds = true
     }
     
     required init?(coder: NSCoder) {

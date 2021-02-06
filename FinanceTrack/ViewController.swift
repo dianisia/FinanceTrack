@@ -94,6 +94,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell") as! CategoriesTableViewCell
         cell.categoryNameLabel.text = String(self.categories[indexPath.row].name)
+        cell.iconBackUIView.layer.cornerRadius = cell.iconBackUIView.frame.width / 2
         return cell
     }
 }

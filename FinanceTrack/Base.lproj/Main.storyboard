@@ -39,22 +39,22 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sOM-fy-buK">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sOM-fy-buK">
                                 <rect key="frame" x="16" y="367.5" width="382" height="424.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="424.5" id="suC-Sk-4n3"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="categoryCell" rowHeight="80" id="68s-bf-Kgh" customClass="CategoriesTableViewCell" customModule="FinanceTrack" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="382" height="80"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="categoryCell" rowHeight="58" id="68s-bf-Kgh" customClass="CategoriesTableViewCell" customModule="FinanceTrack" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="382" height="58"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="68s-bf-Kgh" id="zcB-fM-wZF" customClass="CategoriesTableViewCell" customModule="FinanceTrack" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="382" height="80"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="382" height="58"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yDs-OL-NgW">
-                                                    <rect key="frame" x="59" y="8" width="165" height="24"/>
+                                                    <rect key="frame" x="59" y="8" width="221" height="23"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Label">
@@ -65,12 +65,19 @@
                                                     </attributedString>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DC0-wY-z1z">
-                                                    <rect key="frame" x="13" y="8" width="38" height="40"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DC0-wY-z1z">
+                                                    <rect key="frame" x="13" y="9" width="40" height="40"/>
                                                     <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="kUn-8b-Erc"/>
+                                                        <constraint firstAttribute="height" constant="40" id="v1g-9r-eid"/>
+                                                    </constraints>
                                                 </view>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="DC0-wY-z1z" firstAttribute="centerY" secondItem="zcB-fM-wZF" secondAttribute="centerY" id="MrZ-Nh-6gT"/>
+                                                <constraint firstItem="DC0-wY-z1z" firstAttribute="leading" secondItem="zcB-fM-wZF" secondAttribute="leading" constant="13" id="pfY-Ss-Uia"/>
+                                            </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="frame.width/2"/>
                                             </userDefinedRuntimeAttributes>

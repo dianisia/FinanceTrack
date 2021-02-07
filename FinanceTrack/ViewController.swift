@@ -62,16 +62,16 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
         legend.orientation = .vertical
         legend.drawInside = true
         legend.yOffset = 10.0;
-        legend.xOffset = 10.0;
+        legend.xOffset = 0.0;
         legend.yEntrySpace = 0.0;
 
-//        let xaxis = barChartView.xAxis
+        let xaxis = barChartView.xAxis
 //        xaxis.valueFormatter = axisFormatDelegate
-//        xaxis.drawGridLinesEnabled = true
-//        xaxis.labelPosition = .bottom
-//        xaxis.centerAxisLabelsEnabled = true
-//        xaxis.valueFormatter = IndexAxisValueFormatter(values:self.months)
-//        xaxis.granularity = 1
+        xaxis.drawGridLinesEnabled = true
+        xaxis.labelPosition = .bottom
+        xaxis.centerAxisLabelsEnabled = true
+        xaxis.valueFormatter = IndexAxisValueFormatter(values:months)
+        xaxis.granularity = 1
 
         let leftAxisFormatter = NumberFormatter()
         leftAxisFormatter.maximumFractionDigits = 1
@@ -125,38 +125,29 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
     func customizeChart(months: [String], unitsSold: [Double], unitsBought: [Double]) {
         barChartView.noDataText = "You need to provide data for the chart."
         var dataEntries: [BarChartDataEntry] = []
-        var dataEntries1: [BarChartDataEntry] = []
-
+    
         for i in 0..<months.count {
-
-            let dataEntry = BarChartDataEntry(x: Double(i) , y: unitsSold[i])
-            dataEntries.append(dataEntry)
-
-            let dataEntry1 = BarChartDataEntry(x: Double(i) , y: unitsBought[i])
-            dataEntries1.append(dataEntry1)
-
             //stack barchart
-            //let dataEntry = BarChartDataEntry(x: Double(i), yValues:  [self.unitsSold[i],self.unitsBought[i]], label: "groupChart")
+            let dataEntry = BarChartDataEntry(x: Double(i), yValues:  [unitsSold[i], unitsBought[i]], data: "groupChart")
+            dataEntries.append(dataEntry)
         }
 
         let chartDataSet = BarChartDataSet(entries: dataEntries, label: "Unit sold")
-        let chartDataSet1 = BarChartDataSet(entries: dataEntries1, label: "Unit Bought")
-
-        let dataSets: [BarChartDataSet] = [chartDataSet,chartDataSet1]
-        chartDataSet.colors = [UIColor(red: 230/255, green: 126/255, blue: 34/255, alpha: 1)]
-        //chartDataSet.colors = ChartColorTemplates.colorful()
+       
+        let dataSets: [BarChartDataSet] = [chartDataSet]
+        //chartDataSet.colors = [UIColor(red: 230/255, green: 126/255, blue: 34/255, alpha: 1)]
+        chartDataSet.colors = ChartColorTemplates.colorful()
         //let chartData = BarChartData(dataSet: chartDataSet)
 
         let chartData = BarChartData(dataSets: dataSets)
 
-
         let groupSpace = 0.3
-        let barSpace = 0.05
-        let barWidth = 0.3
+        let barSpace = 0.5
+        let barWidth = 0.5
         // (0.3 + 0.05) * 2 + 0.3 = 1.00 -> interval per "group"
 
         let groupCount = months.count
-        let startYear = 0
+        let startYear = -0.5
 
 
         chartData.barWidth = barWidth;
@@ -166,7 +157,7 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
         barChartView.xAxis.axisMaximum = Double(startYear) + gg * Double(groupCount)
 
         chartData.groupBars(fromX: Double(startYear), groupSpace: groupSpace, barSpace: barSpace)
-        //chartData.groupWidth(groupSpace: groupSpace, barSpace: barSpace)
+//        chartData.groupWidth(groupSpace: groupSpace, barSpace: barSpace)
         barChartView.notifyDataSetChanged()
 
         barChartView.data = chartData

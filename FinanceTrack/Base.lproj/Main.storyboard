@@ -39,7 +39,7 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sOM-fy-buK">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sOM-fy-buK">
                                 <rect key="frame" x="16" y="367.5" width="382" height="424.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -154,68 +154,73 @@
                                         </attributedString>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Qt-rP-9rv">
-                                        <rect key="frame" x="42" y="42" width="150.5" height="20"/>
-                                        <attributedString key="attributedText">
-                                            <fragment content="Доход">
-                                                <attributes>
-                                                    <color key="NSColor" red="0.72941176470588232" green="0.72549019607843135" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <font key="NSFont" metaFont="menu" size="14"/>
-                                                </attributes>
-                                            </fragment>
-                                            <fragment content=" ">
-                                                <attributes>
-                                                    <color key="NSColor" red="0.72941176470588232" green="0.72549019607843135" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <font key="NSFont" size="14" name="Poppins-Regular"/>
-                                                </attributes>
-                                            </fragment>
-                                            <fragment content="с">
-                                                <attributes>
-                                                    <color key="NSColor" red="0.72941176470588232" green="0.72549019607843135" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <font key="NSFont" metaFont="menu" size="14"/>
-                                                </attributes>
-                                            </fragment>
-                                            <fragment content=" 01.02 ">
-                                                <attributes>
-                                                    <color key="NSColor" red="0.72941176470588232" green="0.72549019607843135" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <font key="NSFont" size="14" name="Poppins-Regular"/>
-                                                </attributes>
-                                            </fragment>
-                                            <fragment content="по">
-                                                <attributes>
-                                                    <color key="NSColor" red="0.72941176470588232" green="0.72549019607843135" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <font key="NSFont" metaFont="menu" size="14"/>
-                                                </attributes>
-                                            </fragment>
-                                            <fragment content=" 07.02">
-                                                <attributes>
-                                                    <color key="NSColor" red="0.72941176470588232" green="0.72549019607843135" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <font key="NSFont" size="14" name="Poppins-Regular"/>
-                                                </attributes>
-                                            </fragment>
-                                        </attributedString>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dot" translatesAutoresizingMaskIntoConstraints="NO" id="tu0-Ya-Ukh">
-                                        <rect key="frame" x="24" y="47" width="10" height="10"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="10" id="sTR-7a-5bl"/>
-                                            <constraint firstAttribute="width" constant="10" id="tSe-nE-MHO"/>
-                                        </constraints>
-                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="jBW-7t-gxq">
+                                        <rect key="frame" x="24" y="52" width="168.5" height="12"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dot" translatesAutoresizingMaskIntoConstraints="NO" id="tu0-Ya-Ukh">
+                                                <rect key="frame" x="0.0" y="0.0" width="10" height="12"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="10" id="tSe-nE-MHO"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Qt-rP-9rv">
+                                                <rect key="frame" x="18" y="0.0" width="150.5" height="12"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="12" id="sVF-dx-hnc"/>
+                                                </constraints>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="Доход">
+                                                        <attributes>
+                                                            <color key="NSColor" red="0.72941176470588232" green="0.72549019607843135" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <font key="NSFont" metaFont="menu" size="14"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                    <fragment content=" ">
+                                                        <attributes>
+                                                            <color key="NSColor" red="0.72941176470588232" green="0.72549019607843135" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <font key="NSFont" size="14" name="Poppins-Regular"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                    <fragment content="с">
+                                                        <attributes>
+                                                            <color key="NSColor" red="0.72941176470588232" green="0.72549019607843135" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <font key="NSFont" metaFont="menu" size="14"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                    <fragment content=" 01.02 ">
+                                                        <attributes>
+                                                            <color key="NSColor" red="0.72941176470588232" green="0.72549019607843135" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <font key="NSFont" size="14" name="Poppins-Regular"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                    <fragment content="по">
+                                                        <attributes>
+                                                            <color key="NSColor" red="0.72941176470588232" green="0.72549019607843135" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <font key="NSFont" metaFont="menu" size="14"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                    <fragment content=" 07.02">
+                                                        <attributes>
+                                                            <color key="NSColor" red="0.72941176470588232" green="0.72549019607843135" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <font key="NSFont" size="14" name="Poppins-Regular"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="abs-0w-xok" firstAttribute="leading" secondItem="aUq-oO-urD" secondAttribute="trailing" constant="-1" id="1qv-sq-0aQ"/>
                                     <constraint firstAttribute="trailing" secondItem="bF3-D3-HDx" secondAttribute="trailing" constant="24" id="8t6-Ze-cie"/>
                                     <constraint firstAttribute="height" constant="76" id="Dgl-X4-R9O"/>
-                                    <constraint firstItem="4Qt-rP-9rv" firstAttribute="centerY" secondItem="tu0-Ya-Ukh" secondAttribute="centerY" id="Gh5-Do-HPR"/>
+                                    <constraint firstItem="jBW-7t-gxq" firstAttribute="leading" secondItem="aUq-oO-urD" secondAttribute="leading" id="KaW-k3-ZOv"/>
                                     <constraint firstItem="abs-0w-xok" firstAttribute="firstBaseline" secondItem="aUq-oO-urD" secondAttribute="firstBaseline" id="Rw4-4b-KWo"/>
-                                    <constraint firstItem="tu0-Ya-Ukh" firstAttribute="leading" secondItem="biV-dl-5BG" secondAttribute="leading" constant="24" id="UOc-4o-nra"/>
                                     <constraint firstItem="aUq-oO-urD" firstAttribute="top" secondItem="biV-dl-5BG" secondAttribute="top" constant="16" id="c7V-cZ-8FR"/>
-                                    <constraint firstItem="4Qt-rP-9rv" firstAttribute="leading" secondItem="tu0-Ya-Ukh" secondAttribute="trailing" constant="8" id="kr1-7m-I8K"/>
+                                    <constraint firstItem="jBW-7t-gxq" firstAttribute="top" secondItem="aUq-oO-urD" secondAttribute="bottom" constant="2" id="mgQ-kB-8AY"/>
                                     <constraint firstItem="bF3-D3-HDx" firstAttribute="top" secondItem="biV-dl-5BG" secondAttribute="top" constant="16" id="nRX-gH-xLg"/>
-                                    <constraint firstItem="tu0-Ya-Ukh" firstAttribute="top" secondItem="aUq-oO-urD" secondAttribute="bottom" constant="-3" id="swY-Sf-1sE"/>
                                     <constraint firstItem="abs-0w-xok" firstAttribute="centerY" secondItem="aUq-oO-urD" secondAttribute="centerY" id="tYe-9O-upJ"/>
                                     <constraint firstItem="aUq-oO-urD" firstAttribute="leading" secondItem="biV-dl-5BG" secondAttribute="leading" constant="24" id="zok-B4-GIF"/>
                                 </constraints>
@@ -271,7 +276,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OHa-Hc-W77">
-                                <rect key="frame" x="250" y="49" width="19" height="22"/>
+                                <rect key="frame" x="250" y="49" width="18.5" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="2fV-a8-nMM"/>
                                 </constraints>

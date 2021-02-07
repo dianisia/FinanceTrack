@@ -6,6 +6,7 @@ target 'FinanceTrack' do
   use_frameworks!
   pod 'FloatingPanel'
   pod 'RealmSwift'
+  pod 'Charts'
   # Pods for FinanceTrack
 
 end

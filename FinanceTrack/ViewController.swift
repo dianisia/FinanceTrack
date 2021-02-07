@@ -1,6 +1,7 @@
 import UIKit
 import RealmSwift
 import FloatingPanel
+import Charts
 
 class CurrentBalance: Object {
     @objc dynamic var value = 0
@@ -24,6 +25,7 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
     @IBOutlet weak var incomeView: UIView!
     @IBOutlet weak var addIncomeButton: UIButton!
     @IBOutlet weak var addExpenseButton: UIButton!
+    @IBOutlet weak var barChartView: BarChartView!
     
     var newCategoryVC: NewCategoryViewController!
     var fpc: FloatingPanelController!
@@ -46,6 +48,42 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
         currentBalanceLabel.text = "100500"
         self.categories = Array(realm.objects(Category.self))
         initPanel()
+        
+        let months = ["Jan", "Feb", "Mar", "Apr", "May"]
+        let unitsSold = [20.0, 4.0, 6.0, 3.0, 12.0]
+        let unitsBought = [10.0, 14.0, 60.0, 13.0, 2.0]
+        
+        barChartView.noDataText = "No data"
+        //legend
+        let legend = barChartView.legend
+        legend.enabled = true
+        legend.horizontalAlignment = .right
+        legend.verticalAlignment = .top
+        legend.orientation = .vertical
+        legend.drawInside = true
+        legend.yOffset = 10.0;
+        legend.xOffset = 10.0;
+        legend.yEntrySpace = 0.0;
+
+//        let xaxis = barChartView.xAxis
+//        xaxis.valueFormatter = axisFormatDelegate
+//        xaxis.drawGridLinesEnabled = true
+//        xaxis.labelPosition = .bottom
+//        xaxis.centerAxisLabelsEnabled = true
+//        xaxis.valueFormatter = IndexAxisValueFormatter(values:self.months)
+//        xaxis.granularity = 1
+
+        let leftAxisFormatter = NumberFormatter()
+        leftAxisFormatter.maximumFractionDigits = 1
+
+        let yaxis = barChartView.leftAxis
+        yaxis.spaceTop = 0.35
+        yaxis.axisMinimum = 0
+        yaxis.drawGridLinesEnabled = false
+
+        barChartView.rightAxis.enabled = false
+        
+        customizeChart(months: months, unitsSold: unitsSold, unitsBought: unitsBought)
     }
     
     func openPanel() {
@@ -83,6 +121,75 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
         self.categories = Array(realm.objects(Category.self))
         categoriesTableView.reloadData()
     }
+    
+    func customizeChart(months: [String], unitsSold: [Double], unitsBought: [Double]) {
+        barChartView.noDataText = "You need to provide data for the chart."
+        var dataEntries: [BarChartDataEntry] = []
+        var dataEntries1: [BarChartDataEntry] = []
+
+        for i in 0..<months.count {
+
+            let dataEntry = BarChartDataEntry(x: Double(i) , y: unitsSold[i])
+            dataEntries.append(dataEntry)
+
+            let dataEntry1 = BarChartDataEntry(x: Double(i) , y: unitsBought[i])
+            dataEntries1.append(dataEntry1)
+
+            //stack barchart
+            //let dataEntry = BarChartDataEntry(x: Double(i), yValues:  [self.unitsSold[i],self.unitsBought[i]], label: "groupChart")
+        }
+
+        let chartDataSet = BarChartDataSet(entries: dataEntries, label: "Unit sold")
+        let chartDataSet1 = BarChartDataSet(entries: dataEntries1, label: "Unit Bought")
+
+        let dataSets: [BarChartDataSet] = [chartDataSet,chartDataSet1]
+        chartDataSet.colors = [UIColor(red: 230/255, green: 126/255, blue: 34/255, alpha: 1)]
+        //chartDataSet.colors = ChartColorTemplates.colorful()
+        //let chartData = BarChartData(dataSet: chartDataSet)
+
+        let chartData = BarChartData(dataSets: dataSets)
+
+
+        let groupSpace = 0.3
+        let barSpace = 0.05
+        let barWidth = 0.3
+        // (0.3 + 0.05) * 2 + 0.3 = 1.00 -> interval per "group"
+
+        let groupCount = months.count
+        let startYear = 0
+
+
+        chartData.barWidth = barWidth;
+        barChartView.xAxis.axisMinimum = Double(startYear)
+        let gg = chartData.groupWidth(groupSpace: groupSpace, barSpace: barSpace)
+        print("Groupspace: \(gg)")
+        barChartView.xAxis.axisMaximum = Double(startYear) + gg * Double(groupCount)
+
+        chartData.groupBars(fromX: Double(startYear), groupSpace: groupSpace, barSpace: barSpace)
+        //chartData.groupWidth(groupSpace: groupSpace, barSpace: barSpace)
+        barChartView.notifyDataSetChanged()
+
+        barChartView.data = chartData
+
+        //background color
+        barChartView.backgroundColor = UIColor.white
+
+        //chart animation
+        barChartView.animate(xAxisDuration: 1.5, yAxisDuration: 1.5, easingOption: .linear)
+    }
+    
+    private func colorsOfCharts(numbersOfColor: Int) -> [UIColor] {
+      var colors: [UIColor] = []
+      for _ in 0..<numbersOfColor {
+        let red = Double(arc4random_uniform(256))
+        let green = Double(arc4random_uniform(256))
+        let blue = Double(arc4random_uniform(256))
+        let color = UIColor(red: CGFloat(red/255), green: CGFloat(green/255), blue: CGFloat(blue/255), alpha: 1)
+        colors.append(color)
+      }
+      return colors
+    }
+   
 
 }
 

@@ -24,26 +24,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J5L-V6-gaG">
-                                <rect key="frame" x="16" y="322.5" width="94.5" height="22"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="22" id="h9G-ps-oEZ"/>
-                                </constraints>
-                                <attributedString key="attributedText">
-                                    <fragment content="Категории">
-                                        <attributes>
-                                            <color key="NSColor" red="0.011547124966167461" green="0.013089574948705773" blue="0.011875590248765526" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                            <font key="NSFont" size="18" name="Helvetica-Bold"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sOM-fy-buK">
-                                <rect key="frame" x="16" y="367.5" width="382" height="424.5"/>
+                                <rect key="frame" x="16" y="542" width="382" height="250"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="424.5" id="suC-Sk-4n3"/>
+                                    <constraint firstAttribute="height" constant="250" id="suC-Sk-4n3"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="categoryCell" rowHeight="58" id="68s-bf-Kgh" customClass="CategoriesTableViewCell" customModule="FinanceTrack" customModuleProvider="target">
@@ -93,19 +78,6 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="TrJ-vc-Bff"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kOb-w7-WMZ">
-                                <rect key="frame" x="231" y="315.5" width="167" height="36"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="22" id="AKN-sC-hY6"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="17"/>
-                                <state key="normal" title="Добавить категорию">
-                                    <color key="titleColor" red="0.1333333333" green="0.76078431369999999" blue="0.82745098039999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="onTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KD4-wu-U4q"/>
-                                </connections>
-                            </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="4o1-3J-21A">
                                 <rect key="frame" x="16" y="118" width="382" height="37"/>
                                 <color key="backgroundColor" red="0.96862745098039216" green="0.97254901960784312" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -289,6 +261,50 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="joO-TG-dD0" customClass="BarChartView" customModule="Charts">
+                                <rect key="frame" x="16" y="262" width="382" height="207"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="382" id="KAI-If-rdi"/>
+                                    <constraint firstAttribute="height" constant="207" id="tH6-Fo-gYC"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="120" translatesAutoresizingMaskIntoConstraints="NO" id="fPk-6S-3qc">
+                                <rect key="frame" x="16" y="510" width="382" height="24"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J5L-V6-gaG">
+                                        <rect key="frame" x="0.0" y="0.0" width="89" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="cPh-xJ-MjL"/>
+                                        </constraints>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Категории">
+                                                <attributes>
+                                                    <color key="NSColor" red="0.0023851861486901714" green="0.0023736635102907019" blue="0.0023967087870896409" alpha="0.89803921568627454" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <font key="NSFont" size="17" name="Helvetica-Bold"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kOb-w7-WMZ">
+                                        <rect key="frame" x="225" y="0.0" width="157" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="PcP-eM-Krz"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
+                                        <state key="normal" title="Добавить категорию">
+                                            <color key="titleColor" red="0.1333333333" green="0.76078431369999999" blue="0.82745098039999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KD4-wu-U4q"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="kOb-w7-WMZ" firstAttribute="leading" secondItem="J5L-V6-gaG" secondAttribute="trailing" priority="200" constant="120" id="orx-qi-AfD"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -296,31 +312,34 @@
                             <constraint firstItem="bSg-bQ-2Td" firstAttribute="top" secondItem="sOM-fy-buK" secondAttribute="bottom" constant="8" symbolic="YES" id="1Qb-xa-O1h"/>
                             <constraint firstItem="4o1-3J-21A" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="2Dx-cP-wfw"/>
                             <constraint firstItem="biV-dl-5BG" firstAttribute="top" secondItem="4o1-3J-21A" secondAttribute="bottom" constant="24" id="2Nc-7V-Qly"/>
+                            <constraint firstItem="fPk-6S-3qc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="2in-ZK-t44"/>
                             <constraint firstItem="4o1-3J-21A" firstAttribute="top" secondItem="QnB-UI-Bqd" secondAttribute="bottom" constant="20" id="5qI-7j-bVO"/>
                             <constraint firstItem="QnB-UI-Bqd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="7B0-At-Cxz"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kOb-w7-WMZ" secondAttribute="trailing" constant="16" id="GMp-bu-o0n"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="joO-TG-dD0" secondAttribute="trailing" constant="16" id="7fi-P0-ot1"/>
+                            <constraint firstItem="fPk-6S-3qc" firstAttribute="top" secondItem="joO-TG-dD0" secondAttribute="bottom" constant="41" id="8Ar-gR-FS0"/>
                             <constraint firstItem="QnB-UI-Bqd" firstAttribute="top" secondItem="z8i-C9-sE8" secondAttribute="bottom" constant="5" id="HEL-BA-xTi"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bSg-bQ-2Td" secondAttribute="trailing" constant="16" id="HnU-pE-VeS"/>
-                            <constraint firstItem="J5L-V6-gaG" firstAttribute="baseline" secondItem="kOb-w7-WMZ" secondAttribute="baseline" id="Int-jn-W3H"/>
-                            <constraint firstItem="sOM-fy-buK" firstAttribute="top" secondItem="J5L-V6-gaG" secondAttribute="bottom" constant="23" id="Jje-rs-qW4"/>
-                            <constraint firstItem="kOb-w7-WMZ" firstAttribute="firstBaseline" secondItem="J5L-V6-gaG" secondAttribute="firstBaseline" id="JnH-IT-7xK"/>
+                            <constraint firstItem="joO-TG-dD0" firstAttribute="top" secondItem="biV-dl-5BG" secondAttribute="bottom" constant="8" symbolic="YES" id="OlL-Kp-mih"/>
                             <constraint firstItem="z8i-C9-sE8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Qp3-SS-KOK"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fPk-6S-3qc" secondAttribute="trailing" constant="16" id="RuC-mb-Um3"/>
                             <constraint firstItem="bSg-bQ-2Td" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="VR6-Hj-dUg"/>
                             <constraint firstItem="z8i-C9-sE8" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="5" id="alV-Bk-18E"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="bSg-bQ-2Td" secondAttribute="bottom" constant="10" id="bSa-U0-SRu"/>
-                            <constraint firstItem="J5L-V6-gaG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="bfl-FY-MRq"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="sOM-fy-buK" secondAttribute="trailing" constant="16" id="cxg-aR-zTU"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4o1-3J-21A" secondAttribute="trailing" constant="16" id="d7v-AF-9lo"/>
                             <constraint firstItem="biV-dl-5BG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="f6Y-0w-Ydm"/>
                             <constraint firstItem="OHa-Hc-W77" firstAttribute="firstBaseline" secondItem="z8i-C9-sE8" secondAttribute="firstBaseline" id="gKA-qZ-FNa"/>
+                            <constraint firstItem="sOM-fy-buK" firstAttribute="top" secondItem="fPk-6S-3qc" secondAttribute="bottom" constant="8" symbolic="YES" id="gW3-4h-hz3"/>
                             <constraint firstItem="sOM-fy-buK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="j8Z-Di-Vzi"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="biV-dl-5BG" secondAttribute="trailing" constant="16" id="jaD-f5-l41"/>
                             <constraint firstItem="OHa-Hc-W77" firstAttribute="leading" secondItem="z8i-C9-sE8" secondAttribute="trailing" constant="5" id="mcV-1i-ysR"/>
+                            <constraint firstItem="joO-TG-dD0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="wJ0-gS-Hv2"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="addExpenseButton" destination="bSg-bQ-2Td" id="mHs-Zf-d5J"/>
                         <outlet property="addIncomeButton" destination="bF3-D3-HDx" id="Cka-Wu-J1g"/>
+                        <outlet property="barChartView" destination="joO-TG-dD0" id="Gmp-Gb-6EH"/>
                         <outlet property="categoriesTableView" destination="sOM-fy-buK" id="VGN-kz-bG3"/>
                         <outlet property="currentBalanceLabel" destination="z8i-C9-sE8" id="ZlH-bj-usR"/>
                         <outlet property="incomeView" destination="biV-dl-5BG" id="iC9-lY-igg"/>

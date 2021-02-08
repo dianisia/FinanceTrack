@@ -84,7 +84,7 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
 
         barChartView.rightAxis.enabled = false
         
-        customizeChart(months: months, unitsSold: unitsSold, unitsBought: unitsBought)
+        customizeChart(periods: months, data: [unitsSold, unitsBought])
     }
     
     func openPanel() {
@@ -123,42 +123,41 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
         categoriesTableView.reloadData()
     }
     
-    func customizeChart(months: [String], unitsSold: [Double], unitsBought: [Double]) {
+    func customizeChart(periods: [String], data: [[Double]]) {
         barChartView.noDataText = "You need to provide data for the chart."
         var dataEntries: [BarChartDataEntry] = []
     
-        for i in 0..<months.count {
+        for i in 0..<periods.count {
             //stack barchart
-            let dataEntry = BarChartDataEntry(x: Double(i), yValues:  [unitsSold[i], unitsBought[i]], data: "groupChart")
+            var yValues: [Double] = []
+            for j in 0..<data.count {
+                yValues.append(data[j][i])
+            }
+            let dataEntry = BarChartDataEntry(x: Double(i), yValues:  yValues, data: "groupChart")
             dataEntries.append(dataEntry)
         }
 
         let chartDataSet = BarChartDataSet(entries: dataEntries, label: "Unit sold")
        
         let dataSets: [BarChartDataSet] = [chartDataSet]
-        //chartDataSet.colors = [UIColor(red: 230/255, green: 126/255, blue: 34/255, alpha: 1)]
         chartDataSet.colors = ChartColorTemplates.colorful()
-        //let chartData = BarChartData(dataSet: chartDataSet)
 
         let chartData = BarChartData(dataSets: dataSets)
 
         let groupSpace = 0.3
         let barSpace = 0.5
         let barWidth = 0.5
-        // (0.3 + 0.05) * 2 + 0.3 = 1.00 -> interval per "group"
-
-        let groupCount = months.count
+ 
+        let groupCount = periods.count
         let startYear = -0.5
-
 
         chartData.barWidth = barWidth;
         barChartView.xAxis.axisMinimum = Double(startYear)
         let gg = chartData.groupWidth(groupSpace: groupSpace, barSpace: barSpace)
-        print("Groupspace: \(gg)")
+
         barChartView.xAxis.axisMaximum = Double(startYear) + gg * Double(groupCount)
 
         chartData.groupBars(fromX: Double(startYear), groupSpace: groupSpace, barSpace: barSpace)
-//        chartData.groupWidth(groupSpace: groupSpace, barSpace: barSpace)
         barChartView.notifyDataSetChanged()
 
         barChartView.data = chartData

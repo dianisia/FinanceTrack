@@ -63,15 +63,21 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
         legend.orientation = .vertical
         legend.drawInside = true
         legend.yOffset = 10.0;
-        legend.xOffset = 0.0;
+        legend.xOffset = 10.0;
         legend.yEntrySpace = 0.0;
 
         let xaxis = barChartView.xAxis
-//        xaxis.valueFormatter = axisFormatDelegate
+        let formatter = CustomLabelsXAxisValueFormatter()
+        formatter.labels = months
+        xaxis.valueFormatter = formatter
+        
         xaxis.drawGridLinesEnabled = true
         xaxis.labelPosition = .bottom
         xaxis.centerAxisLabelsEnabled = true
-        xaxis.valueFormatter = IndexAxisValueFormatter(values:months)
+        xaxis.axisLineColor = UIColor.white
+        xaxis.granularityEnabled = true
+        xaxis.enabled = true
+        
         xaxis.granularity = 1
 
         let leftAxisFormatter = NumberFormatter()
@@ -128,7 +134,6 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
         var dataEntries: [BarChartDataEntry] = []
     
         for i in 0..<periods.count {
-            //stack barchart
             var yValues: [Double] = []
             for j in 0..<data.count {
                 yValues.append(data[j][i])
@@ -144,21 +149,18 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
 
         let chartData = BarChartData(dataSets: dataSets)
 
-        let groupSpace = 0.3
-        let barSpace = 0.5
-        let barWidth = 0.5
+        let groupSpace = 0.8
+        let barSpace = 0.01
+        let barWidth = 0.2
  
-        let groupCount = periods.count
-        let startYear = -0.5
-
-        chartData.barWidth = barWidth;
-        barChartView.xAxis.axisMinimum = Double(startYear)
-        let gg = chartData.groupWidth(groupSpace: groupSpace, barSpace: barSpace)
-
-        barChartView.xAxis.axisMaximum = Double(startYear) + gg * Double(groupCount)
-
-        chartData.groupBars(fromX: Double(startYear), groupSpace: groupSpace, barSpace: barSpace)
+        chartData.barWidth = barWidth
+        
+        barChartView.xAxis.axisMinimum = 0.0
+        barChartView.xAxis.axisMaximum = 0.0 + chartData.groupWidth(groupSpace: groupSpace, barSpace: barSpace) * Double(periods.count)
+        chartData.groupBars(fromX: 0.2, groupSpace: groupSpace, barSpace: barSpace)
         barChartView.notifyDataSetChanged()
+        
+        barChartView.xAxis.granularity = barChartView.xAxis.axisMaximum / Double(periods.count)
 
         barChartView.data = chartData
 
@@ -180,8 +182,23 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
       }
       return colors
     }
-   
+}
 
+class CustomLabelsXAxisValueFormatter : NSObject, IAxisValueFormatter {
+    var labels: [String] = []
+    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+        let count = self.labels.count
+        guard let axis = axis, count > 0 else {
+            return ""
+        }
+
+        let factor = axis.axisMaximum / Double(count)
+        let index = Int((value / factor).rounded())
+        if index >= 0 && index < count {
+            return self.labels[index]
+        }
+        return ""
+    }
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {

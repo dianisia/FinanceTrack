@@ -30,7 +30,8 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
     var newCategoryVC: NewCategoryViewController!
     var fpc: FloatingPanelController!
     
-    @IBAction func onTap(_ sender: Any) {
+   
+    @IBAction func onAddNewCategoryTap(_ sender: Any) {
         openPanel()
     }
     
@@ -219,6 +220,12 @@ class NewCategoryViewController: UIViewController, UITextFieldDelegate {
 
         categoryNameTextField.delegate = self
         addButton.isUserInteractionEnabled = false
+        
+        let bottomLine = CALayer()
+        bottomLine.frame = CGRect(x: 0.0, y: categoryNameTextField.frame.height - 1, width: categoryNameTextField.frame.width, height: 1.0)
+        bottomLine.backgroundColor = UIColor.lightGray.cgColor
+        categoryNameTextField.borderStyle = UITextField.BorderStyle.none
+        categoryNameTextField.layer.addSublayer(bottomLine)
     }
     
     @IBAction func onCloseButtonTap(_ sender: Any) {

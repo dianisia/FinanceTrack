@@ -30,7 +30,8 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
     var newCategoryVC: NewCategoryViewController!
     var fpc: FloatingPanelController!
     
-    @IBAction func onTap(_ sender: Any) {
+   
+    @IBAction func onAddNewCategoryTap(_ sender: Any) {
         openPanel()
     }
     
@@ -65,13 +66,19 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
         legend.xOffset = 10.0;
         legend.yEntrySpace = 0.0;
 
-//        let xaxis = barChartView.xAxis
-//        xaxis.valueFormatter = axisFormatDelegate
-//        xaxis.drawGridLinesEnabled = true
-//        xaxis.labelPosition = .bottom
-//        xaxis.centerAxisLabelsEnabled = true
-//        xaxis.valueFormatter = IndexAxisValueFormatter(values:self.months)
-//        xaxis.granularity = 1
+        let xaxis = barChartView.xAxis
+        let formatter = CustomLabelsXAxisValueFormatter()
+        formatter.labels = months
+        xaxis.valueFormatter = formatter
+        
+        xaxis.drawGridLinesEnabled = true
+        xaxis.labelPosition = .bottom
+        xaxis.centerAxisLabelsEnabled = true
+        xaxis.axisLineColor = UIColor.white
+        xaxis.granularityEnabled = true
+        xaxis.enabled = true
+        
+        xaxis.granularity = 1
 
         let leftAxisFormatter = NumberFormatter()
         leftAxisFormatter.maximumFractionDigits = 1
@@ -83,7 +90,7 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
 
         barChartView.rightAxis.enabled = false
         
-        customizeChart(months: months, unitsSold: unitsSold, unitsBought: unitsBought)
+        customizeChart(periods: months, data: [unitsSold, unitsBought])
     }
     
     func openPanel() {
@@ -122,52 +129,38 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
         categoriesTableView.reloadData()
     }
     
-    func customizeChart(months: [String], unitsSold: [Double], unitsBought: [Double]) {
+    func customizeChart(periods: [String], data: [[Double]]) {
         barChartView.noDataText = "You need to provide data for the chart."
         var dataEntries: [BarChartDataEntry] = []
-        var dataEntries1: [BarChartDataEntry] = []
-
-        for i in 0..<months.count {
-
-            let dataEntry = BarChartDataEntry(x: Double(i) , y: unitsSold[i])
+    
+        for i in 0..<periods.count {
+            var yValues: [Double] = []
+            for j in 0..<data.count {
+                yValues.append(data[j][i])
+            }
+            let dataEntry = BarChartDataEntry(x: Double(i), yValues:  yValues, data: "groupChart")
             dataEntries.append(dataEntry)
-
-            let dataEntry1 = BarChartDataEntry(x: Double(i) , y: unitsBought[i])
-            dataEntries1.append(dataEntry1)
-
-            //stack barchart
-            //let dataEntry = BarChartDataEntry(x: Double(i), yValues:  [self.unitsSold[i],self.unitsBought[i]], label: "groupChart")
         }
 
         let chartDataSet = BarChartDataSet(entries: dataEntries, label: "Unit sold")
-        let chartDataSet1 = BarChartDataSet(entries: dataEntries1, label: "Unit Bought")
-
-        let dataSets: [BarChartDataSet] = [chartDataSet,chartDataSet1]
-        chartDataSet.colors = [UIColor(red: 230/255, green: 126/255, blue: 34/255, alpha: 1)]
-        //chartDataSet.colors = ChartColorTemplates.colorful()
-        //let chartData = BarChartData(dataSet: chartDataSet)
+       
+        let dataSets: [BarChartDataSet] = [chartDataSet]
+        chartDataSet.colors = ChartColorTemplates.colorful()
 
         let chartData = BarChartData(dataSets: dataSets)
 
-
-        let groupSpace = 0.3
-        let barSpace = 0.05
-        let barWidth = 0.3
-        // (0.3 + 0.05) * 2 + 0.3 = 1.00 -> interval per "group"
-
-        let groupCount = months.count
-        let startYear = 0
-
-
-        chartData.barWidth = barWidth;
-        barChartView.xAxis.axisMinimum = Double(startYear)
-        let gg = chartData.groupWidth(groupSpace: groupSpace, barSpace: barSpace)
-        print("Groupspace: \(gg)")
-        barChartView.xAxis.axisMaximum = Double(startYear) + gg * Double(groupCount)
-
-        chartData.groupBars(fromX: Double(startYear), groupSpace: groupSpace, barSpace: barSpace)
-        //chartData.groupWidth(groupSpace: groupSpace, barSpace: barSpace)
+        let groupSpace = 0.8
+        let barSpace = 0.01
+        let barWidth = 0.2
+ 
+        chartData.barWidth = barWidth
+        
+        barChartView.xAxis.axisMinimum = 0.0
+        barChartView.xAxis.axisMaximum = 0.0 + chartData.groupWidth(groupSpace: groupSpace, barSpace: barSpace) * Double(periods.count)
+        chartData.groupBars(fromX: 0.2, groupSpace: groupSpace, barSpace: barSpace)
         barChartView.notifyDataSetChanged()
+        
+        barChartView.xAxis.granularity = barChartView.xAxis.axisMaximum / Double(periods.count)
 
         barChartView.data = chartData
 
@@ -189,8 +182,23 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
       }
       return colors
     }
-   
+}
 
+class CustomLabelsXAxisValueFormatter : NSObject, IAxisValueFormatter {
+    var labels: [String] = []
+    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+        let count = self.labels.count
+        guard let axis = axis, count > 0 else {
+            return ""
+        }
+
+        let factor = axis.axisMaximum / Double(count)
+        let index = Int((value / factor).rounded())
+        if index >= 0 && index < count {
+            return self.labels[index]
+        }
+        return ""
+    }
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
@@ -228,6 +236,12 @@ class NewCategoryViewController: UIViewController, UITextFieldDelegate {
 
         categoryNameTextField.delegate = self
         addButton.isUserInteractionEnabled = false
+        
+        let bottomLine = CALayer()
+        bottomLine.frame = CGRect(x: 0.0, y: categoryNameTextField.frame.height - 1, width: categoryNameTextField.frame.width, height: 1.0)
+        bottomLine.backgroundColor = UIColor.lightGray.cgColor
+        categoryNameTextField.borderStyle = UITextField.BorderStyle.none
+        categoryNameTextField.layer.addSublayer(bottomLine)
     }
     
     @IBAction func onCloseButtonTap(_ sender: Any) {

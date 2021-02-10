@@ -230,6 +230,7 @@ class NewCategoryViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var categoryNameTextField: UITextField!
+    @IBOutlet weak var colorsScrollView: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -242,6 +243,24 @@ class NewCategoryViewController: UIViewController, UITextFieldDelegate {
         bottomLine.backgroundColor = UIColor.lightGray.cgColor
         categoryNameTextField.borderStyle = UITextField.BorderStyle.none
         categoryNameTextField.layer.addSublayer(bottomLine)
+        
+        let categoryColors = [
+            Helper.UIColorFromHex(rgbValue: 0x47D124),
+            Helper.UIColorFromHex(rgbValue: 0x7DC9FF),
+            Helper.UIColorFromHex(rgbValue: 0xFF7EEA),
+            Helper.UIColorFromHex(rgbValue: 0xC190FF),
+            Helper.UIColorFromHex(rgbValue: 0xFF7171),
+            Helper.UIColorFromHex(rgbValue: 0xFFCE85),
+            Helper.UIColorFromHex(rgbValue: 0x24D1C7)
+        ]
+        
+        for i in 0..<categoryColors.capacity {
+            let greenView = UIView()
+            greenView.frame = CGRect(x: i * (40 + 10) + 10, y: 0, width: 40, height: 40)
+            greenView.backgroundColor = categoryColors[i]
+            greenView.layer.cornerRadius = 5
+            colorsScrollView.addSubview(greenView)
+        }
     }
     
     @IBAction func onCloseButtonTap(_ sender: Any) {

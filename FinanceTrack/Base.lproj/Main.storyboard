@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -445,6 +446,55 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xJ5-vQ-aCu">
+                                <rect key="frame" x="16" y="144" width="172" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Выберите цвет">
+                                        <attributes>
+                                            <color key="NSColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <font key="NSFont" size="14" name="Helvetica"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content=" ">
+                                        <attributes>
+                                            <color key="NSColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <font key="NSFont" size="14" name="Poppins-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="категории">
+                                        <attributes>
+                                            <color key="NSColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <font key="NSFont" size="14" name="Helvetica"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ozp-yW-YGk">
+                                <rect key="frame" x="16" y="172" width="386" height="47"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="18h-AK-sGQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="470" height="47"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="470" id="BJ3-K8-8be"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="18h-AK-sGQ" firstAttribute="bottom" secondItem="Deo-72-eYF" secondAttribute="bottom" id="ANE-vT-zbK"/>
+                                    <constraint firstItem="18h-AK-sGQ" firstAttribute="leading" secondItem="Deo-72-eYF" secondAttribute="leading" id="K1m-Io-aaD"/>
+                                    <constraint firstItem="18h-AK-sGQ" firstAttribute="height" secondItem="fhh-7D-RIT" secondAttribute="height" id="PXv-Hx-T2o"/>
+                                    <constraint firstItem="Deo-72-eYF" firstAttribute="top" secondItem="18h-AK-sGQ" secondAttribute="top" id="aDZ-ZY-Rsf"/>
+                                    <constraint firstItem="18h-AK-sGQ" firstAttribute="trailing" secondItem="Deo-72-eYF" secondAttribute="trailing" id="lRn-oq-gk9"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="Deo-72-eYF"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="fhh-7D-RIT"/>
+                            </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="lcp-TF-Tat"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -470,6 +520,7 @@
                     <connections>
                         <outlet property="addButton" destination="1ET-uR-BEZ" id="E4I-XU-qZU"/>
                         <outlet property="categoryNameTextField" destination="inC-Jb-Y6y" id="nbK-gY-snc"/>
+                        <outlet property="colorsScrollView" destination="Ozp-yW-YGk" id="qfX-gV-WrI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Her-Xk-uLD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

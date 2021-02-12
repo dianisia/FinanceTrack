@@ -49,6 +49,7 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
         currentBalanceLabel.text = "100500"
         self.categories = Array(realm.objects(Category.self))
         initPanel()
+        openPanel()
         
         let months = ["Jan", "Feb", "Mar", "Apr", "May"]
         let unitsSold = [20.0, 4.0, 6.0, 3.0, 12.0]
@@ -255,11 +256,19 @@ class NewCategoryViewController: UIViewController, UITextFieldDelegate {
         ]
         
         for i in 0..<categoryColors.capacity {
-            let greenView = UIView()
+            let greenView = ColorItemView()
+            greenView.isChecked = true
             greenView.frame = CGRect(x: i * (40 + 10) + 10, y: 0, width: 40, height: 40)
             greenView.backgroundColor = categoryColors[i]
             greenView.layer.cornerRadius = 5
-            colorsScrollView.addSubview(greenView)
+            
+            let wrappingView = UIView(frame: CGRect(x: 0, y: 0, width: 45, height: 45))
+            wrappingView.backgroundColor = .clear
+            wrappingView.layer.borderColor = UIColor.yellow.cgColor
+            wrappingView.layer.borderWidth = 2.0;
+            wrappingView.addSubview(greenView)
+            
+            colorsScrollView.addSubview(wrappingView)
         }
     }
     

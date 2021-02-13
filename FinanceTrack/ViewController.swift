@@ -255,21 +255,8 @@ class NewCategoryViewController: UIViewController, UITextFieldDelegate {
             Helper.UIColorFromHex(rgbValue: 0x24D1C7)
         ]
         
-        for i in 0..<categoryColors.capacity {
-            let greenView = ColorItemView()
-            greenView.isChecked = true
-            greenView.frame = CGRect(x: i * (40 + 10) + 10, y: 0, width: 40, height: 40)
-            greenView.backgroundColor = categoryColors[i]
-            greenView.layer.cornerRadius = 5
-            
-            let wrappingView = UIView(frame: CGRect(x: 0, y: 0, width: 45, height: 45))
-            wrappingView.backgroundColor = .clear
-            wrappingView.layer.borderColor = UIColor.yellow.cgColor
-            wrappingView.layer.borderWidth = 2.0;
-            wrappingView.addSubview(greenView)
-            
-            colorsScrollView.addSubview(wrappingView)
-        }
+        let radioGroup = RadioGroup(colors: categoryColors)
+        colorsScrollView.addSubview(radioGroup)
     }
     
     @IBAction func onCloseButtonTap(_ sender: Any) {

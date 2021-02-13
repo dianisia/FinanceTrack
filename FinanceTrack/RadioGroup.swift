@@ -7,21 +7,32 @@ class RadioGroupItem: UIView {
     var width: CGFloat = 40
     var height: CGFloat = 40
     var color: UIColor = UIColor.red
+    var x: CGFloat = 0.0
+    var y: CGFloat = 0.0
+    
+    
+    convenience init(color: UIColor, x: Int, y: Int, width: Int, height: Int) {
+        self.init(frame: .zero)
+        self.color = color
+        self.x = CGFloat(x)
+        self.y = CGFloat(y)
+        self.width = CGFloat(width)
+        self.height = CGFloat(height)
+        setup()
+    }
     
     private func setup() {
-        frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        frame = CGRect(x: x, y: y, width: width, height: height)
         backgroundColor = color
         layer.cornerRadius = 5
     }
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        setup()
     }
     
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setup()
     }
     
     override var intrinsicContentSize: CGSize {
@@ -34,46 +45,29 @@ class RadioGroup: UIControl {
     
     private let stackView = UIStackView()
     private var items: [RadioGroupItem] = []
-    var colors: [UIColor] {
-        get {
-            return items.map { $0.color }
-        }
-        set {
-            stackView.addArrangedSubview(newValue.map {RadioGroupItem(color: $0)})
-        }
+    private var colors: [UIColor] = []
+    private let spacing = 10
+    private let size = 40
+    
+    convenience init(colors: [UIColor]) {
+        self.init(frame: .zero)
+        self.colors = colors
+        setup()
     }
     
     private func setup() {
-        let categoryColors = [
-            Helper.UIColorFromHex(rgbValue: 0x47D124),
-            Helper.UIColorFromHex(rgbValue: 0x7DC9FF),
-            Helper.UIColorFromHex(rgbValue: 0xFF7EEA),
-            Helper.UIColorFromHex(rgbValue: 0xC190FF),
-            Helper.UIColorFromHex(rgbValue: 0xFF7171),
-            Helper.UIColorFromHex(rgbValue: 0xFFCE85),
-            Helper.UIColorFromHex(rgbValue: 0x24D1C7)
-        ]
-        
-        for i in 0..<categoryColors.capacity {
-            let greenView = ColorItemView()
-            greenView.isChecked = true
-            greenView.frame = CGRect(x: i * (40 + 10) + 10, y: 0, width: 40, height: 40)
-            greenView.backgroundColor = categoryColors[i]
-            greenView.layer.cornerRadius = 5
-            
-            stackView.addSubview(greenView)
+        for i in 0..<self.colors.count {
+            let item = RadioGroupItem(color: self.colors[i], x: i * (size + spacing), y: 0, width: size, height: size)
+            stackView.addSubview(item)
         }
-        
         addSubview(stackView)
     }
     
     public override init(frame: CGRect) {
        super.init(frame: frame)
-       setup()
    }
 
    public required init?(coder: NSCoder) {
        super.init(coder: coder)
-       setup()
    }
 }

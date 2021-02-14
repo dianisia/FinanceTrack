@@ -22,14 +22,44 @@ class RadioGroup: UIControl {
     }
     
     private func setup() {
-        frame = CGRect(x: 0, y: 0, width: 470, height: 47)
-        stackView.frame = CGRect(x: 0, y: 0, width: 470, height: 47)
         for i in 0..<self.colors.count {
             let item = RadioGroupItem(color: self.colors[i], x: i * (size + spacing), y: 0, width: size, height: size, group: self)
             items.append(item)
             stackView.addSubview(item)
         }
         addSubview(stackView)
+        
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint(item: stackView,
+                           attribute: .leading,
+                           relatedBy: .equal,
+                           toItem: self,
+                           attribute: .leading,
+                           multiplier: 1.0,
+                           constant: 0).isActive = true
+        NSLayoutConstraint(item: stackView,
+                           attribute: .trailing,
+                           relatedBy: .equal,
+                           toItem: self,
+                           attribute: .trailing,
+                           multiplier: 1.0,
+                           constant: 0).isActive = true
+        NSLayoutConstraint(item: stackView,
+                           attribute: .width,
+                           relatedBy: .equal,
+                           toItem: self,
+                           attribute: .width,
+                           multiplier: 1.0,
+                           constant: 0).isActive = true
+        NSLayoutConstraint(item: stackView,
+                           attribute: .height,
+                           relatedBy: .equal,
+                           toItem: self,
+                           attribute: .height,
+                           multiplier: 1.0,
+                           constant: 0).isActive = true
+        
     }
     
     func selectIndex(item: RadioGroupItem) {
@@ -51,7 +81,7 @@ class RadioGroupItem: UIView {
         didSet {
             if isSelected {
                 layer.borderWidth = 2
-                layer.borderColor = UIColor.red.cgColor
+                layer.borderColor = Helper.UIColorFromHex(rgbValue: 0x22C2D3).cgColor;
             } else {
                 layer.borderWidth = 0
             }

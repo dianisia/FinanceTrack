@@ -11,6 +11,7 @@
 		E485E75725D38925003850FA /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E485E75625D38925003850FA /* Helper.swift */; };
 		E485E75E25D39130003850FA /* ColorItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E485E75D25D39130003850FA /* ColorItemView.swift */; };
 		E485E76125D6283A003850FA /* RadioGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E485E76025D6283A003850FA /* RadioGroup.swift */; };
+		E485E76A25D992E8003850FA /* NewCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E485E76925D992E7003850FA /* NewCategoryViewController.swift */; };
 		E49D3CF525C5C78D0057C5A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49D3CF425C5C78D0057C5A3 /* AppDelegate.swift */; };
 		E49D3CF725C5C78D0057C5A3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49D3CF625C5C78D0057C5A3 /* SceneDelegate.swift */; };
 		E49D3CF925C5C78D0057C5A3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49D3CF825C5C78D0057C5A3 /* ViewController.swift */; };
@@ -31,6 +32,7 @@
 		E485E75625D38925003850FA /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		E485E75D25D39130003850FA /* ColorItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorItemView.swift; sourceTree = "<group>"; };
 		E485E76025D6283A003850FA /* RadioGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioGroup.swift; sourceTree = "<group>"; };
+		E485E76925D992E7003850FA /* NewCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCategoryViewController.swift; sourceTree = "<group>"; };
 		E49D3CF125C5C78D0057C5A3 /* FinanceTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinanceTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E49D3CF425C5C78D0057C5A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E49D3CF625C5C78D0057C5A3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				E49D3CFF25C5C7900057C5A3 /* LaunchScreen.storyboard */,
 				E49D3D0225C5C7900057C5A3 /* Info.plist */,
 				E485E76025D6283A003850FA /* RadioGroup.swift */,
+				E485E76925D992E7003850FA /* NewCategoryViewController.swift */,
 			);
 			path = FinanceTrack;
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E49D3CF925C5C78D0057C5A3 /* ViewController.swift in Sources */,
+				E485E76A25D992E8003850FA /* NewCategoryViewController.swift in Sources */,
 				E49D3D0F25C5CF0D0057C5A3 /* CategoriesTableViewCell.swift in Sources */,
 				E485E75725D38925003850FA /* Helper.swift in Sources */,
 				E485E75E25D39130003850FA /* ColorItemView.swift in Sources */,

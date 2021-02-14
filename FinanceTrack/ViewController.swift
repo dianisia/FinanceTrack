@@ -232,6 +232,7 @@ class NewCategoryViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var categoryNameTextField: UITextField!
     @IBOutlet weak var colorsScrollView: UIScrollView!
+    @IBOutlet weak var colorsView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

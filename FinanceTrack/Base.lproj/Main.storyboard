@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -478,19 +477,20 @@
                                 <rect key="frame" x="16" y="172" width="386" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="18h-AK-sGQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="470" height="47"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Geq-I8-6nw">
+                                        <rect key="frame" x="0.0" y="0.0" width="452" height="47"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="470" id="BJ3-K8-8be"/>
+                                            <constraint firstAttribute="width" constant="452" id="TA8-LR-rES"/>
                                         </constraints>
-                                    </stackView>
+                                    </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="18h-AK-sGQ" firstAttribute="bottom" secondItem="Deo-72-eYF" secondAttribute="bottom" id="ANE-vT-zbK"/>
-                                    <constraint firstItem="18h-AK-sGQ" firstAttribute="leading" secondItem="Deo-72-eYF" secondAttribute="leading" id="K1m-Io-aaD"/>
-                                    <constraint firstItem="18h-AK-sGQ" firstAttribute="height" secondItem="fhh-7D-RIT" secondAttribute="height" id="PXv-Hx-T2o"/>
-                                    <constraint firstItem="Deo-72-eYF" firstAttribute="top" secondItem="18h-AK-sGQ" secondAttribute="top" id="aDZ-ZY-Rsf"/>
-                                    <constraint firstItem="18h-AK-sGQ" firstAttribute="trailing" secondItem="Deo-72-eYF" secondAttribute="trailing" id="lRn-oq-gk9"/>
+                                    <constraint firstItem="Geq-I8-6nw" firstAttribute="trailing" secondItem="Deo-72-eYF" secondAttribute="trailing" id="D3Y-3X-vsP"/>
+                                    <constraint firstItem="Deo-72-eYF" firstAttribute="top" secondItem="Geq-I8-6nw" secondAttribute="top" id="Lai-DA-zxk"/>
+                                    <constraint firstItem="Geq-I8-6nw" firstAttribute="leading" secondItem="Deo-72-eYF" secondAttribute="leading" id="VLv-sD-Plc"/>
+                                    <constraint firstItem="Geq-I8-6nw" firstAttribute="bottom" secondItem="Deo-72-eYF" secondAttribute="bottom" id="bOd-Kz-3VU"/>
+                                    <constraint firstItem="Geq-I8-6nw" firstAttribute="height" secondItem="fhh-7D-RIT" secondAttribute="height" id="qGJ-XG-X9P"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="Deo-72-eYF"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="fhh-7D-RIT"/>
@@ -521,6 +521,7 @@
                         <outlet property="addButton" destination="1ET-uR-BEZ" id="E4I-XU-qZU"/>
                         <outlet property="categoryNameTextField" destination="inC-Jb-Y6y" id="nbK-gY-snc"/>
                         <outlet property="colorsScrollView" destination="Ozp-yW-YGk" id="qfX-gV-WrI"/>
+                        <outlet property="colorsView" destination="Geq-I8-6nw" id="1H8-kq-43r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Her-Xk-uLD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

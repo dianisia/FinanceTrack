@@ -1,47 +1,12 @@
 import UIKit
 
-class RadioGroupItem: UIView {
-    
-    let view = UIView()
-    var isSelected: Bool = false
-    var width: CGFloat = 40
-    var height: CGFloat = 40
-    var color: UIColor = UIColor.red
-    var x: CGFloat = 0.0
-    var y: CGFloat = 0.0
-    
-    
-    convenience init(color: UIColor, x: Int, y: Int, width: Int, height: Int) {
-        self.init(frame: .zero)
-        self.color = color
-        self.x = CGFloat(x)
-        self.y = CGFloat(y)
-        self.width = CGFloat(width)
-        self.height = CGFloat(height)
-        setup()
-    }
-    
-    private func setup() {
-        frame = CGRect(x: x, y: y, width: width, height: height)
-        backgroundColor = color
-        layer.cornerRadius = 5
-    }
-    
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    public required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
-    
-    override var intrinsicContentSize: CGSize {
-        return CGSize(width: width, height: height)
-    }
-}
-
 class RadioGroup: UIControl {
-    var selectedIndex: Int = -1
+    var selectedIndex: Int = 0 {
+        didSet {
+            items[oldValue].isSelected = false
+            items[selectedIndex].isSelected = true
+        }
+    }
     
     private let stackView = UIStackView()
     private var items: [RadioGroupItem] = []
@@ -53,14 +18,23 @@ class RadioGroup: UIControl {
         self.init(frame: .zero)
         self.colors = colors
         setup()
+        isUserInteractionEnabled = true
     }
     
     private func setup() {
+        frame = CGRect(x: 0, y: 0, width: 470, height: 47)
+        stackView.frame = CGRect(x: 0, y: 0, width: 470, height: 47)
         for i in 0..<self.colors.count {
-            let item = RadioGroupItem(color: self.colors[i], x: i * (size + spacing), y: 0, width: size, height: size)
+            let item = RadioGroupItem(color: self.colors[i], x: i * (size + spacing), y: 0, width: size, height: size, group: self)
+            items.append(item)
             stackView.addSubview(item)
         }
         addSubview(stackView)
+    }
+    
+    func selectIndex(item: RadioGroupItem) {
+        guard let index = stackView.subviews.firstIndex(of: item) else {return}
+        selectedIndex = index
     }
     
     public override init(frame: CGRect) {
@@ -71,3 +45,60 @@ class RadioGroup: UIControl {
        super.init(coder: coder)
    }
 }
+
+class RadioGroupItem: UIView {
+    var isSelected: Bool = false {
+        didSet {
+            if isSelected {
+                layer.borderWidth = 2
+                layer.borderColor = UIColor.red.cgColor
+            } else {
+                layer.borderWidth = 0
+            }
+        }
+    }
+    var width: CGFloat = 40
+    var height: CGFloat = 40
+    var color: UIColor = UIColor.red
+    var x: CGFloat = 0.0
+    var y: CGFloat = 0.0
+    
+    unowned var group: RadioGroup = RadioGroup()
+    
+    convenience init(color: UIColor, x: Int, y: Int, width: Int, height: Int, group: RadioGroup) {
+        self.init(frame: .zero)
+        self.color = color
+        self.x = CGFloat(x)
+        self.y = CGFloat(y)
+        self.width = CGFloat(width)
+        self.height = CGFloat(height)
+        self.group = group
+        setup()
+    }
+    
+    private func setup() {
+        frame = CGRect(x: x, y: y, width: width, height: height)
+        backgroundColor = color
+        layer.cornerRadius = 5
+        isUserInteractionEnabled = true
+        isAccessibilityElement = true
+        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didSelect)))
+    }
+    
+    @objc func didSelect() {
+        group.selectIndex(item: self)
+    }
+    
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    public required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: width, height: height)
+    }
+}
+

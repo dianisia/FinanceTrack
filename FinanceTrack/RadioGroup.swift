@@ -81,7 +81,7 @@ class RadioGroupItem: UIView {
         didSet {
             if isSelected {
                 layer.borderWidth = 2
-                layer.borderColor = Helper.UIColorFromHex(rgbValue: 0x22C2D3).cgColor;
+                layer.borderColor = Constants.selectedCategoryBorderColor.cgColor;
             } else {
                 layer.borderWidth = 0
             }

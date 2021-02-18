@@ -20,18 +20,8 @@ class NewCategoryViewController: UIViewController, UITextFieldDelegate {
         bottomLine.backgroundColor = UIColor.lightGray.cgColor
         categoryNameTextField.borderStyle = UITextField.BorderStyle.none
         categoryNameTextField.layer.addSublayer(bottomLine)
-        
-        let categoryColors = [
-            Helper.UIColorFromHex(rgbValue: 0x47D124),
-            Helper.UIColorFromHex(rgbValue: 0x7DC9FF),
-            Helper.UIColorFromHex(rgbValue: 0xFF7EEA),
-            Helper.UIColorFromHex(rgbValue: 0xC190FF),
-            Helper.UIColorFromHex(rgbValue: 0xFF7171),
-            Helper.UIColorFromHex(rgbValue: 0xFFCE85),
-            Helper.UIColorFromHex(rgbValue: 0x24D1C7)
-        ]
-        
-        let radioGroup = RadioGroup(colors: categoryColors)
+                
+        let radioGroup = RadioGroup(colors: Constants.categoryColors)
         colorsView.addSubview(radioGroup)
         radioGroup.translatesAutoresizingMaskIntoConstraints = false
         

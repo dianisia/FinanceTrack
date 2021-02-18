@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -355,7 +354,7 @@
             <objects>
                 <viewController storyboardIdentifier="newCategory" id="eoB-OI-jgy" customClass="NewCategoryViewController" customModule="FinanceTrack" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HXy-qM-Ewt">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="340"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Введите название категории" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="inC-Jb-Y6y">
@@ -367,7 +366,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ET-uR-BEZ">
-                                <rect key="frame" x="16" y="320" width="382" height="48"/>
+                                <rect key="frame" x="16" y="270" width="382" height="48"/>
                                 <color key="backgroundColor" red="0.13333333333333333" green="0.76078431372549016" blue="0.82745098039215681" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="68d-f0-8yy"/>
@@ -478,19 +477,20 @@
                                 <rect key="frame" x="16" y="172" width="386" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="18h-AK-sGQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="470" height="47"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Geq-I8-6nw">
+                                        <rect key="frame" x="0.0" y="0.0" width="452" height="47"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="470" id="BJ3-K8-8be"/>
+                                            <constraint firstAttribute="width" constant="452" id="TA8-LR-rES"/>
                                         </constraints>
-                                    </stackView>
+                                    </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="18h-AK-sGQ" firstAttribute="bottom" secondItem="Deo-72-eYF" secondAttribute="bottom" id="ANE-vT-zbK"/>
-                                    <constraint firstItem="18h-AK-sGQ" firstAttribute="leading" secondItem="Deo-72-eYF" secondAttribute="leading" id="K1m-Io-aaD"/>
-                                    <constraint firstItem="18h-AK-sGQ" firstAttribute="height" secondItem="fhh-7D-RIT" secondAttribute="height" id="PXv-Hx-T2o"/>
-                                    <constraint firstItem="Deo-72-eYF" firstAttribute="top" secondItem="18h-AK-sGQ" secondAttribute="top" id="aDZ-ZY-Rsf"/>
-                                    <constraint firstItem="18h-AK-sGQ" firstAttribute="trailing" secondItem="Deo-72-eYF" secondAttribute="trailing" id="lRn-oq-gk9"/>
+                                    <constraint firstItem="Geq-I8-6nw" firstAttribute="trailing" secondItem="Deo-72-eYF" secondAttribute="trailing" id="D3Y-3X-vsP"/>
+                                    <constraint firstItem="Deo-72-eYF" firstAttribute="top" secondItem="Geq-I8-6nw" secondAttribute="top" id="Lai-DA-zxk"/>
+                                    <constraint firstItem="Geq-I8-6nw" firstAttribute="leading" secondItem="Deo-72-eYF" secondAttribute="leading" id="VLv-sD-Plc"/>
+                                    <constraint firstItem="Geq-I8-6nw" firstAttribute="bottom" secondItem="Deo-72-eYF" secondAttribute="bottom" id="bOd-Kz-3VU"/>
+                                    <constraint firstItem="Geq-I8-6nw" firstAttribute="height" secondItem="fhh-7D-RIT" secondAttribute="height" id="qGJ-XG-X9P"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="Deo-72-eYF"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="fhh-7D-RIT"/>
@@ -503,24 +503,25 @@
                             <constraint firstAttribute="trailing" secondItem="gJS-Qg-TUN" secondAttribute="trailing" constant="12" id="BWj-Z4-S0C"/>
                             <constraint firstItem="fVF-qh-WdA" firstAttribute="leading" secondItem="HXy-qM-Ewt" secondAttribute="leading" constant="16" id="Bwj-Oy-Cqc"/>
                             <constraint firstItem="y1W-wp-FpJ" firstAttribute="leading" secondItem="lcp-TF-Tat" secondAttribute="leading" constant="16" id="HHJ-Pg-Cks"/>
-                            <constraint firstItem="lcp-TF-Tat" firstAttribute="bottom" secondItem="1ET-uR-BEZ" secondAttribute="bottom" constant="32" id="Ke2-ns-JKV"/>
                             <constraint firstItem="lcp-TF-Tat" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="y1W-wp-FpJ" secondAttribute="trailing" symbolic="YES" id="LvJ-dX-bC9"/>
                             <constraint firstItem="inC-Jb-Y6y" firstAttribute="leading" secondItem="lcp-TF-Tat" secondAttribute="leading" constant="16" id="ORn-Mc-aSS"/>
                             <constraint firstItem="gJS-Qg-TUN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fVF-qh-WdA" secondAttribute="trailing" constant="8" symbolic="YES" id="Rr9-kY-oKc"/>
                             <constraint firstItem="fVF-qh-WdA" firstAttribute="top" secondItem="HXy-qM-Ewt" secondAttribute="top" constant="16" id="XzB-xi-ia6"/>
                             <constraint firstItem="gJS-Qg-TUN" firstAttribute="top" secondItem="HXy-qM-Ewt" secondAttribute="top" constant="7" id="bCe-Rq-1zW"/>
                             <constraint firstItem="inC-Jb-Y6y" firstAttribute="top" secondItem="y1W-wp-FpJ" secondAttribute="bottom" constant="13" id="cAp-XX-UiW"/>
+                            <constraint firstItem="1ET-uR-BEZ" firstAttribute="top" secondItem="Geq-I8-6nw" secondAttribute="bottom" constant="51" id="fxv-Zh-ddi"/>
                             <constraint firstItem="y1W-wp-FpJ" firstAttribute="top" secondItem="lcp-TF-Tat" secondAttribute="top" constant="21" id="gfb-hO-mVC"/>
                             <constraint firstItem="lcp-TF-Tat" firstAttribute="trailing" secondItem="1ET-uR-BEZ" secondAttribute="trailing" constant="16" id="ivS-Y0-GFf"/>
                             <constraint firstItem="1ET-uR-BEZ" firstAttribute="leading" secondItem="lcp-TF-Tat" secondAttribute="leading" constant="16" id="zrY-jn-0XM"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="414" height="400"/>
+                    <size key="freeformSize" width="414" height="340"/>
                     <connections>
                         <outlet property="addButton" destination="1ET-uR-BEZ" id="E4I-XU-qZU"/>
                         <outlet property="categoryNameTextField" destination="inC-Jb-Y6y" id="nbK-gY-snc"/>
                         <outlet property="colorsScrollView" destination="Ozp-yW-YGk" id="qfX-gV-WrI"/>
+                        <outlet property="colorsView" destination="Geq-I8-6nw" id="1H8-kq-43r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Her-Xk-uLD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

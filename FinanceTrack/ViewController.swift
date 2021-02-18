@@ -49,6 +49,7 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
         currentBalanceLabel.text = "100500"
         self.categories = Array(realm.objects(Category.self))
         initPanel()
+        openPanel()
         
         let months = ["Jan", "Feb", "Mar", "Apr", "May"]
         let unitsSold = [20.0, 4.0, 6.0, 3.0, 12.0]
@@ -223,70 +224,3 @@ extension ViewController: AddNewCategoryDelegate {
         updateData()
     }
 }
-
-class NewCategoryViewController: UIViewController, UITextFieldDelegate {
-    var closePanel: (() -> ())?
-    var addNewCategoryDelegate: AddNewCategoryDelegate?
-    
-    @IBOutlet weak var addButton: UIButton!
-    @IBOutlet weak var categoryNameTextField: UITextField!
-    @IBOutlet weak var colorsScrollView: UIScrollView!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        categoryNameTextField.delegate = self
-        addButton.isUserInteractionEnabled = false
-        
-        let bottomLine = CALayer()
-        bottomLine.frame = CGRect(x: 0.0, y: categoryNameTextField.frame.height - 1, width: categoryNameTextField.frame.width, height: 1.0)
-        bottomLine.backgroundColor = UIColor.lightGray.cgColor
-        categoryNameTextField.borderStyle = UITextField.BorderStyle.none
-        categoryNameTextField.layer.addSublayer(bottomLine)
-        
-        let categoryColors = [
-            Helper.UIColorFromHex(rgbValue: 0x47D124),
-            Helper.UIColorFromHex(rgbValue: 0x7DC9FF),
-            Helper.UIColorFromHex(rgbValue: 0xFF7EEA),
-            Helper.UIColorFromHex(rgbValue: 0xC190FF),
-            Helper.UIColorFromHex(rgbValue: 0xFF7171),
-            Helper.UIColorFromHex(rgbValue: 0xFFCE85),
-            Helper.UIColorFromHex(rgbValue: 0x24D1C7)
-        ]
-        
-        for i in 0..<categoryColors.capacity {
-            let greenView = UIView()
-            greenView.frame = CGRect(x: i * (40 + 10) + 10, y: 0, width: 40, height: 40)
-            greenView.backgroundColor = categoryColors[i]
-            greenView.layer.cornerRadius = 5
-            colorsScrollView.addSubview(greenView)
-        }
-    }
-    
-    @IBAction func onCloseButtonTap(_ sender: Any) {
-        closePanel?()
-    }
-    
-    @IBAction func onAddCategory(_ sender: Any) {
-        guard let categoryName = categoryNameTextField.text, !categoryName.isEmpty else {
-            return
-        }
-        addNewCategoryDelegate?.addNewCategory(categoryName: categoryName)
-        categoryNameTextField.text = ""
-        closePanel?()
-    }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-
-        let text = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-
-        if !text.isEmpty{
-            addButton.isUserInteractionEnabled = true
-        } else {
-            addButton.isUserInteractionEnabled = false
-        }
-
-        return true
-    }
-}
-

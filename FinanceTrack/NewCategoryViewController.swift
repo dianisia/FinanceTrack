@@ -9,6 +9,8 @@ class NewCategoryViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var colorsScrollView: UIScrollView!
     @IBOutlet weak var colorsView: UIView!
     
+    let categoryColorRG = RadioGroup(colors: Constants.categoryColors)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,32 +23,31 @@ class NewCategoryViewController: UIViewController, UITextFieldDelegate {
         categoryNameTextField.borderStyle = UITextField.BorderStyle.none
         categoryNameTextField.layer.addSublayer(bottomLine)
                 
-        let radioGroup = RadioGroup(colors: Constants.categoryColors)
-        colorsView.addSubview(radioGroup)
-        radioGroup.translatesAutoresizingMaskIntoConstraints = false
+        colorsView.addSubview(categoryColorRG)
+        categoryColorRG.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint(item: radioGroup,
+        NSLayoutConstraint(item: categoryColorRG,
                            attribute: .leading,
                            relatedBy: .equal,
                            toItem: colorsView,
                            attribute: .leading,
                            multiplier: 1.0,
                            constant: 0).isActive = true
-        NSLayoutConstraint(item: radioGroup,
+        NSLayoutConstraint(item: categoryColorRG,
                            attribute: .trailing,
                            relatedBy: .equal,
                            toItem: colorsView,
                            attribute: .trailing,
                            multiplier: 1.0,
                            constant: 0).isActive = true
-        NSLayoutConstraint(item: radioGroup,
+        NSLayoutConstraint(item: categoryColorRG,
                            attribute: .width,
                            relatedBy: .equal,
                            toItem: colorsView,
                            attribute: .width,
                            multiplier: 1.0,
                            constant: 0).isActive = true
-        NSLayoutConstraint(item: radioGroup,
+        NSLayoutConstraint(item: categoryColorRG,
                            attribute: .height,
                            relatedBy: .equal,
                            toItem: colorsView,
@@ -63,6 +64,7 @@ class NewCategoryViewController: UIViewController, UITextFieldDelegate {
         guard let categoryName = categoryNameTextField.text, !categoryName.isEmpty else {
             return
         }
+        
         addNewCategoryDelegate?.addNewCategory(categoryName: categoryName)
         categoryNameTextField.text = ""
         closePanel?()

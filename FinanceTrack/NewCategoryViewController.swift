@@ -9,7 +9,7 @@ class NewCategoryViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var colorsScrollView: UIScrollView!
     @IBOutlet weak var colorsView: UIView!
     
-    let categoryColorRG = RadioGroup(colors: Constants.categoryColors)
+    let categoryColorRG = RadioGroup(colors: Constants.categoryColors.map { Helper.UIColorFromHex(rgbValue: UInt32($0))})
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +25,10 @@ class NewCategoryViewController: UIViewController, UITextFieldDelegate {
                 
         colorsView.addSubview(categoryColorRG)
         categoryColorRG.translatesAutoresizingMaskIntoConstraints = false
-        
+        setConstraints()
+    }
+    
+    func setConstraints() {
         NSLayoutConstraint(item: categoryColorRG,
                            attribute: .leading,
                            relatedBy: .equal,
@@ -65,7 +68,7 @@ class NewCategoryViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        addNewCategoryDelegate?.addNewCategory(categoryName: categoryName)
+        addNewCategoryDelegate?.addNewCategory(categoryName: categoryName, colorIndex: categoryColorRG.selectedIndex)
         categoryNameTextField.text = ""
         closePanel?()
     }

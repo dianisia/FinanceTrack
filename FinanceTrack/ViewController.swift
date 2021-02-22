@@ -9,10 +9,11 @@ class CurrentBalance: Object {
 
 class Category: Object {
     @objc dynamic var name = ""
+    @objc dynamic var colorIndex = 0;
 }
 
 protocol AddNewCategoryDelegate {
-    func addNewCategory(categoryName: String);
+    func addNewCategory(categoryName: String, colorIndex: Int);
 }
 
 class ViewController: UIViewController, FloatingPanelControllerDelegate {
@@ -210,14 +211,16 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell") as! CategoriesTableViewCell
         cell.categoryNameLabel.text = String(self.categories[indexPath.row].name)
+        cell.iconBackUIView.backgroundColor = Helper.UIColorFromHex(rgbValue: UInt32(Constants.categoryColors[self.categories[indexPath.row].colorIndex]))
         return cell
     }
 }
 
 extension ViewController: AddNewCategoryDelegate {
-    func addNewCategory(categoryName: String) {
+    func addNewCategory(categoryName: String, colorIndex: Int) {
         let category = Category()
         category.name = categoryName
+        category.colorIndex = colorIndex
         try! realm.write {
            realm.add(category)
         }

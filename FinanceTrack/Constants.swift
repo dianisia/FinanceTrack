@@ -2,13 +2,13 @@ import Foundation
 
 struct Constants {
     static let categoryColors = [
-        Helper.UIColorFromHex(rgbValue: 0x47D124),
-        Helper.UIColorFromHex(rgbValue: 0x7DC9FF),
-        Helper.UIColorFromHex(rgbValue: 0xFF7EEA),
-        Helper.UIColorFromHex(rgbValue: 0xC190FF),
-        Helper.UIColorFromHex(rgbValue: 0xFF7171),
-        Helper.UIColorFromHex(rgbValue: 0xFFCE85),
-        Helper.UIColorFromHex(rgbValue: 0x24D1C7)
+        0x47D124,
+        0x7DC9FF,
+        0xFF7EEA,
+        0xC190FF,
+        0xFF7171,
+        0xFFCE85,
+        0x24D1C7
     ]
-    static let selectedCategoryBorderColor = Helper.UIColorFromHex(rgbValue: 0x22C2D3)
+    static let selectedCategoryBorderColor = 0x22C2D3
 }

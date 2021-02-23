@@ -31,10 +31,10 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
     var newCategoryVC: NewCategoryViewController!
     var fpc: FloatingPanelController!
     
-   
     @IBAction func onAddNewCategoryTap(_ sender: Any) {
         openPanel()
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +50,7 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
         currentBalanceLabel.text = "100500"
         self.categories = Array(realm.objects(Category.self))
         initPanel()
-        openPanel()
+//        openPanel()
         
         let months = ["Jan", "Feb", "Mar", "Apr", "May"]
         let unitsSold = [20.0, 4.0, 6.0, 3.0, 12.0]

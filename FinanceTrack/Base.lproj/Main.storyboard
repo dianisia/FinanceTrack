@@ -423,6 +423,9 @@
                                         <state key="normal" title="-">
                                             <color key="titleColor" red="0.1333333333" green="0.76078431369999999" blue="0.82745098039999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
+                                        <connections>
+                                            <action selector="onReduceTap:" destination="xh0-GU-d63" eventType="touchUpInside" id="j4B-if-3ci"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H0k-kF-UmV">
                                         <rect key="frame" x="40" y="0.0" width="170" height="40"/>
@@ -447,6 +450,9 @@
                                         <state key="normal" title="+">
                                             <color key="titleColor" red="0.1333333333" green="0.76078431369999999" blue="0.82745098039999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
+                                        <connections>
+                                            <action selector="onEnlargeTap:" destination="xh0-GU-d63" eventType="touchUpInside" id="MsS-1k-ho8"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -473,28 +479,46 @@
                                     <action selector="onAddCategory:" destination="eoB-OI-jgy" eventType="touchUpInside" id="gAK-7F-AEC"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Рублей" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39b-PK-tK5">
+                                <rect key="frame" x="179.5" y="181" width="55" height="22.5"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
+                                <color key="textColor" red="0.72941176470588232" green="0.72549019607843135" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="highlightedColor" red="0.72941176470588232" green="0.72549019607843135" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Добавить категорию" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2eE-8J-Nds">
+                                <rect key="frame" x="16" y="238.5" width="167" height="24"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
+                                <color key="textColor" red="0.54117647058823526" green="0.54117647058823526" blue="0.55686274509803924" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6tW-V3-evc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="SB5-s0-mLQ" firstAttribute="centerX" secondItem="bzN-sJ-DZg" secondAttribute="centerX" id="3UQ-qN-swl"/>
                             <constraint firstItem="4m7-Tv-T4Y" firstAttribute="top" secondItem="bzN-sJ-DZg" secondAttribute="top" constant="16" id="7z5-Bh-Nhr"/>
+                            <constraint firstItem="6tW-V3-evc" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="2eE-8J-Nds" secondAttribute="trailing" constant="231" id="9NA-bg-FoK"/>
                             <constraint firstItem="0Y3-Vg-zy3" firstAttribute="top" secondItem="bzN-sJ-DZg" secondAttribute="top" constant="7" id="FiX-GO-RKo"/>
+                            <constraint firstItem="39b-PK-tK5" firstAttribute="top" secondItem="H0k-kF-UmV" secondAttribute="bottom" constant="1" id="J8D-CT-Kqo"/>
                             <constraint firstAttribute="trailing" secondItem="0Y3-Vg-zy3" secondAttribute="trailing" constant="12" id="M8W-E3-4vR"/>
+                            <constraint firstItem="2eE-8J-Nds" firstAttribute="top" secondItem="39b-PK-tK5" secondAttribute="bottom" constant="35" id="MRf-1u-F6O"/>
                             <constraint firstItem="U7N-dg-JGs" firstAttribute="leading" secondItem="6tW-V3-evc" secondAttribute="leading" constant="16" id="Osa-mb-aLN"/>
                             <constraint firstItem="0Y3-Vg-zy3" firstAttribute="leading" relation="lessThanOrEqual" secondItem="4m7-Tv-T4Y" secondAttribute="trailing" constant="207" id="Owv-zh-oAu"/>
                             <constraint firstItem="6tW-V3-evc" firstAttribute="trailing" secondItem="U7N-dg-JGs" secondAttribute="trailing" constant="16" id="U8i-oO-D6f"/>
                             <constraint firstItem="Shb-3i-v4n" firstAttribute="top" secondItem="SB5-s0-mLQ" secondAttribute="bottom" constant="25" id="WaL-3G-AU2"/>
+                            <constraint firstItem="39b-PK-tK5" firstAttribute="centerX" secondItem="H0k-kF-UmV" secondAttribute="centerX" id="cd2-9V-QPg"/>
                             <constraint firstItem="4m7-Tv-T4Y" firstAttribute="leading" secondItem="bzN-sJ-DZg" secondAttribute="leading" constant="16" id="dbi-z6-4iF"/>
                             <constraint firstItem="SB5-s0-mLQ" firstAttribute="top" secondItem="6tW-V3-evc" secondAttribute="top" constant="45.5" id="jZl-gJ-N7D"/>
                             <constraint firstItem="U7N-dg-JGs" firstAttribute="top" secondItem="H0k-kF-UmV" secondAttribute="bottom" constant="140" id="r4y-bK-HYT"/>
                             <constraint firstItem="Shb-3i-v4n" firstAttribute="centerX" secondItem="bzN-sJ-DZg" secondAttribute="centerX" id="sKK-oJ-6iG"/>
+                            <constraint firstItem="2eE-8J-Nds" firstAttribute="leading" secondItem="6tW-V3-evc" secondAttribute="leading" constant="16" id="wQh-AI-efC"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="414" height="400"/>
                     <connections>
                         <outlet property="enlargeExpenseButton" destination="Lci-Lv-44b" id="bip-5x-fMZ"/>
+                        <outlet property="expenseLabel" destination="H0k-kF-UmV" id="raY-oq-efr"/>
                         <outlet property="reduceExpenseButton" destination="u7z-IE-b5A" id="esL-8R-m7t"/>
                     </connections>
                 </viewController>

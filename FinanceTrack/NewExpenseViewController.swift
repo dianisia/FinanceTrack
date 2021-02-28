@@ -23,7 +23,9 @@ class NewExpenseViewController: UIViewController {
         customizeExpenseButton(button: enlargeExpenseButton)
         expenseLabel.text = String(currentExpense)
         
-        categoryDropdown.optionArray = Array(self.categories).map {$0.name}
+        categoryDropdown.listWillAppear {
+            self.categoryDropdown.optionArray = Array(self.categories).map {$0.name}
+        }
     }
     
     func customizeExpenseButton(button: UIButton) {

@@ -3,15 +3,6 @@ import RealmSwift
 import FloatingPanel
 import Charts
 
-class CurrentBalance: Object {
-    @objc dynamic var value = 0
-}
-
-class Category: Object {
-    @objc dynamic var name = ""
-    @objc dynamic var colorIndex = 0;
-}
-
 protocol AddNewCategoryDelegate {
     func addNewCategory(categoryName: String, colorIndex: Int);
 }
@@ -50,15 +41,6 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
         
         currentBalanceLabel.text = "100500"
         self.categories = Array(realm.objects(Category.self))
-        
-        newCategoryVC = storyboard?.instantiateViewController(withIdentifier: "newCategory") as? NewCategoryViewController
-        newCategoryVC.closePanel = closeNewCategoryPanel
-        newCategoryVC.addNewCategoryDelegate = self
-        
-        newExpenseVC = storyboard?.instantiateViewController(identifier: "newExpense") as? NewExpenseViewController
-        
-        newCategoryFCP = initNewCategoryPanel(controller: newCategoryVC)
-        newExpenseFCP = initNewCategoryPanel(controller: newExpenseVC)
         
         let months = ["Jan", "Feb", "Mar", "Apr", "May"]
         let unitsSold = [20.0, 4.0, 6.0, 3.0, 12.0]
@@ -104,25 +86,35 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
     }
     
     func openNewCategoryPanel() {
+        func closeNewCategoryPanel() {
+            newCategoryFCP.willMove(toParent: nil)
+            newCategoryFCP.hide(animated: true)
+        }
+        
+        newCategoryVC = storyboard?.instantiateViewController(withIdentifier: "newCategory") as? NewCategoryViewController
+        newCategoryVC.closePanel = closeNewCategoryPanel
+        newCategoryVC.addNewCategoryDelegate = self
+        newCategoryFCP = initNewCategoryPanel(controller: newCategoryVC)
+
         newCategoryFCP.show(animated: true) {
             self.newCategoryFCP.didMove(toParent: self)
         }
     }
-    
-    func closeNewCategoryPanel() {
-        newCategoryFCP.willMove(toParent: nil)
-        newCategoryFCP.hide(animated: true)
-    }
-    
+        
     func openNewExpensePanel() {
+        
+        func closeNewExpensePanel() {
+            newExpenseFCP.willMove(toParent: nil)
+            newExpenseFCP.hide(animated: true)
+        }
+        
+        newExpenseVC = storyboard?.instantiateViewController(identifier: "newExpense") as? NewExpenseViewController
+        newExpenseVC.categories = self.categories
+        newExpenseVC.closePanel = closeNewExpensePanel
+        newExpenseFCP = initNewCategoryPanel(controller: newExpenseVC)
         newExpenseFCP.show(animated: true) {
             self.newExpenseFCP.didMove(toParent: self)
         }
-    }
-    
-    func closeNewExpensePanel() {
-        newExpenseFCP.willMove(toParent: nil)
-        newExpenseFCP.hide(animated: true)
     }
     
     //TODO: Refactor it

@@ -387,6 +387,7 @@
                                 <state key="normal" image="close-black-24dp"/>
                                 <connections>
                                     <action selector="onCloseButtonTap:" destination="eoB-OI-jgy" eventType="touchUpInside" id="G8X-oV-aIy"/>
+                                    <action selector="onCloseButtonTap:" destination="xh0-GU-d63" eventType="touchUpInside" id="ZHx-Qt-jeY"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SB5-s0-mLQ">
@@ -461,7 +462,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U7N-dg-JGs">
-                                <rect key="frame" x="16" y="320" width="382" height="48"/>
+                                <rect key="frame" x="16" y="339" width="382" height="48"/>
                                 <color key="backgroundColor" red="0.1333333333" green="0.76078431369999999" blue="0.82745098039999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="0cN-4t-A38"/>
@@ -491,10 +492,16 @@
                                 <color key="textColor" red="0.54117647058823526" green="0.54117647058823526" blue="0.55686274509803924" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vMN-9t-f9H" customClass="DropDown" customModule="iOSDropDown">
+                                <rect key="frame" x="16" y="281.5" width="382" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6tW-V3-evc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="U7N-dg-JGs" firstAttribute="top" secondItem="vMN-9t-f9H" secondAttribute="bottom" constant="23.5" id="2Y9-Ks-ipq"/>
                             <constraint firstItem="SB5-s0-mLQ" firstAttribute="centerX" secondItem="bzN-sJ-DZg" secondAttribute="centerX" id="3UQ-qN-swl"/>
                             <constraint firstItem="4m7-Tv-T4Y" firstAttribute="top" secondItem="bzN-sJ-DZg" secondAttribute="top" constant="16" id="7z5-Bh-Nhr"/>
                             <constraint firstItem="6tW-V3-evc" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="2eE-8J-Nds" secondAttribute="trailing" constant="231" id="9NA-bg-FoK"/>
@@ -506,17 +513,20 @@
                             <constraint firstItem="0Y3-Vg-zy3" firstAttribute="leading" relation="lessThanOrEqual" secondItem="4m7-Tv-T4Y" secondAttribute="trailing" constant="207" id="Owv-zh-oAu"/>
                             <constraint firstItem="6tW-V3-evc" firstAttribute="trailing" secondItem="U7N-dg-JGs" secondAttribute="trailing" constant="16" id="U8i-oO-D6f"/>
                             <constraint firstItem="Shb-3i-v4n" firstAttribute="top" secondItem="SB5-s0-mLQ" secondAttribute="bottom" constant="25" id="WaL-3G-AU2"/>
+                            <constraint firstItem="vMN-9t-f9H" firstAttribute="top" secondItem="2eE-8J-Nds" secondAttribute="bottom" constant="19" id="XdJ-ek-CX2"/>
                             <constraint firstItem="39b-PK-tK5" firstAttribute="centerX" secondItem="H0k-kF-UmV" secondAttribute="centerX" id="cd2-9V-QPg"/>
                             <constraint firstItem="4m7-Tv-T4Y" firstAttribute="leading" secondItem="bzN-sJ-DZg" secondAttribute="leading" constant="16" id="dbi-z6-4iF"/>
+                            <constraint firstItem="6tW-V3-evc" firstAttribute="trailing" secondItem="vMN-9t-f9H" secondAttribute="trailing" constant="16" id="ip7-fO-eYz"/>
                             <constraint firstItem="SB5-s0-mLQ" firstAttribute="top" secondItem="6tW-V3-evc" secondAttribute="top" constant="45.5" id="jZl-gJ-N7D"/>
-                            <constraint firstItem="U7N-dg-JGs" firstAttribute="top" secondItem="H0k-kF-UmV" secondAttribute="bottom" constant="140" id="r4y-bK-HYT"/>
                             <constraint firstItem="Shb-3i-v4n" firstAttribute="centerX" secondItem="bzN-sJ-DZg" secondAttribute="centerX" id="sKK-oJ-6iG"/>
+                            <constraint firstItem="vMN-9t-f9H" firstAttribute="leading" secondItem="6tW-V3-evc" secondAttribute="leading" constant="16" id="vcZ-Pv-rex"/>
                             <constraint firstItem="2eE-8J-Nds" firstAttribute="leading" secondItem="6tW-V3-evc" secondAttribute="leading" constant="16" id="wQh-AI-efC"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="414" height="400"/>
                     <connections>
+                        <outlet property="categoryDropdown" destination="vMN-9t-f9H" id="InE-fZ-Bri"/>
                         <outlet property="enlargeExpenseButton" destination="Lci-Lv-44b" id="bip-5x-fMZ"/>
                         <outlet property="expenseLabel" destination="H0k-kF-UmV" id="raY-oq-efr"/>
                         <outlet property="reduceExpenseButton" destination="u7z-IE-b5A" id="esL-8R-m7t"/>
@@ -524,7 +534,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eaL-jt-Aev" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1115.9420289855072" y="-45.535714285714285"/>
+            <point key="canvasLocation" x="1114.4927536231885" y="-45.535714285714285"/>
         </scene>
         <!--New Category View Controller-->
         <scene sceneID="Ms6-I8-ooN">

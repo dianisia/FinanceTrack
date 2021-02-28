@@ -1,19 +1,29 @@
 import UIKit
+import iOSDropDown
+import RealmSwift
 
 class NewExpenseViewController: UIViewController {
-
+    var closePanel: (() -> ())?
+    var categories: [Category] = []
+    
     @IBOutlet weak var reduceExpenseButton: UIButton!
     @IBOutlet weak var enlargeExpenseButton: UIButton!
-    
     @IBOutlet weak var expenseLabel: UILabel!
+    @IBOutlet weak var categoryDropdown: DropDown!
     
     private var currentExpense = 500;
+    
+    @IBAction func onCloseButtonTap(_ sender: Any) {
+        closePanel?()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         customizeExpenseButton(button: reduceExpenseButton)
         customizeExpenseButton(button: enlargeExpenseButton)
         expenseLabel.text = String(currentExpense)
+        
+        categoryDropdown.optionArray = Array(self.categories).map {$0.name}
     }
     
     func customizeExpenseButton(button: UIButton) {

@@ -5,16 +5,28 @@ import RealmSwift
 class NewExpenseViewController: UIViewController {
     var closePanel: (() -> ())?
     var categories: [Category] = []
+    var addNewExpenseDelegate: AddNewExpenseDelegate?
+    private var selectedCategoryIndex = -1;
     
     @IBOutlet weak var reduceExpenseButton: UIButton!
     @IBOutlet weak var enlargeExpenseButton: UIButton!
     @IBOutlet weak var expenseLabel: UILabel!
     @IBOutlet weak var categoryDropdown: DropDown!
+    @IBOutlet weak var datePicker: UIDatePicker!
     
     private var currentExpense = 500;
     
     @IBAction func onCloseButtonTap(_ sender: Any) {
         closePanel?()
+    }
+    
+    
+    @IBAction func onAddExpense(_ sender: Any) {
+        if selectedCategoryIndex == -1 {
+            return
+        }
+        let date = datePicker.date
+        addNewExpenseDelegate?.addNewExpense(amount: currentExpense, category: self.categories[selectedCategoryIndex], date: date)
     }
     
     override func viewDidLoad() {
@@ -25,6 +37,10 @@ class NewExpenseViewController: UIViewController {
         
         categoryDropdown.listWillAppear {
             self.categoryDropdown.optionArray = Array(self.categories).map {$0.name}
+        }
+        
+        categoryDropdown.didSelect {(selectedText, index, id) in
+            self.selectedCategoryIndex = index
         }
     }
     

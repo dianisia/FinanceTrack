@@ -7,6 +7,10 @@ protocol AddNewCategoryDelegate {
     func addNewCategory(categoryName: String, colorIndex: Int);
 }
 
+protocol AddNewExpenseDelegate {
+    func addNewExpense(amount: Int, category: Category, date: Date)
+}
+
 class ViewController: UIViewController, FloatingPanelControllerDelegate {
     let realm = try! Realm()
     private var categories: [Category] = []
@@ -90,6 +94,7 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
     func initViews() {
         newExpenseVC = storyboard?.instantiateViewController(identifier: "newExpense") as? NewExpenseViewController
         newExpenseVC.closePanel = closePanel
+        newExpenseVC.addNewExpenseDelegate = self
         
         newCategoryVC = storyboard?.instantiateViewController(withIdentifier: "newCategory") as? NewCategoryViewController
         newCategoryVC.closePanel = closePanel
@@ -233,5 +238,17 @@ extension ViewController: AddNewCategoryDelegate {
            realm.add(category)
         }
         updateData()
+    }
+}
+
+extension ViewController: AddNewExpenseDelegate {
+    func addNewExpense(amount: Int, category: Category, date: Date) {
+        let expense = Expense()
+        expense.amount = amount
+        expense.category = category
+        expense.date = date
+        try! realm.write {
+            realm.add(expense)
+        }
     }
 }

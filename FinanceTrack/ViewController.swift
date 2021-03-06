@@ -11,6 +11,17 @@ protocol AddNewExpenseDelegate {
     func addNewExpense(amount: Int, category: Category, date: Date)
 }
 
+class MyFloatingLayout: FloatingPanelLayout {
+    let position: FloatingPanelPosition = .bottom
+    let initialState: FloatingPanelState = .full
+    var anchors: [FloatingPanelState: FloatingPanelLayoutAnchoring] {
+        return [
+            .full: FloatingPanelIntrinsicLayoutAnchor(absoluteOffset: 0, referenceGuide: .superview),
+            .half: FloatingPanelIntrinsicLayoutAnchor(fractionalOffset: 0.5, referenceGuide: .safeArea),
+        ]
+    }
+}
+
 class ViewController: UIViewController, FloatingPanelControllerDelegate {
     let realm = try! Realm()
     private var categories: [Category] = []
@@ -120,6 +131,7 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
         fpc.delegate = self
     
         fpc.surfaceView.appearance.cornerRadius = 24.0
+        fpc.layout = MyFloatingLayout()
         fpc.set(contentViewController: controller)
         fpc.panGestureRecognizer.isEnabled = false
        
@@ -245,7 +257,7 @@ extension ViewController: AddNewExpenseDelegate {
     func addNewExpense(amount: Int, category: Category, date: Date) {
         let expense = Expense()
         expense.amount = amount
-        expense.category = category
+//        expense.category = category
         expense.date = date
         try! realm.write {
             realm.add(expense)

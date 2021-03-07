@@ -16,7 +16,7 @@ class NewExpenseViewController: UIViewController {
     
     @IBOutlet weak var reduceExpenseButton: UIButton!
     @IBOutlet weak var enlargeExpenseButton: UIButton!
-    @IBOutlet weak var expenseLabel: UILabel!
+    @IBOutlet weak var expenseTextInput: UITextField!
     @IBOutlet weak var categoryDropdown: DropDown!
     @IBOutlet weak var datePicker: UIDatePicker!
     
@@ -39,7 +39,9 @@ class NewExpenseViewController: UIViewController {
         super.viewDidLoad()
         customizeExpenseButton(button: reduceExpenseButton)
         customizeExpenseButton(button: enlargeExpenseButton)
-        expenseLabel.text = String(currentExpense)
+        expenseTextInput.text = String(currentExpense)
+        expenseTextInput.becomeFirstResponder()
+        expenseTextInput.keyboardType = UIKeyboardType.decimalPad
         
         categoryDropdown.listWillAppear {
             self.categoryDropdown.optionArray = Array(self.categories).map {$0.name}
@@ -59,13 +61,13 @@ class NewExpenseViewController: UIViewController {
     
     @IBAction func onReduceTap(_ sender: Any) {
         currentExpense -= 1
-        expenseLabel.text = String(currentExpense)
+        expenseTextInput.text = String(currentExpense)
     }
     
     
     @IBAction func onEnlargeTap(_ sender: Any) {
         currentExpense += 1
-        expenseLabel.text = String(currentExpense)
+        expenseTextInput.text = String(currentExpense)
     }
     
 }

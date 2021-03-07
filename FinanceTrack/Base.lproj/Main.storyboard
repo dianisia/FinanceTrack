@@ -8,6 +8,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Poppins-Bold.ttf">
+            <string>Poppins-Bold</string>
+        </array>
         <array key="Poppins-Regular.ttf">
             <string>Poppins-Regular</string>
         </array>
@@ -428,19 +431,11 @@
                                             <action selector="onReduceTap:" destination="xh0-GU-d63" eventType="touchUpInside" id="j4B-if-3ci"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H0k-kF-UmV">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="500" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h8N-Q3-41r">
                                         <rect key="frame" x="40" y="0.0" width="170" height="40"/>
-                                        <attributedString key="attributedText">
-                                            <fragment content="500">
-                                                <attributes>
-                                                    <font key="NSFont" size="48" name="Poppins-Bold"/>
-                                                    <font key="NSOriginalFont" size="48" name="Poppins-Bold"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                </attributes>
-                                            </fragment>
-                                        </attributedString>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                        <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="48"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lci-Lv-44b">
                                         <rect key="frame" x="210" y="0.0" width="40" height="40"/>
                                         <constraints>
@@ -512,21 +507,21 @@
                             <constraint firstItem="4m7-Tv-T4Y" firstAttribute="top" secondItem="bzN-sJ-DZg" secondAttribute="top" constant="16" id="7z5-Bh-Nhr"/>
                             <constraint firstItem="6tW-V3-evc" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="2eE-8J-Nds" secondAttribute="trailing" constant="231" id="9NA-bg-FoK"/>
                             <constraint firstItem="0Y3-Vg-zy3" firstAttribute="top" secondItem="bzN-sJ-DZg" secondAttribute="top" constant="7" id="FiX-GO-RKo"/>
-                            <constraint firstItem="39b-PK-tK5" firstAttribute="top" secondItem="H0k-kF-UmV" secondAttribute="bottom" constant="1" id="J8D-CT-Kqo"/>
                             <constraint firstAttribute="trailing" secondItem="0Y3-Vg-zy3" secondAttribute="trailing" constant="12" id="M8W-E3-4vR"/>
                             <constraint firstItem="2eE-8J-Nds" firstAttribute="top" secondItem="39b-PK-tK5" secondAttribute="bottom" constant="35" id="MRf-1u-F6O"/>
                             <constraint firstItem="U7N-dg-JGs" firstAttribute="leading" secondItem="6tW-V3-evc" secondAttribute="leading" constant="16" id="Osa-mb-aLN"/>
                             <constraint firstItem="0Y3-Vg-zy3" firstAttribute="leading" relation="lessThanOrEqual" secondItem="4m7-Tv-T4Y" secondAttribute="trailing" constant="207" id="Owv-zh-oAu"/>
                             <constraint firstItem="6tW-V3-evc" firstAttribute="trailing" secondItem="U7N-dg-JGs" secondAttribute="trailing" constant="16" id="U8i-oO-D6f"/>
+                            <constraint firstItem="39b-PK-tK5" firstAttribute="top" secondItem="h8N-Q3-41r" secondAttribute="bottom" constant="1" id="UbN-vX-ddM"/>
                             <constraint firstItem="WpL-Vp-qaK" firstAttribute="top" secondItem="vMN-9t-f9H" secondAttribute="bottom" constant="16" id="Udw-sb-dgw"/>
                             <constraint firstItem="Shb-3i-v4n" firstAttribute="top" secondItem="SB5-s0-mLQ" secondAttribute="bottom" constant="25" id="WaL-3G-AU2"/>
                             <constraint firstItem="6tW-V3-evc" firstAttribute="trailing" secondItem="WpL-Vp-qaK" secondAttribute="trailing" constant="16" id="WvV-Do-6sU"/>
                             <constraint firstItem="vMN-9t-f9H" firstAttribute="top" secondItem="2eE-8J-Nds" secondAttribute="bottom" constant="19" id="XdJ-ek-CX2"/>
-                            <constraint firstItem="39b-PK-tK5" firstAttribute="centerX" secondItem="H0k-kF-UmV" secondAttribute="centerX" id="cd2-9V-QPg"/>
                             <constraint firstItem="4m7-Tv-T4Y" firstAttribute="leading" secondItem="bzN-sJ-DZg" secondAttribute="leading" constant="16" id="dbi-z6-4iF"/>
                             <constraint firstItem="WpL-Vp-qaK" firstAttribute="leading" secondItem="bzN-sJ-DZg" secondAttribute="leading" constant="16" id="eXA-fa-nAt"/>
                             <constraint firstItem="6tW-V3-evc" firstAttribute="trailing" secondItem="vMN-9t-f9H" secondAttribute="trailing" constant="16" id="ip7-fO-eYz"/>
                             <constraint firstItem="SB5-s0-mLQ" firstAttribute="top" secondItem="6tW-V3-evc" secondAttribute="top" constant="45.5" id="jZl-gJ-N7D"/>
+                            <constraint firstItem="39b-PK-tK5" firstAttribute="centerX" secondItem="h8N-Q3-41r" secondAttribute="centerX" id="jmB-Lp-BQ0"/>
                             <constraint firstItem="Shb-3i-v4n" firstAttribute="centerX" secondItem="bzN-sJ-DZg" secondAttribute="centerX" id="sKK-oJ-6iG"/>
                             <constraint firstItem="vMN-9t-f9H" firstAttribute="leading" secondItem="6tW-V3-evc" secondAttribute="leading" constant="16" id="vcZ-Pv-rex"/>
                             <constraint firstItem="2eE-8J-Nds" firstAttribute="leading" secondItem="6tW-V3-evc" secondAttribute="leading" constant="16" id="wQh-AI-efC"/>
@@ -539,7 +534,7 @@
                         <outlet property="categoryDropdown" destination="vMN-9t-f9H" id="InE-fZ-Bri"/>
                         <outlet property="datePicker" destination="WpL-Vp-qaK" id="lIw-LA-NLe"/>
                         <outlet property="enlargeExpenseButton" destination="Lci-Lv-44b" id="bip-5x-fMZ"/>
-                        <outlet property="expenseLabel" destination="H0k-kF-UmV" id="raY-oq-efr"/>
+                        <outlet property="expenseTextInput" destination="h8N-Q3-41r" id="eXC-IG-9wE"/>
                         <outlet property="reduceExpenseButton" destination="u7z-IE-b5A" id="esL-8R-m7t"/>
                     </connections>
                 </viewController>

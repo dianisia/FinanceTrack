@@ -256,7 +256,7 @@ extension ViewController: AddNewExpenseDelegate {
     func addNewExpense(amount: Int, category: Category, date: Date) {
         let expense = Expense()
         expense.amount = amount
-//        expense.category = category
+        expense.category = category
         expense.date = date
         try! realm.write {
             realm.add(expense)

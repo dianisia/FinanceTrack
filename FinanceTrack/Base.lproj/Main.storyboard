@@ -351,8 +351,8 @@
         <scene sceneID="1zA-K3-Ces">
             <objects>
                 <viewController storyboardIdentifier="newExpense" id="xh0-GU-d63" customClass="NewExpenseViewController" customModule="FinanceTrack" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="bzN-sJ-DZg">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="550"/>
+                    <view key="view" contentMode="scaleToFill" id="bzN-sJ-DZg" customClass="ExpenseView" customModule="FinanceTrack" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4m7-Tv-T4Y">
@@ -468,7 +468,7 @@
                                     <constraint firstAttribute="height" constant="48" id="0cN-4t-A38"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="16"/>
-                                <state key="normal" title="Добавить категорию">
+                                <state key="normal" title="Добавить расход">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -499,7 +499,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="WpL-Vp-qaK">
-                                <rect key="frame" x="16" y="332" width="382" height="70"/>
+                                <rect key="frame" x="16" y="331.5" width="382" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="rWj-V0-iZf"/>
                                 </constraints>
@@ -534,7 +534,7 @@
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="414" height="550"/>
+                    <size key="freeformSize" width="414" height="500"/>
                     <connections>
                         <outlet property="categoryDropdown" destination="vMN-9t-f9H" id="InE-fZ-Bri"/>
                         <outlet property="datePicker" destination="WpL-Vp-qaK" id="lIw-LA-NLe"/>
@@ -551,8 +551,8 @@
         <scene sceneID="Ms6-I8-ooN">
             <objects>
                 <viewController storyboardIdentifier="newCategory" id="eoB-OI-jgy" customClass="NewCategoryViewController" customModule="FinanceTrack" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="HXy-qM-Ewt">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="340"/>
+                    <view key="view" contentMode="scaleToFill" id="HXy-qM-Ewt" customClass="CategoryView" customModule="FinanceTrack" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="350"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Введите название категории" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="inC-Jb-Y6y">
@@ -694,7 +694,7 @@
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="lcp-TF-Tat"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="lcp-TF-Tat" firstAttribute="trailing" secondItem="inC-Jb-Y6y" secondAttribute="trailing" constant="16" id="9OA-bg-CY3"/>
                             <constraint firstAttribute="trailing" secondItem="gJS-Qg-TUN" secondAttribute="trailing" constant="12" id="BWj-Z4-S0C"/>
@@ -703,20 +703,20 @@
                             <constraint firstItem="lcp-TF-Tat" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="y1W-wp-FpJ" secondAttribute="trailing" symbolic="YES" id="LvJ-dX-bC9"/>
                             <constraint firstItem="inC-Jb-Y6y" firstAttribute="leading" secondItem="lcp-TF-Tat" secondAttribute="leading" constant="16" id="ORn-Mc-aSS"/>
                             <constraint firstItem="gJS-Qg-TUN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fVF-qh-WdA" secondAttribute="trailing" constant="8" symbolic="YES" id="Rr9-kY-oKc"/>
+                            <constraint firstItem="y1W-wp-FpJ" firstAttribute="top" secondItem="fVF-qh-WdA" secondAttribute="bottom" constant="23.5" id="UHJ-B3-Apu"/>
                             <constraint firstItem="fVF-qh-WdA" firstAttribute="top" secondItem="HXy-qM-Ewt" secondAttribute="top" constant="16" id="XzB-xi-ia6"/>
                             <constraint firstItem="gJS-Qg-TUN" firstAttribute="top" secondItem="HXy-qM-Ewt" secondAttribute="top" constant="7" id="bCe-Rq-1zW"/>
                             <constraint firstItem="inC-Jb-Y6y" firstAttribute="top" secondItem="y1W-wp-FpJ" secondAttribute="bottom" constant="13" id="cAp-XX-UiW"/>
                             <constraint firstItem="xJ5-vQ-aCu" firstAttribute="leading" secondItem="lcp-TF-Tat" secondAttribute="leading" constant="16" id="d2A-ad-sJE"/>
                             <constraint firstItem="lcp-TF-Tat" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="xJ5-vQ-aCu" secondAttribute="trailing" constant="226" id="ez5-gf-0eG"/>
                             <constraint firstItem="1ET-uR-BEZ" firstAttribute="top" secondItem="Geq-I8-6nw" secondAttribute="bottom" constant="51" id="fxv-Zh-ddi"/>
-                            <constraint firstItem="y1W-wp-FpJ" firstAttribute="top" secondItem="lcp-TF-Tat" secondAttribute="top" constant="21" id="gfb-hO-mVC"/>
                             <constraint firstItem="lcp-TF-Tat" firstAttribute="trailing" secondItem="1ET-uR-BEZ" secondAttribute="trailing" constant="16" id="ivS-Y0-GFf"/>
                             <constraint firstItem="xJ5-vQ-aCu" firstAttribute="top" secondItem="inC-Jb-Y6y" secondAttribute="bottom" constant="12" id="qO8-s7-fGS"/>
                             <constraint firstItem="1ET-uR-BEZ" firstAttribute="leading" secondItem="lcp-TF-Tat" secondAttribute="leading" constant="16" id="zrY-jn-0XM"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="414" height="340"/>
+                    <size key="freeformSize" width="414" height="350"/>
                     <connections>
                         <outlet property="addButton" destination="1ET-uR-BEZ" id="E4I-XU-qZU"/>
                         <outlet property="categoryNameTextField" destination="inC-Jb-Y6y" id="nbK-gY-snc"/>
@@ -726,7 +726,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Her-Xk-uLD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1120" y="255"/>
+            <point key="canvasLocation" x="1120" y="351"/>
         </scene>
     </scenes>
     <resources>

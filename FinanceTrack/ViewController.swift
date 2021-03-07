@@ -3,6 +3,17 @@ import RealmSwift
 import FloatingPanel
 import Charts
 
+class MyFloatingLayout: FloatingPanelLayout {
+    let position: FloatingPanelPosition = .bottom
+    let initialState: FloatingPanelState = .full
+    var anchors: [FloatingPanelState: FloatingPanelLayoutAnchoring] {
+        return [
+            .full: FloatingPanelIntrinsicLayoutAnchor(absoluteOffset: 0, referenceGuide: .superview),
+            .half: FloatingPanelIntrinsicLayoutAnchor(fractionalOffset: 0.5, referenceGuide: .safeArea),
+        ]
+    }
+}
+
 protocol AddNewCategoryDelegate {
     func addNewCategory(categoryName: String, colorIndex: Int);
 }
@@ -118,7 +129,7 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
     //TODO: Refactor it
     func initNewCategoryPanel(controller: UIViewController) {
         fpc.delegate = self
-    
+        fpc.layout = MyFloatingLayout()
         fpc.surfaceView.appearance.cornerRadius = 24.0
         fpc.set(contentViewController: controller)
         fpc.panGestureRecognizer.isEnabled = false
@@ -245,7 +256,7 @@ extension ViewController: AddNewExpenseDelegate {
     func addNewExpense(amount: Int, category: Category, date: Date) {
         let expense = Expense()
         expense.amount = amount
-        expense.category = category
+//        expense.category = category
         expense.date = date
         try! realm.write {
             realm.add(expense)

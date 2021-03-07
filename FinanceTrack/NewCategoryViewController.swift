@@ -1,5 +1,11 @@
 import UIKit
 
+class CategoryView: UIView {
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: 414, height: 350)
+    }
+}
+
 class NewCategoryViewController: UIViewController, UITextFieldDelegate {
     var closePanel: (() -> ())?
     var addNewCategoryDelegate: AddNewCategoryDelegate?
@@ -8,7 +14,7 @@ class NewCategoryViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var categoryNameTextField: UITextField!
     @IBOutlet weak var colorsScrollView: UIScrollView!
     @IBOutlet weak var colorsView: UIView!
-    
+ 
     let categoryColorRG = RadioGroup(colors: Constants.categoryColors.map { Helper.UIColorFromHex(rgbValue: UInt32($0))})
     
     override func viewDidLoad() {

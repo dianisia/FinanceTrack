@@ -17,6 +17,6 @@ class Category: Object {
 
 class Expense: Object {
     @objc dynamic var amount = 0
-    @objc dynamic var category: Category?
+//    @objc dynamic var category: Category?
     @objc dynamic var date = Date()
 }

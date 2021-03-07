@@ -2,6 +2,12 @@ import UIKit
 import iOSDropDown
 import RealmSwift
 
+class ExpenseView: UIView {
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: 414, height: 500)
+    }
+}
+
 class NewExpenseViewController: UIViewController {
     var closePanel: (() -> ())?
     var categories: [Category] = []

@@ -14,11 +14,15 @@ class NewCategoryViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var categoryNameTextField: UITextField!
     @IBOutlet weak var colorsScrollView: UIScrollView!
     @IBOutlet weak var colorsView: UIView!
- 
+    @IBOutlet var categoryView: CategoryView!
+    
     let categoryColorRG = RadioGroup(colors: Constants.categoryColors.map { Helper.UIColorFromHex(rgbValue: UInt32($0))})
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
 
         categoryNameTextField.delegate = self
         addButton.isUserInteractionEnabled = false
@@ -95,5 +99,20 @@ class NewCategoryViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
             self.view.endEditing(true)
             return false
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+//                self.view.frame.origin.y -= keyboardSize.height
+                categoryView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height + keyboardSize.height)
+            }
         }
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
 }

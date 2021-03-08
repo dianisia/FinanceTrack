@@ -12,6 +12,13 @@ class MyFloatingLayout: FloatingPanelLayout {
             .half: FloatingPanelIntrinsicLayoutAnchor(fractionalOffset: 0.5, referenceGuide: .safeArea),
         ]
     }
+    
+    func backdropAlpha(for state: FloatingPanelState) -> CGFloat {
+        switch state {
+            case .full, .half: return 0.3
+            default: return 0.0
+        }
+    }
 }
 
 protocol AddNewCategoryDelegate {
@@ -133,6 +140,7 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
         fpc.surfaceView.appearance.cornerRadius = 24.0
         fpc.set(contentViewController: controller)
         fpc.panGestureRecognizer.isEnabled = false
+        fpc.isRemovalInteractionEnabled = false
        
         self.view.addSubview(fpc.view)
         fpc.view.frame = self.view.bounds

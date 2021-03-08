@@ -4,7 +4,7 @@ import RealmSwift
 
 class ExpenseView: UIView {
     override var intrinsicContentSize: CGSize {
-        return CGSize(width: 414, height: 500)
+        return CGSize(width: 414, height: 700)
     }
 }
 
@@ -24,8 +24,8 @@ class NewExpenseViewController: UIViewController {
     
     @IBAction func onCloseButtonTap(_ sender: Any) {
         closePanel?()
+        expenseTextInput.endEditing(true)
     }
-    
     
     @IBAction func onAddExpense(_ sender: Any) {
         if selectedCategoryIndex == -1 {
@@ -33,6 +33,7 @@ class NewExpenseViewController: UIViewController {
         }
         let date = datePicker.date
         addNewExpenseDelegate?.addNewExpense(amount: currentExpense, category: self.categories[selectedCategoryIndex], date: date)
+        closePanel?()
     }
     
     override func viewDidLoad() {
@@ -50,6 +51,11 @@ class NewExpenseViewController: UIViewController {
         categoryDropdown.didSelect {(selectedText, index, id) in
             self.selectedCategoryIndex = index
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        expenseTextInput.becomeFirstResponder()
     }
     
     func customizeExpenseButton(button: UIButton) {

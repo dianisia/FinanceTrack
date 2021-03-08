@@ -1,5 +1,11 @@
 import UIKit
 
+class CategoryView: UIView {
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: 414, height: 650)
+    }
+}
+
 class NewCategoryViewController: UIViewController, UITextFieldDelegate {
     var closePanel: (() -> ())?
     var addNewCategoryDelegate: AddNewCategoryDelegate?
@@ -8,13 +14,15 @@ class NewCategoryViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var categoryNameTextField: UITextField!
     @IBOutlet weak var colorsScrollView: UIScrollView!
     @IBOutlet weak var colorsView: UIView!
+    @IBOutlet var categoryView: CategoryView!
     
     let categoryColorRG = RadioGroup(colors: Constants.categoryColors.map { Helper.UIColorFromHex(rgbValue: UInt32($0))})
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         categoryNameTextField.delegate = self
+        categoryNameTextField.becomeFirstResponder()
         addButton.isUserInteractionEnabled = false
         
         let bottomLine = CALayer()
@@ -26,6 +34,11 @@ class NewCategoryViewController: UIViewController, UITextFieldDelegate {
         colorsView.addSubview(categoryColorRG)
         categoryColorRG.translatesAutoresizingMaskIntoConstraints = false
         setConstraints()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        categoryNameTextField.becomeFirstResponder()
     }
     
     func setConstraints() {
@@ -61,6 +74,7 @@ class NewCategoryViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func onCloseButtonTap(_ sender: Any) {
         closePanel?()
+        categoryView.endEditing(true)
     }
     
     @IBAction func onAddCategory(_ sender: Any) {
@@ -76,13 +90,14 @@ class NewCategoryViewController: UIViewController, UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 
         let text = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-
-        if !text.isEmpty{
-            addButton.isUserInteractionEnabled = true
-        } else {
-            addButton.isUserInteractionEnabled = false
-        }
+        
+        addButton.isUserInteractionEnabled = !text.isEmpty
 
         return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            self.view.endEditing(true)
+            return false
     }
 }

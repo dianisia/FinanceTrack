@@ -7,6 +7,7 @@ target 'FinanceTrack' do
   pod 'FloatingPanel'
   pod 'RealmSwift'
   pod 'Charts'
+  pod 'iOSDropDown'
   # Pods for FinanceTrack
 
 end

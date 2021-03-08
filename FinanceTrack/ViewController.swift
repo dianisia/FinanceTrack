@@ -3,17 +3,30 @@ import RealmSwift
 import FloatingPanel
 import Charts
 
-class CurrentBalance: Object {
-    @objc dynamic var value = 0
-}
-
-class Category: Object {
-    @objc dynamic var name = ""
-    @objc dynamic var colorIndex = 0;
+class MyFloatingLayout: FloatingPanelLayout {
+    let position: FloatingPanelPosition = .bottom
+    let initialState: FloatingPanelState = .full
+    var anchors: [FloatingPanelState: FloatingPanelLayoutAnchoring] {
+        return [
+            .full: FloatingPanelIntrinsicLayoutAnchor(absoluteOffset: 0, referenceGuide: .safeArea),
+            .half: FloatingPanelIntrinsicLayoutAnchor(fractionalOffset: 0.5, referenceGuide: .safeArea),
+        ]
+    }
+    
+    func backdropAlpha(for state: FloatingPanelState) -> CGFloat {
+        switch state {
+            case .full, .half: return 0.3
+            default: return 0.0
+        }
+    }
 }
 
 protocol AddNewCategoryDelegate {
     func addNewCategory(categoryName: String, colorIndex: Int);
+}
+
+protocol AddNewExpenseDelegate {
+    func addNewExpense(amount: Int, category: Category, date: Date)
 }
 
 class ViewController: UIViewController, FloatingPanelControllerDelegate {
@@ -28,13 +41,20 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
     @IBOutlet weak var addExpenseButton: UIButton!
     @IBOutlet weak var barChartView: BarChartView!
     
+    var newCategoryFCP: FloatingPanelController!
+    var newExpenseFCP: FloatingPanelController!
+    var fpc = FloatingPanelController()
+    
     var newCategoryVC: NewCategoryViewController!
-    var fpc: FloatingPanelController!
+    var newExpenseVC: NewExpenseViewController!
     
     @IBAction func onAddNewCategoryTap(_ sender: Any) {
-        openPanel()
+        openNewCategoryPanel()
     }
     
+    @IBAction func onAddNewExpenseTap(_ sender: Any) {
+        openNewExpensePanel()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,15 +62,9 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
         addIncomeButton.layer.cornerRadius = 8
         addExpenseButton.layer.cornerRadius = 8
         
-        fpc = FloatingPanelController()
-        fpc.delegate = self
-        
-        fpc.surfaceView.appearance.cornerRadius = 24.0
-        
         currentBalanceLabel.text = "100500"
         self.categories = Array(realm.objects(Category.self))
-        initPanel()
-//        openPanel()
+        initViews()
         
         let months = ["Jan", "Feb", "Mar", "Apr", "May"]
         let unitsSold = [20.0, 4.0, 6.0, 3.0, 12.0]
@@ -95,22 +109,38 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
         customizeChart(periods: months, data: [unitsSold, unitsBought])
     }
     
-    func openPanel() {
-        fpc.show(animated: true) {
-            self.fpc.didMove(toParent: self)
-        }
+    func initViews() {
+        newExpenseVC = storyboard?.instantiateViewController(identifier: "newExpense") as? NewExpenseViewController
+        newExpenseVC.closePanel = closePanel
+        newExpenseVC.addNewExpenseDelegate = self
+        
+        newCategoryVC = storyboard?.instantiateViewController(withIdentifier: "newCategory") as? NewCategoryViewController
+        newCategoryVC.closePanel = closePanel
+        newCategoryVC.addNewCategoryDelegate = self
     }
     
+    func openNewCategoryPanel() {
+        initNewCategoryPanel(controller: newCategoryVC)
+    }
+    
+    func openNewExpensePanel() {
+        newExpenseVC.categories = self.categories
+        initNewCategoryPanel(controller: newExpenseVC)
+    }
+        
     func closePanel() {
         fpc.willMove(toParent: nil)
         fpc.hide(animated: true)
     }
     
-    func initPanel() {
-        newCategoryVC = storyboard?.instantiateViewController(withIdentifier: "newCategory") as? NewCategoryViewController
-        newCategoryVC.closePanel = closePanel
-        newCategoryVC.addNewCategoryDelegate = self
-        fpc.set(contentViewController: newCategoryVC)
+    //TODO: Refactor it
+    func initNewCategoryPanel(controller: UIViewController) {
+        fpc.delegate = self
+        fpc.layout = MyFloatingLayout()
+        fpc.surfaceView.appearance.cornerRadius = 24.0
+        fpc.set(contentViewController: controller)
+        fpc.panGestureRecognizer.isEnabled = false
+        fpc.isRemovalInteractionEnabled = false
        
         self.view.addSubview(fpc.view)
         fpc.view.frame = self.view.bounds
@@ -122,8 +152,10 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
           fpc.view.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 0.0),
           fpc.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0.0),
         ])
-
-        self.addChild(fpc)
+        
+        fpc.show(animated: true) {
+            self.fpc.didMove(toParent: self)
+        }
     }
     
     func updateData() {
@@ -225,5 +257,17 @@ extension ViewController: AddNewCategoryDelegate {
            realm.add(category)
         }
         updateData()
+    }
+}
+
+extension ViewController: AddNewExpenseDelegate {
+    func addNewExpense(amount: Int, category: Category, date: Date) {
+        let expense = Expense()
+        expense.amount = amount
+        expense.category = category
+        expense.date = date
+        try! realm.write {
+            realm.add(expense)
+        }
     }
 }

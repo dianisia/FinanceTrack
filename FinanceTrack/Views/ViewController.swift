@@ -26,14 +26,14 @@ protocol AddNewCategoryDelegate {
 }
 
 protocol AddNewExpenseDelegate {
-    func addNewExpense(amount: Int, category: Category, date: Date)
+    func addNewExpense(amount: Int, category: Category, date: Date, info: String)
 }
 
 class ViewController: UIViewController, FloatingPanelControllerDelegate {
-    let realm = try! Realm()
     private var categories: [Category] = []
     private var currentBalance = 0
     private var categoriesViewModel = CategoriesViewModel()
+    private var expensesViewModel = ExpensesViewModel()
     
     @IBOutlet weak var categoriesTableView: UITableView!
     @IBOutlet weak var currentBalanceLabel: UILabel!
@@ -48,9 +48,11 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
     
     var newCategoryVC: NewCategoryViewController!
     var newExpenseVC: NewExpenseViewController!
+    var allExpensesVC: AllExpensesViewController!
     
     @IBAction func onAddNewCategoryTap(_ sender: Any) {
-        openNewCategoryPanel()
+        openAllExpensesPanel()
+//        openNewCategoryPanel()
     }
     
     @IBAction func onAddNewExpenseTap(_ sender: Any) {
@@ -59,8 +61,6 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        self.categoriesViewModel = CategoriesViewModel()
         
         incomeView.layer.cornerRadius = 16
         addIncomeButton.layer.cornerRadius = 8
@@ -121,6 +121,10 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
         newCategoryVC = storyboard?.instantiateViewController(withIdentifier: "newCategory") as? NewCategoryViewController
         newCategoryVC.closePanel = closePanel
         newCategoryVC.addNewCategoryDelegate = self
+        
+        allExpensesVC = storyboard?.instantiateViewController(withIdentifier: "allExpenses") as? AllExpensesViewController
+        allExpensesVC.closePanel = closePanel
+//        allExpensesVC.addNewCategoryDelegate = self
     }
     
     func openNewCategoryPanel() {
@@ -130,6 +134,10 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
     func openNewExpensePanel() {
         newExpenseVC.categories = self.categories
         initNewCategoryPanel(controller: newExpenseVC)
+    }
+    
+    func openAllExpensesPanel() {
+        initNewCategoryPanel(controller: allExpensesVC)
     }
         
     func closePanel() {
@@ -254,24 +262,21 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension ViewController: AddNewCategoryDelegate {
     func addNewCategory(categoryName: String, colorIndex: Int) {
-        categoriesViewModel.addCategory(name: categoryName, colorIndex: colorIndex)
-//        let category = Category()
-//        category.name = categoryName
-//        category.colorIndex = colorIndex
-//        try! realm.write {
-//           realm.add(category)
-//        }
-//        updateData()
+        categoriesViewModel.addNewCategory(name: categoryName, colorIndex: colorIndex)
+        categoriesTableView.reloadData()
     }
 }
 
 extension ViewController: AddNewExpenseDelegate {
-    func addNewExpense(amount: Int, category: Category, date: Date) {
+    func addNewExpense(amount: Int, category: Category, date: Date, info: String) {
+        expensesViewModel.addNewExpense(amount: amount, categoryId: "", date: date, info: info)
+        
 //        let expense = Expense()
 //        expense.amount = amount
 //        expense.category = category
 //        expense.date = date
 //        try! realm.write {
+        
 //            realm.add(expense)
 //        }
     }

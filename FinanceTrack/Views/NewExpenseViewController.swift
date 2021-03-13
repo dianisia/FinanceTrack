@@ -32,7 +32,7 @@ class NewExpenseViewController: UIViewController {
             return
         }
         let date = datePicker.date
-        addNewExpenseDelegate?.addNewExpense(amount: currentExpense, category: self.categories[selectedCategoryIndex], date: date)
+        addNewExpenseDelegate?.addNewExpense(amount: currentExpense, category: self.categories[selectedCategoryIndex], date: date, info: "zz")
         closePanel?()
     }
     

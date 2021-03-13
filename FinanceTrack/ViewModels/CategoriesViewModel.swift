@@ -13,11 +13,11 @@ class CategoriesViewModel {
     
     var categories: [Category] {
         get {
-            return self.listCategories()
+            return listCategories()
         }
     }
     
-    func addCategory(name: String, colorIndex: Int) {
-        repository.add(name: name, colorIndex: colorIndex)
+    func addNewCategory(name: String, colorIndex: Int) {
+        self.addCategory(name: name, colorIndex: colorIndex)
     }
 }

@@ -33,6 +33,7 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
     let realm = try! Realm()
     private var categories: [Category] = []
     private var currentBalance = 0
+    private var categoriesViewModel = CategoriesViewModel()
     
     @IBOutlet weak var categoriesTableView: UITableView!
     @IBOutlet weak var currentBalanceLabel: UILabel!
@@ -58,12 +59,15 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        self.categoriesViewModel = CategoriesViewModel()
+        
         incomeView.layer.cornerRadius = 16
         addIncomeButton.layer.cornerRadius = 8
         addExpenseButton.layer.cornerRadius = 8
         
         currentBalanceLabel.text = "100500"
-        self.categories = Array(realm.objects(Category.self))
+        self.categories = categoriesViewModel.categories
         initViews()
         
         let months = ["Jan", "Feb", "Mar", "Apr", "May"]
@@ -159,8 +163,8 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
     }
     
     func updateData() {
-        self.categories = Array(realm.objects(Category.self))
-        categoriesTableView.reloadData()
+//        self.categories = Array(realm.objects(Category.self))
+//        categoriesTableView.reloadData()
     }
     
     func customizeChart(periods: [String], data: [[Double]]) {
@@ -250,24 +254,25 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension ViewController: AddNewCategoryDelegate {
     func addNewCategory(categoryName: String, colorIndex: Int) {
-        let category = Category()
-        category.name = categoryName
-        category.colorIndex = colorIndex
-        try! realm.write {
-           realm.add(category)
-        }
-        updateData()
+        categoriesViewModel.addCategory(name: categoryName, colorIndex: colorIndex)
+//        let category = Category()
+//        category.name = categoryName
+//        category.colorIndex = colorIndex
+//        try! realm.write {
+//           realm.add(category)
+//        }
+//        updateData()
     }
 }
 
 extension ViewController: AddNewExpenseDelegate {
     func addNewExpense(amount: Int, category: Category, date: Date) {
-        let expense = Expense()
-        expense.amount = amount
-        expense.category = category
-        expense.date = date
-        try! realm.write {
-            realm.add(expense)
-        }
+//        let expense = Expense()
+//        expense.amount = amount
+//        expense.category = category
+//        expense.date = date
+//        try! realm.write {
+//            realm.add(expense)
+//        }
     }
 }

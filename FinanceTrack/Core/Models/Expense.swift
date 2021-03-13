@@ -1,0 +1,7 @@
+import Foundation
+
+protocol Expense {
+    var amount: Int { get }
+    var category: Category { get }
+    var date: Date { get }
+}

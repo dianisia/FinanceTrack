@@ -7,8 +7,8 @@ import PanModal
 class NewExpenseViewController: UIViewController {
     var closePanel: (() -> ())?
     var categories: [Category] = []
-    var addNewExpenseDelegate: AddNewExpenseDelegate?
     private var selectedCategoryIndex = -1;
+    private var expensesViewModel = ExpensesViewModel()
     
     @IBOutlet weak var reduceExpenseButton: UIButton!
     @IBOutlet weak var enlargeExpenseButton: UIButton!
@@ -29,11 +29,11 @@ class NewExpenseViewController: UIViewController {
     }
     
     @IBAction func onAddExpense(_ sender: Any) {
-        if selectedCategoryIndex == -1 {
-            return
-        }
+//        if selectedCategoryIndex == -1 {
+//            return
+//        }
         let date = datePicker.date
-        addNewExpenseDelegate?.addNewExpense(amount: currentExpense, category: self.categories[selectedCategoryIndex], date: date, info: "zz")
+        expensesViewModel.addNewExpense(amount: currentExpense, categoryId: "", date: date, info: "zz")
         closePanel?()
     }
     
@@ -65,12 +65,10 @@ class NewExpenseViewController: UIViewController {
         button.layer.cornerRadius = 10
     }
     
-    
     @IBAction func onReduceTap(_ sender: Any) {
         currentExpense -= 1
         expenseTextInput.text = String(currentExpense)
     }
-    
     
     @IBAction func onEnlargeTap(_ sender: Any) {
         currentExpense += 1

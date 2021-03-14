@@ -94,11 +94,9 @@ class ViewController: UIViewController {
     func initViews() {
         newExpenseVC = storyboard?.instantiateViewController(identifier: "newExpense") as? NewExpenseViewController
         newExpenseVC.closePanel = updateData
-        newExpenseVC.addNewExpenseDelegate = self
-        
+    
         newCategoryVC = storyboard?.instantiateViewController(withIdentifier: "newCategory") as? NewCategoryViewController
 //        newCategoryVC.closePanel = closePanel
-        newCategoryVC.addNewCategoryDelegate = self
         
         allExpensesVC = storyboard?.instantiateViewController(withIdentifier: "allExpenses") as? AllExpensesViewController
 //        allExpensesVC.closePanel = closePanel

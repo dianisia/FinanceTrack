@@ -9,7 +9,6 @@ class CategoryView: UIView {
 
 class NewCategoryViewController: UIViewController, UITextFieldDelegate {
     var closePanel: (() -> ())?
-    var addNewCategoryDelegate: AddNewCategoryDelegate?
     var categoriesViewModel = CategoriesViewModel()
     
     @IBOutlet weak var addButton: UIButton!

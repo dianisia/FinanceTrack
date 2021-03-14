@@ -4,6 +4,7 @@ import PanModal
 class AllExpensesViewController: UIViewController {
     private var expensesViewModel = ExpensesViewModel()
     private var expenses: [Expense] = []
+    @IBOutlet weak var expensesTableView: UITableView!
     
     var closePanel: (() -> ())?
     
@@ -13,7 +14,16 @@ class AllExpensesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        updateData()
+    }
+    
+    func updateData() {
         expenses = expensesViewModel.expenses
+        expensesTableView.reloadData()
     }
 }
 

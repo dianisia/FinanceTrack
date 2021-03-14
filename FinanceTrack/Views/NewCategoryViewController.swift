@@ -1,4 +1,5 @@
 import UIKit
+import PanModal
 
 class CategoryView: UIView {
     override var intrinsicContentSize: CGSize {
@@ -9,6 +10,7 @@ class CategoryView: UIView {
 class NewCategoryViewController: UIViewController, UITextFieldDelegate {
     var closePanel: (() -> ())?
     var addNewCategoryDelegate: AddNewCategoryDelegate?
+    var categoriesViewModel = CategoriesViewModel()
     
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var categoryNameTextField: UITextField!
@@ -81,8 +83,7 @@ class NewCategoryViewController: UIViewController, UITextFieldDelegate {
         guard let categoryName = categoryNameTextField.text, !categoryName.isEmpty else {
             return
         }
-        
-        addNewCategoryDelegate?.addNewCategory(categoryName: categoryName, colorIndex: categoryColorRG.selectedIndex)
+        categoriesViewModel.addNewCategory(name: categoryName, colorIndex: categoryColorRG.selectedIndex)
         categoryNameTextField.text = ""
         closePanel?()
     }
@@ -99,5 +100,11 @@ class NewCategoryViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
             self.view.endEditing(true)
             return false
+    }
+}
+
+extension NewCategoryViewController: PanModalPresentable {
+    var panScrollable: UIScrollView? {
+        return nil
     }
 }

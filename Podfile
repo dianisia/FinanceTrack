@@ -4,10 +4,10 @@
 target 'FinanceTrack' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-  pod 'FloatingPanel'
   pod 'RealmSwift'
   pod 'Charts'
   pod 'iOSDropDown'
+  pod 'PanModal'
   # Pods for FinanceTrack
 
 end

@@ -4,6 +4,7 @@ PODS:
   - Charts/Core (3.6.0)
   - FloatingPanel (2.2.0)
   - iOSDropDown (0.3.4)
+  - PanModal (1.2.7)
   - Realm (10.5.0):
     - Realm/Headers (= 10.5.0)
   - Realm/Headers (10.5.0)
@@ -14,6 +15,7 @@ DEPENDENCIES:
   - Charts
   - FloatingPanel
   - iOSDropDown
+  - PanModal
   - RealmSwift
 
 SPEC REPOS:
@@ -21,6 +23,7 @@ SPEC REPOS:
     - Charts
     - FloatingPanel
     - iOSDropDown
+    - PanModal
     - Realm
     - RealmSwift
 
@@ -28,9 +31,10 @@ SPEC CHECKSUMS:
   Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
   FloatingPanel: 54b478292da5340317ce78afcaca88fab6f3b57e
   iOSDropDown: c10a761f9a00c3f1cc9d3bce43ae504628e2f692
+  PanModal: 3e16ead1a907fb06f4df3f13492fd00149fa4974
   Realm: e1c22c3d83b229afb70ebc10e1771c91e9542d12
   RealmSwift: 6fc078d9d3fd7e58c71bfdbb694e252462f112a5
 
-PODFILE CHECKSUM: 17b56bfa89041fb2864df9fdec9453c83cdecc4a
+PODFILE CHECKSUM: 29ce80604448065bac76ceb60a21edba9d627729
 
 COCOAPODS: 1.10.0

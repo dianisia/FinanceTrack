@@ -1,10 +1,5 @@
 import UIKit
-
-class AllExpensesView: UIView {
-    override var intrinsicContentSize: CGSize {
-        return CGSize(width: 414, height: 650)
-    }
-}
+import PanModal
 
 class AllExpensesViewController: UIViewController {
     private var expensesViewModel = ExpensesViewModel()
@@ -32,4 +27,19 @@ extension AllExpensesViewController: UITableViewDelegate, UITableViewDataSource 
         cell.expenseLabel.text = "Test"
         return cell
     }
+}
+
+extension AllExpensesViewController: PanModalPresentable {
+    var panScrollable: UIScrollView? {
+        return nil
+    }
+    
+    var shortFormHeight: PanModalHeight {
+        return .contentHeight(500)
+    }
+
+    var longFormHeight: PanModalHeight {
+        return .maxHeightWithTopInset(40)
+    }
+    
 }

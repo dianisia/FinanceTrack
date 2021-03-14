@@ -1,12 +1,8 @@
 import UIKit
-import iOSDropDown
+//import iOSDropDown
 import RealmSwift
+import PanModal
 
-class ExpenseView: UIView {
-    override var intrinsicContentSize: CGSize {
-        return CGSize(width: 414, height: 700)
-    }
-}
 
 class NewExpenseViewController: UIViewController {
     var closePanel: (() -> ())?
@@ -17,10 +13,15 @@ class NewExpenseViewController: UIViewController {
     @IBOutlet weak var reduceExpenseButton: UIButton!
     @IBOutlet weak var enlargeExpenseButton: UIButton!
     @IBOutlet weak var expenseTextInput: UITextField!
-    @IBOutlet weak var categoryDropdown: DropDown!
+//    @IBOutlet weak var categoryDropdown: DropDown!
     @IBOutlet weak var datePicker: UIDatePicker!
     
     private var currentExpense = 500;
+    
+    @IBAction func onAddNewCategoryTap(_ sender: Any) {
+        let newCategoryVC = storyboard?.instantiateViewController(withIdentifier: "newCategory") as! NewCategoryViewController
+        presentPanModal(newCategoryVC)
+    }
     
     @IBAction func onCloseButtonTap(_ sender: Any) {
         closePanel?()
@@ -44,13 +45,13 @@ class NewExpenseViewController: UIViewController {
         expenseTextInput.becomeFirstResponder()
         expenseTextInput.keyboardType = UIKeyboardType.decimalPad
         
-        categoryDropdown.listWillAppear {
-            self.categoryDropdown.optionArray = Array(self.categories).map {$0.name}
-        }
-        
-        categoryDropdown.didSelect {(selectedText, index, id) in
-            self.selectedCategoryIndex = index
-        }
+//        categoryDropdown.listWillAppear {
+//            self.categoryDropdown.optionArray = Array(self.categories).map {$0.name}
+//        }
+//
+//        categoryDropdown.didSelect {(selectedText, index, id) in
+//            self.selectedCategoryIndex = index
+//        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -76,4 +77,22 @@ class NewExpenseViewController: UIViewController {
         expenseTextInput.text = String(currentExpense)
     }
     
+}
+
+extension NewExpenseViewController: PanModalPresentable {
+    var panScrollable: UIScrollView? {
+        return nil
+    }
+    
+    var shortFormHeight: PanModalHeight {
+        return .contentHeight(700)
+    }
+
+    var longFormHeight: PanModalHeight {
+        return .maxHeightWithTopInset(40)
+    }
+    
+    func panModalDidDismiss() {
+        closePanel?()
+    }
 }

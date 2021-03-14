@@ -297,7 +297,7 @@
                                             <color key="titleColor" red="0.13333333333333333" green="0.76078431372549016" blue="0.82745098039215681" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="onAddNewCategoryTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9S6-ZY-Mvc"/>
+                                            <action selector="onShowNewExpensesTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yQf-s9-vHl"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -354,7 +354,7 @@
         <scene sceneID="1zA-K3-Ces">
             <objects>
                 <viewController storyboardIdentifier="newExpense" id="xh0-GU-d63" customClass="NewExpenseViewController" customModule="FinanceTrack" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="bzN-sJ-DZg" customClass="ExpenseView" customModule="FinanceTrack" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="bzN-sJ-DZg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="550"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -488,7 +488,7 @@
                                 <color key="textColor" red="0.54117647058823526" green="0.54117647058823526" blue="0.55686274509803924" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vMN-9t-f9H" customClass="DropDown" customModule="iOSDropDown">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vMN-9t-f9H">
                                 <rect key="frame" x="16" y="281.5" width="382" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -508,6 +508,9 @@
                                 <state key="normal" title="Создать новую категорию">
                                     <color key="titleColor" red="0.1333333333" green="0.76078431369999999" blue="0.82745098039999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="onAddNewCategoryTap:" destination="xh0-GU-d63" eventType="touchUpInside" id="GfJ-83-ZY7"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6tW-V3-evc"/>
@@ -544,7 +547,6 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="414" height="550"/>
                     <connections>
-                        <outlet property="categoryDropdown" destination="vMN-9t-f9H" id="InE-fZ-Bri"/>
                         <outlet property="datePicker" destination="WpL-Vp-qaK" id="lIw-LA-NLe"/>
                         <outlet property="enlargeExpenseButton" destination="Lci-Lv-44b" id="bip-5x-fMZ"/>
                         <outlet property="expenseTextInput" destination="h8N-Q3-41r" id="eXC-IG-9wE"/>
@@ -741,7 +743,7 @@
         <scene sceneID="xcB-7y-dHI">
             <objects>
                 <viewController storyboardIdentifier="allExpenses" id="eKl-gz-gXY" customClass="AllExpensesViewController" customModule="FinanceTrack" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Fif-Kn-y5Z" customClass="AllExpensesView" customModule="FinanceTrack" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="Fif-Kn-y5Z">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="700"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>

@@ -6,7 +6,7 @@ target 'FinanceTrack' do
   use_frameworks!
   pod 'RealmSwift'
   pod 'Charts'
-  pod 'iOSDropDown'
+  pod 'DropDown'
   pod 'PanModal'
   # Pods for FinanceTrack
 

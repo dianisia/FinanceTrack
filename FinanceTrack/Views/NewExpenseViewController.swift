@@ -1,19 +1,23 @@
 import UIKit
-//import iOSDropDown
 import RealmSwift
 import PanModal
 
-
 class NewExpenseViewController: UIViewController {
+    
+    struct Constants {
+        static let viewHeight = 600
+        static let viewMaxHeightWithTopInset = 40
+    }
+    
     var closePanel: (() -> ())?
     var categories: [Category] = []
     private var selectedCategoryIndex = -1;
     private var expensesViewModel = ExpensesViewModel()
     
+    @IBOutlet weak var categoryDropdown: UIPickerView!
     @IBOutlet weak var reduceExpenseButton: UIButton!
     @IBOutlet weak var enlargeExpenseButton: UIButton!
     @IBOutlet weak var expenseTextInput: UITextField!
-//    @IBOutlet weak var categoryDropdown: DropDown!
     @IBOutlet weak var datePicker: UIDatePicker!
     
     private var currentExpense = 500;
@@ -29,11 +33,11 @@ class NewExpenseViewController: UIViewController {
     }
     
     @IBAction func onAddExpense(_ sender: Any) {
-//        if selectedCategoryIndex == -1 {
-//            return
-//        }
+        if selectedCategoryIndex == -1 {
+            return
+        }
         let date = datePicker.date
-        expensesViewModel.addNewExpense(amount: currentExpense, categoryId: "", date: date, info: "zz")
+        expensesViewModel.addNewExpense(amount: Int(expenseTextInput.text ?? "") ?? 0, categoryId: String(selectedCategoryIndex), date: date, info: "zz")
         closePanel?()
     }
     
@@ -44,14 +48,6 @@ class NewExpenseViewController: UIViewController {
         expenseTextInput.text = String(currentExpense)
         expenseTextInput.becomeFirstResponder()
         expenseTextInput.keyboardType = UIKeyboardType.decimalPad
-        
-//        categoryDropdown.listWillAppear {
-//            self.categoryDropdown.optionArray = Array(self.categories).map {$0.name}
-//        }
-//
-//        categoryDropdown.didSelect {(selectedText, index, id) in
-//            self.selectedCategoryIndex = index
-//        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -83,14 +79,33 @@ extension NewExpenseViewController: PanModalPresentable {
     }
     
     var shortFormHeight: PanModalHeight {
-        return .contentHeight(700)
+        return .contentHeight(CGFloat(Constants.viewHeight))
     }
 
     var longFormHeight: PanModalHeight {
-        return .maxHeightWithTopInset(40)
+        return .maxHeightWithTopInset(CGFloat(Constants.viewMaxHeightWithTopInset))
     }
     
     func panModalDidDismiss() {
         closePanel?()
+    }
+}
+
+extension NewExpenseViewController: UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return categories.capacity
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component:Int) -> String? {
+        self.view.endEditing(true)
+        return categories[row].name
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedCategoryIndex = row
     }
 }

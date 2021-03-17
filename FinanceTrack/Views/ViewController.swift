@@ -108,7 +108,6 @@ class ViewController: UIViewController {
     }
     
     func openNewExpensePanel() {
-        newExpenseVC.categories = self.categories
         presentPanModal(newExpenseVC)
     }
     

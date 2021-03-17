@@ -11,8 +11,9 @@ class NewExpenseViewController: UIViewController {
     
     var closePanel: (() -> ())?
     var categories: [Category] = []
-    private var selectedCategoryIndex = -1;
+    private var selectedCategoryIndex = 0;
     private var expensesViewModel = ExpensesViewModel()
+    private var categoriesViewModel = CategoriesViewModel()
     
     @IBOutlet weak var categoryDropdown: UIPickerView!
     @IBOutlet weak var reduceExpenseButton: UIButton!
@@ -24,6 +25,7 @@ class NewExpenseViewController: UIViewController {
     
     @IBAction func onAddNewCategoryTap(_ sender: Any) {
         let newCategoryVC = storyboard?.instantiateViewController(withIdentifier: "newCategory") as! NewCategoryViewController
+        newCategoryVC.closePanel = updateData
         presentPanModal(newCategoryVC)
     }
     
@@ -37,17 +39,24 @@ class NewExpenseViewController: UIViewController {
             return
         }
         let date = datePicker.date
-        expensesViewModel.addNewExpense(amount: Int(expenseTextInput.text ?? "") ?? 0, categoryId: String(selectedCategoryIndex), date: date, info: "zz")
+        expensesViewModel.addNewExpense(amount: Int(expenseTextInput.text ?? "") ?? 0, categoryId: self.categories[selectedCategoryIndex].categoryId, date: date, info: "zz")
         closePanel?()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateData()
         customizeExpenseButton(button: reduceExpenseButton)
         customizeExpenseButton(button: enlargeExpenseButton)
         expenseTextInput.text = String(currentExpense)
         expenseTextInput.becomeFirstResponder()
         expenseTextInput.keyboardType = UIKeyboardType.decimalPad
+    }
+    
+    func updateData() {
+        categories = categoriesViewModel.categories
+        categoryDropdown.reloadAllComponents()
+        view.layoutSubviews()
     }
     
     override func viewDidAppear(_ animated: Bool) {

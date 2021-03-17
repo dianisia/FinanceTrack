@@ -19,6 +19,12 @@ extension RealmCategory: Category {
 }
 
 class RealmCategoriesRepository: CategoriesRepository {
+    func getForId(categoryId: String) -> RealmCategory {
+        let realm = try! Realm()
+        //TODO: Fix !
+        return realm.object(ofType: RealmCategory.self, forPrimaryKey: categoryId)!
+    }
+    
     func listAll() -> [Category] {
         let realm = try! Realm()
         return Array(realm.objects(RealmCategory.self))

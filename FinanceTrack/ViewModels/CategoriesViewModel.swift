@@ -5,6 +5,8 @@ class CategoriesViewModel {
     private var listCategories: ListCategories
     private var addCategory: AddCategory
     
+//    var onCategoryAdd
+    
     init() {
         repository = RealmCategoriesRepository()
         listCategories = ListCategoriesImpl(repository: repository)

@@ -106,4 +106,8 @@ extension NewCategoryViewController: PanModalPresentable {
     var panScrollable: UIScrollView? {
         return nil
     }
+    
+    func panModalWillDismiss() {
+        closePanel?()
+    }
 }

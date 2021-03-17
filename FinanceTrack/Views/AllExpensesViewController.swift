@@ -4,7 +4,9 @@ import DropDown
 
 class AllExpensesViewController: UIViewController {
     private var expensesViewModel = ExpensesViewModel()
+    private var categoriesViewModel = CategoriesViewModel()
     private var expenses: [Expense] = []
+    private var categories: [Category] = []
     @IBOutlet weak var expensesTableView: UITableView!
     
     var closePanel: (() -> ())?
@@ -24,6 +26,7 @@ class AllExpensesViewController: UIViewController {
     
     func updateData() {
         expenses = expensesViewModel.expenses
+        categories = categoriesViewModel.categories
         expensesTableView.reloadData()
     }
 }

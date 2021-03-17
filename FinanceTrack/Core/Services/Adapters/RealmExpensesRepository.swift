@@ -25,7 +25,7 @@ class RealmExpensesRepository: ExpensesRepository {
         let realm = try! Realm()
         let expense = RealmExpense()
         expense._amount = amount
-//        expense._category = categoryId
+        expense._category = RealmCategoriesRepository().getForId(categoryId: categoryId)
         expense._date = date
         expense._info = info
         try! realm.write {

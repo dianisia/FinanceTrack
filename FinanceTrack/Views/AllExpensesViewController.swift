@@ -38,7 +38,8 @@ extension AllExpensesViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "expenseCell") as! ExpenseTableViewCell
-        cell.expenseLabel.text = "Test"
+        cell.expenseLabel.text = expenses[indexPath.row].info
+        cell.amountLabel.text = String(expenses[indexPath.row].amount)
         return cell
     }
 }

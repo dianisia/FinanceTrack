@@ -14,6 +14,7 @@ class NewExpenseViewController: UIViewController {
     private var selectedCategoryIndex = 0;
     private var expensesViewModel = ExpensesViewModel()
     private var categoriesViewModel = CategoriesViewModel()
+    @IBOutlet weak var expenseTargetTextField: UITextField!
     
     @IBOutlet weak var categoryDropdown: UIPickerView!
     @IBOutlet weak var reduceExpenseButton: UIButton!
@@ -39,7 +40,7 @@ class NewExpenseViewController: UIViewController {
             return
         }
         let date = datePicker.date
-        expensesViewModel.addNewExpense(amount: Int(expenseTextInput.text ?? "") ?? 0, categoryId: self.categories[selectedCategoryIndex].categoryId, date: date, info: "zz")
+        expensesViewModel.addNewExpense(amount: Int(expenseTextInput.text ?? "") ?? 0, categoryId: self.categories[selectedCategoryIndex].categoryId, date: date, info: expenseTargetTextField.text ?? "")
         closePanel?()
     }
     
@@ -56,7 +57,7 @@ class NewExpenseViewController: UIViewController {
     func updateData() {
         categories = categoriesViewModel.categories
         categoryDropdown.reloadAllComponents()
-        view.layoutSubviews()
+        categoryDropdown.isHidden = categories.count == 0
     }
     
     override func viewDidAppear(_ animated: Bool) {

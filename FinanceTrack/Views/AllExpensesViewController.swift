@@ -3,6 +3,12 @@ import PanModal
 import DropDown
 
 class AllExpensesViewController: UIViewController {
+
+    struct CurrConstants {
+        static let viewHeight: CGFloat = 600
+        static let viewMaxHeightWithTopInset: CGFloat = 40
+    }
+
     private var expensesViewModel = ExpensesViewModel()
     private var categoriesViewModel = CategoriesViewModel()
     private var expenses: GroupedExpenses = [:]
@@ -37,6 +43,8 @@ extension AllExpensesViewController: UITableViewDelegate, UITableViewDataSource 
         let currExpense: Expense = Array(expenses)[indexPath.section].value[indexPath.row]
         cell.expenseLabel.text = currExpense.info
         cell.amountLabel.text = String(currExpense.amount)
+        cell.iconBackUIView.backgroundColor = Helper
+                .UIColorFromHex(rgbValue: UInt32(Constants.categoryColors[currExpense.category.colorIndex]))
         return cell
     }
 
@@ -55,15 +63,15 @@ extension AllExpensesViewController: UITableViewDelegate, UITableViewDataSource 
 
 extension AllExpensesViewController: PanModalPresentable {
     var panScrollable: UIScrollView? {
-        return nil
+        nil
     }
     
     var shortFormHeight: PanModalHeight {
-        return .contentHeight(600)
+        .contentHeight(CurrConstants.viewHeight)
     }
 
     var longFormHeight: PanModalHeight {
-        return .maxHeightWithTopInset(40)
+        .maxHeightWithTopInset(CurrConstants.viewMaxHeightWithTopInset)
     }
     
 }

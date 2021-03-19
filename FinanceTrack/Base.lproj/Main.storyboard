@@ -522,7 +522,7 @@
                                     <action selector="onAddExpense:" destination="xh0-GU-d63" eventType="touchUpInside" id="4HK-cl-uZk"/>
                                 </connections>
                             </button>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="WpL-Vp-qaK">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="WpL-Vp-qaK">
                                 <rect key="frame" x="8" y="454" width="382" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="rWj-V0-iZf"/>

@@ -5,7 +5,7 @@ import DropDown
 class AllExpensesViewController: UIViewController {
     private var expensesViewModel = ExpensesViewModel()
     private var categoriesViewModel = CategoriesViewModel()
-    private var expenses: [Expense] = []
+    private var expenses: GroupedExpenses = [:]
     private var categories: [Category] = []
     @IBOutlet weak var expensesTableView: UITableView!
     
@@ -32,15 +32,24 @@ class AllExpensesViewController: UIViewController {
 }
 
 extension AllExpensesViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return expenses.count
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "expenseCell") as! ExpenseTableViewCell
-        cell.expenseLabel.text = expenses[indexPath.row].info
-        cell.amountLabel.text = String(expenses[indexPath.row].amount)
+        let currExpense: Expense = Array(expenses)[indexPath.section].value[indexPath.row]
+        cell.expenseLabel.text = currExpense.info
+        cell.amountLabel.text = String(currExpense.amount)
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        Array(expenses)[section].value.count
+    }
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        expenses.keys.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        Array(expenses)[section].key
     }
 }
 
@@ -50,7 +59,7 @@ extension AllExpensesViewController: PanModalPresentable {
     }
     
     var shortFormHeight: PanModalHeight {
-        return .contentHeight(500)
+        return .contentHeight(600)
     }
 
     var longFormHeight: PanModalHeight {

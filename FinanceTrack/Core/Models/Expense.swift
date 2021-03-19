@@ -6,3 +6,6 @@ protocol Expense {
     var date: Date { get }
     var info: String { get }
 }
+
+typealias GroupedExpenses = [String: [Expense]]
+

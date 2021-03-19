@@ -3,17 +3,19 @@ import Foundation
 class ExpensesViewModel {
     private var repository: ExpensesRepository
     private var listExpenses: ListExpenses
+    private var listGroupedExpenses: ListGroupedExpenses
     private var addExpense: AddExpense
     
     init() {
         repository = RealmExpensesRepository()
         listExpenses = ListExpensesImpl(repository: repository)
         addExpense = AddExpenseImpl(repository: repository)
+        listGroupedExpenses = ListGroupedExpensesImpl(repository: repository)
     }
     
-    var expenses: [Expense] {
+    var expenses: GroupedExpenses {
         get {
-            return listExpenses()
+            listGroupedExpenses()
         }
     }
     

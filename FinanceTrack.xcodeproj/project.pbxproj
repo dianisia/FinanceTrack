@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		80D6BB5640B94B213C7FC3EF /* ListGroupedExpenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D6B2AB279468320DC8C432 /* ListGroupedExpenses.swift */; };
 		CF0926DC507CD11323024BCE /* Pods_FinanceTrack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C33F88AF795EE3C44C0CFA61 /* Pods_FinanceTrack.framework */; };
 		E41DE38F25FAA22C006B5D5D /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41DE38E25FAA22C006B5D5D /* Balance.swift */; };
 		E41DE39425FAA453006B5D5D /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41DE39325FAA453006B5D5D /* Category.swift */; };
@@ -46,6 +47,7 @@
 
 /* Begin PBXFileReference section */
 		3293A4ABFE836951C15ABD7F /* Pods-FinanceTrack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinanceTrack.debug.xcconfig"; path = "Target Support Files/Pods-FinanceTrack/Pods-FinanceTrack.debug.xcconfig"; sourceTree = "<group>"; };
+		80D6B2AB279468320DC8C432 /* ListGroupedExpenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListGroupedExpenses.swift; sourceTree = "<group>"; };
 		910BA1954BC675CD4FFEEB10 /* Pods-FinanceTrack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinanceTrack.release.xcconfig"; path = "Target Support Files/Pods-FinanceTrack/Pods-FinanceTrack.release.xcconfig"; sourceTree = "<group>"; };
 		C33F88AF795EE3C44C0CFA61 /* Pods_FinanceTrack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FinanceTrack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E41DE38E25FAA22C006B5D5D /* Balance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Balance.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				E41DE3B725FD17DD006B5D5D /* AddCategory.swift */,
 				E41DE3C325FD479F006B5D5D /* ListExpenses.swift */,
 				E41DE3C625FD4B29006B5D5D /* AddExpense.swift */,
+				80D6B2AB279468320DC8C432 /* ListGroupedExpenses.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				E41DE3BB25FD3664006B5D5D /* AllExpensesViewController.swift in Sources */,
 				E41DE3A025FAAFA7006B5D5D /* ExpensesRepository.swift in Sources */,
 				E4B1294525DE1999004C82FF /* Constants.swift in Sources */,
+				80D6BB5640B94B213C7FC3EF /* ListGroupedExpenses.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,4 +9,10 @@ class Helper {
 
         return UIColor(red:red, green:green, blue:blue, alpha:CGFloat(alpha))
     }
+
+    static func formateDate(date: Date) -> String {
+        let df = DateFormatter()
+        df.dateFormat = "d MMM y"
+        return df.string(from: date)
+    }
 }

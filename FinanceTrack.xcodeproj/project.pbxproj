@@ -7,10 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		80D6BB5640B94B213C7FC3EF /* ListGroupedExpenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D6B2AB279468320DC8C432 /* ListGroupedExpenses.swift */; };
 		CF0926DC507CD11323024BCE /* Pods_FinanceTrack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C33F88AF795EE3C44C0CFA61 /* Pods_FinanceTrack.framework */; };
+		E41DE38F25FAA22C006B5D5D /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41DE38E25FAA22C006B5D5D /* Balance.swift */; };
+		E41DE39425FAA453006B5D5D /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41DE39325FAA453006B5D5D /* Category.swift */; };
+		E41DE39825FAA46A006B5D5D /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41DE39725FAA46A006B5D5D /* Expense.swift */; };
+		E41DE39C25FAADEE006B5D5D /* CategoriesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41DE39B25FAADEE006B5D5D /* CategoriesRepository.swift */; };
+		E41DE3A025FAAFA7006B5D5D /* ExpensesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41DE39F25FAAFA7006B5D5D /* ExpensesRepository.swift */; };
+		E41DE3A325FAAFE4006B5D5D /* BalanceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41DE3A225FAAFE4006B5D5D /* BalanceRepository.swift */; };
+		E41DE3A725FAB0B5006B5D5D /* RealmBalanceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41DE3A625FAB0B5006B5D5D /* RealmBalanceRepository.swift */; };
+		E41DE3AA25FBF1EB006B5D5D /* RealmCategoriesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41DE3A925FBF1EB006B5D5D /* RealmCategoriesRepository.swift */; };
+		E41DE3AD25FBF552006B5D5D /* RealmExpensesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41DE3AC25FBF552006B5D5D /* RealmExpensesRepository.swift */; };
+		E41DE3B025FBF73B006B5D5D /* CategoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41DE3AF25FBF73B006B5D5D /* CategoriesViewModel.swift */; };
+		E41DE3B425FBF7C4006B5D5D /* ListCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41DE3B325FBF7C4006B5D5D /* ListCategories.swift */; };
+		E41DE3B825FD17DD006B5D5D /* AddCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41DE3B725FD17DD006B5D5D /* AddCategory.swift */; };
+		E41DE3BB25FD3664006B5D5D /* AllExpensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41DE3BA25FD3664006B5D5D /* AllExpensesViewController.swift */; };
+		E41DE3BE25FD3AEF006B5D5D /* ExpenseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41DE3BD25FD3AEF006B5D5D /* ExpenseTableViewCell.swift */; };
+		E41DE3C125FD41AD006B5D5D /* ExpensesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41DE3C025FD41AD006B5D5D /* ExpensesViewModel.swift */; };
+		E41DE3C425FD479F006B5D5D /* ListExpenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41DE3C325FD479F006B5D5D /* ListExpenses.swift */; };
+		E41DE3C725FD4B29006B5D5D /* AddExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41DE3C625FD4B29006B5D5D /* AddExpense.swift */; };
 		E46E496A25E56C4C00903EAD /* NewExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46E496925E56C4C00903EAD /* NewExpenseViewController.swift */; };
-		E46E497425EB751E00903EAD /* iOSDropDown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E46E497325EB751E00903EAD /* iOSDropDown.framework */; };
-		E46E497725EBFA7800903EAD /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46E497625EBFA7800903EAD /* Models.swift */; };
 		E485E75725D38925003850FA /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E485E75625D38925003850FA /* Helper.swift */; };
 		E485E75E25D39130003850FA /* ColorItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E485E75D25D39130003850FA /* ColorItemView.swift */; };
 		E485E76125D6283A003850FA /* RadioGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E485E76025D6283A003850FA /* RadioGroup.swift */; };
@@ -31,11 +47,28 @@
 
 /* Begin PBXFileReference section */
 		3293A4ABFE836951C15ABD7F /* Pods-FinanceTrack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinanceTrack.debug.xcconfig"; path = "Target Support Files/Pods-FinanceTrack/Pods-FinanceTrack.debug.xcconfig"; sourceTree = "<group>"; };
+		80D6B2AB279468320DC8C432 /* ListGroupedExpenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListGroupedExpenses.swift; sourceTree = "<group>"; };
 		910BA1954BC675CD4FFEEB10 /* Pods-FinanceTrack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinanceTrack.release.xcconfig"; path = "Target Support Files/Pods-FinanceTrack/Pods-FinanceTrack.release.xcconfig"; sourceTree = "<group>"; };
 		C33F88AF795EE3C44C0CFA61 /* Pods_FinanceTrack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FinanceTrack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E41DE38E25FAA22C006B5D5D /* Balance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Balance.swift; sourceTree = "<group>"; };
+		E41DE39325FAA453006B5D5D /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		E41DE39725FAA46A006B5D5D /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
+		E41DE39B25FAADEE006B5D5D /* CategoriesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesRepository.swift; sourceTree = "<group>"; };
+		E41DE39F25FAAFA7006B5D5D /* ExpensesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesRepository.swift; sourceTree = "<group>"; };
+		E41DE3A225FAAFE4006B5D5D /* BalanceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceRepository.swift; sourceTree = "<group>"; };
+		E41DE3A625FAB0B5006B5D5D /* RealmBalanceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBalanceRepository.swift; sourceTree = "<group>"; };
+		E41DE3A925FBF1EB006B5D5D /* RealmCategoriesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCategoriesRepository.swift; sourceTree = "<group>"; };
+		E41DE3AC25FBF552006B5D5D /* RealmExpensesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmExpensesRepository.swift; sourceTree = "<group>"; };
+		E41DE3AF25FBF73B006B5D5D /* CategoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewModel.swift; sourceTree = "<group>"; };
+		E41DE3B325FBF7C4006B5D5D /* ListCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCategories.swift; sourceTree = "<group>"; };
+		E41DE3B725FD17DD006B5D5D /* AddCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategory.swift; sourceTree = "<group>"; };
+		E41DE3BA25FD3664006B5D5D /* AllExpensesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllExpensesViewController.swift; sourceTree = "<group>"; };
+		E41DE3BD25FD3AEF006B5D5D /* ExpenseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTableViewCell.swift; sourceTree = "<group>"; };
+		E41DE3C025FD41AD006B5D5D /* ExpensesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesViewModel.swift; sourceTree = "<group>"; };
+		E41DE3C325FD479F006B5D5D /* ListExpenses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListExpenses.swift; sourceTree = "<group>"; };
+		E41DE3C625FD4B29006B5D5D /* AddExpense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpense.swift; sourceTree = "<group>"; };
 		E46E496925E56C4C00903EAD /* NewExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExpenseViewController.swift; sourceTree = "<group>"; };
 		E46E497325EB751E00903EAD /* iOSDropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = iOSDropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E46E497625EBFA7800903EAD /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		E485E75625D38925003850FA /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		E485E75D25D39130003850FA /* ColorItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorItemView.swift; sourceTree = "<group>"; };
 		E485E76025D6283A003850FA /* RadioGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioGroup.swift; sourceTree = "<group>"; };
@@ -61,7 +94,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E46E497425EB751E00903EAD /* iOSDropDown.framework in Frameworks */,
 				CF0926DC507CD11323024BCE /* Pods_FinanceTrack.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -76,6 +108,100 @@
 				C33F88AF795EE3C44C0CFA61 /* Pods_FinanceTrack.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E41DE38925FAA1A9006B5D5D /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				E41DE3A525FAB03C006B5D5D /* Services */,
+				E41DE38D25FAA201006B5D5D /* UseCases */,
+				E41DE38C25FAA1FB006B5D5D /* Models */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		E41DE38A25FAA1B3006B5D5D /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				E41DE3AF25FBF73B006B5D5D /* CategoriesViewModel.swift */,
+				E41DE3C025FD41AD006B5D5D /* ExpensesViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		E41DE38B25FAA1BC006B5D5D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E41DE3CA25FD577B006B5D5D /* Cells */,
+				E49D3CF825C5C78D0057C5A3 /* ViewController.swift */,
+				E485E75D25D39130003850FA /* ColorItemView.swift */,
+				E485E76025D6283A003850FA /* RadioGroup.swift */,
+				E485E76925D992E7003850FA /* NewCategoryViewController.swift */,
+				E41DE3BA25FD3664006B5D5D /* AllExpensesViewController.swift */,
+				E46E496925E56C4C00903EAD /* NewExpenseViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E41DE38C25FAA1FB006B5D5D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E41DE38E25FAA22C006B5D5D /* Balance.swift */,
+				E41DE39325FAA453006B5D5D /* Category.swift */,
+				E41DE39725FAA46A006B5D5D /* Expense.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E41DE38D25FAA201006B5D5D /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				E41DE3B325FBF7C4006B5D5D /* ListCategories.swift */,
+				E41DE3B725FD17DD006B5D5D /* AddCategory.swift */,
+				E41DE3C325FD479F006B5D5D /* ListExpenses.swift */,
+				E41DE3C625FD4B29006B5D5D /* AddExpense.swift */,
+				80D6B2AB279468320DC8C432 /* ListGroupedExpenses.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		E41DE39A25FAA6A8006B5D5D /* Adapters */ = {
+			isa = PBXGroup;
+			children = (
+				E41DE3A625FAB0B5006B5D5D /* RealmBalanceRepository.swift */,
+				E41DE3A925FBF1EB006B5D5D /* RealmCategoriesRepository.swift */,
+				E41DE3AC25FBF552006B5D5D /* RealmExpensesRepository.swift */,
+			);
+			path = Adapters;
+			sourceTree = "<group>";
+		};
+		E41DE3A525FAB03C006B5D5D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E41DE39B25FAADEE006B5D5D /* CategoriesRepository.swift */,
+				E41DE39F25FAAFA7006B5D5D /* ExpensesRepository.swift */,
+				E41DE3A225FAAFE4006B5D5D /* BalanceRepository.swift */,
+				E41DE39A25FAA6A8006B5D5D /* Adapters */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		E41DE3CA25FD577B006B5D5D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E41DE3BD25FD3AEF006B5D5D /* ExpenseTableViewCell.swift */,
+				E49D3D0E25C5CF0D0057C5A3 /* CategoriesTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		E41DE3CC25FD5838006B5D5D /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				E485E75625D38925003850FA /* Helper.swift */,
+				E4B1294425DE1999004C82FF /* Constants.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		E49D3CE825C5C78D0057C5A3 = {
@@ -99,22 +225,17 @@
 		E49D3CF325C5C78D0057C5A3 /* FinanceTrack */ = {
 			isa = PBXGroup;
 			children = (
+				E41DE3CC25FD5838006B5D5D /* Common */,
+				E41DE38B25FAA1BC006B5D5D /* Views */,
+				E41DE38A25FAA1B3006B5D5D /* ViewModels */,
+				E41DE38925FAA1A9006B5D5D /* Core */,
 				E4C0256E25CBAC220085AE40 /* Fonts */,
 				E49D3CF425C5C78D0057C5A3 /* AppDelegate.swift */,
 				E49D3CF625C5C78D0057C5A3 /* SceneDelegate.swift */,
-				E485E75625D38925003850FA /* Helper.swift */,
-				E49D3CF825C5C78D0057C5A3 /* ViewController.swift */,
-				E49D3D0E25C5CF0D0057C5A3 /* CategoriesTableViewCell.swift */,
-				E485E75D25D39130003850FA /* ColorItemView.swift */,
-				E46E496925E56C4C00903EAD /* NewExpenseViewController.swift */,
 				E49D3CFA25C5C78D0057C5A3 /* Main.storyboard */,
 				E49D3CFD25C5C7900057C5A3 /* Assets.xcassets */,
 				E49D3CFF25C5C7900057C5A3 /* LaunchScreen.storyboard */,
 				E49D3D0225C5C7900057C5A3 /* Info.plist */,
-				E485E76025D6283A003850FA /* RadioGroup.swift */,
-				E485E76925D992E7003850FA /* NewCategoryViewController.swift */,
-				E4B1294425DE1999004C82FF /* Constants.swift */,
-				E46E497625EBFA7800903EAD /* Models.swift */,
 			);
 			path = FinanceTrack;
 			sourceTree = "<group>";
@@ -257,17 +378,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E46E497725EBFA7800903EAD /* Models.swift in Sources */,
+				E41DE3C725FD4B29006B5D5D /* AddExpense.swift in Sources */,
+				E41DE3BE25FD3AEF006B5D5D /* ExpenseTableViewCell.swift in Sources */,
+				E41DE39825FAA46A006B5D5D /* Expense.swift in Sources */,
+				E41DE3C125FD41AD006B5D5D /* ExpensesViewModel.swift in Sources */,
 				E49D3CF925C5C78D0057C5A3 /* ViewController.swift in Sources */,
 				E485E76A25D992E8003850FA /* NewCategoryViewController.swift in Sources */,
 				E49D3D0F25C5CF0D0057C5A3 /* CategoriesTableViewCell.swift in Sources */,
+				E41DE3B825FD17DD006B5D5D /* AddCategory.swift in Sources */,
+				E41DE3AA25FBF1EB006B5D5D /* RealmCategoriesRepository.swift in Sources */,
 				E485E75725D38925003850FA /* Helper.swift in Sources */,
+				E41DE39C25FAADEE006B5D5D /* CategoriesRepository.swift in Sources */,
 				E485E75E25D39130003850FA /* ColorItemView.swift in Sources */,
 				E485E76125D6283A003850FA /* RadioGroup.swift in Sources */,
 				E49D3CF525C5C78D0057C5A3 /* AppDelegate.swift in Sources */,
+				E41DE3C425FD479F006B5D5D /* ListExpenses.swift in Sources */,
 				E49D3CF725C5C78D0057C5A3 /* SceneDelegate.swift in Sources */,
+				E41DE3AD25FBF552006B5D5D /* RealmExpensesRepository.swift in Sources */,
+				E41DE3B025FBF73B006B5D5D /* CategoriesViewModel.swift in Sources */,
+				E41DE39425FAA453006B5D5D /* Category.swift in Sources */,
+				E41DE3B425FBF7C4006B5D5D /* ListCategories.swift in Sources */,
+				E41DE3A325FAAFE4006B5D5D /* BalanceRepository.swift in Sources */,
 				E46E496A25E56C4C00903EAD /* NewExpenseViewController.swift in Sources */,
+				E41DE3A725FAB0B5006B5D5D /* RealmBalanceRepository.swift in Sources */,
+				E41DE38F25FAA22C006B5D5D /* Balance.swift in Sources */,
+				E41DE3BB25FD3664006B5D5D /* AllExpensesViewController.swift in Sources */,
+				E41DE3A025FAAFA7006B5D5D /* ExpensesRepository.swift in Sources */,
 				E4B1294525DE1999004C82FF /* Constants.swift in Sources */,
+				80D6BB5640B94B213C7FC3EF /* ListGroupedExpenses.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,38 +1,21 @@
 import UIKit
 import RealmSwift
-import FloatingPanel
 import Charts
-
-class MyFloatingLayout: FloatingPanelLayout {
-    let position: FloatingPanelPosition = .bottom
-    let initialState: FloatingPanelState = .full
-    var anchors: [FloatingPanelState: FloatingPanelLayoutAnchoring] {
-        return [
-            .full: FloatingPanelIntrinsicLayoutAnchor(absoluteOffset: 0, referenceGuide: .safeArea),
-            .half: FloatingPanelIntrinsicLayoutAnchor(fractionalOffset: 0.5, referenceGuide: .safeArea),
-        ]
-    }
-    
-    func backdropAlpha(for state: FloatingPanelState) -> CGFloat {
-        switch state {
-            case .full, .half: return 0.3
-            default: return 0.0
-        }
-    }
-}
+import PanModal
 
 protocol AddNewCategoryDelegate {
     func addNewCategory(categoryName: String, colorIndex: Int);
 }
 
 protocol AddNewExpenseDelegate {
-    func addNewExpense(amount: Int, category: Category, date: Date)
+    func addNewExpense(amount: Int, category: Category, date: Date, info: String)
 }
 
-class ViewController: UIViewController, FloatingPanelControllerDelegate {
-    let realm = try! Realm()
+class ViewController: UIViewController {
     private var categories: [Category] = []
     private var currentBalance = 0
+    private var categoriesViewModel = CategoriesViewModel()
+    private var expensesViewModel = ExpensesViewModel()
     
     @IBOutlet weak var categoriesTableView: UITableView!
     @IBOutlet weak var currentBalanceLabel: UILabel!
@@ -40,17 +23,16 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
     @IBOutlet weak var addIncomeButton: UIButton!
     @IBOutlet weak var addExpenseButton: UIButton!
     @IBOutlet weak var barChartView: BarChartView!
-    
-    var newCategoryFCP: FloatingPanelController!
-    var newExpenseFCP: FloatingPanelController!
-    var fpc = FloatingPanelController()
-    
+        
     var newCategoryVC: NewCategoryViewController!
     var newExpenseVC: NewExpenseViewController!
+    var allExpensesVC: AllExpensesViewController!
     
-    @IBAction func onAddNewCategoryTap(_ sender: Any) {
-        openNewCategoryPanel()
+        
+    @IBAction func onShowNewExpensesTap(_ sender: Any) {
+        openAllExpensesPanel()
     }
+    
     
     @IBAction func onAddNewExpenseTap(_ sender: Any) {
         openNewExpensePanel()
@@ -63,7 +45,7 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
         addExpenseButton.layer.cornerRadius = 8
         
         currentBalanceLabel.text = "100500"
-        self.categories = Array(realm.objects(Category.self))
+        self.categories = categoriesViewModel.categories
         initViews()
         
         let months = ["Jan", "Feb", "Mar", "Apr", "May"]
@@ -111,55 +93,30 @@ class ViewController: UIViewController, FloatingPanelControllerDelegate {
     
     func initViews() {
         newExpenseVC = storyboard?.instantiateViewController(identifier: "newExpense") as? NewExpenseViewController
-        newExpenseVC.closePanel = closePanel
-        newExpenseVC.addNewExpenseDelegate = self
-        
+        newExpenseVC.closePanel = updateData
+    
         newCategoryVC = storyboard?.instantiateViewController(withIdentifier: "newCategory") as? NewCategoryViewController
-        newCategoryVC.closePanel = closePanel
-        newCategoryVC.addNewCategoryDelegate = self
+//        newCategoryVC.closePanel = closePanel
+        
+        allExpensesVC = storyboard?.instantiateViewController(withIdentifier: "allExpenses") as? AllExpensesViewController
+//        allExpensesVC.closePanel = closePanel
+//        allExpensesVC.addNewCategoryDelegate = self
     }
     
     func openNewCategoryPanel() {
-        initNewCategoryPanel(controller: newCategoryVC)
+
     }
     
     func openNewExpensePanel() {
-        newExpenseVC.categories = self.categories
-        initNewCategoryPanel(controller: newExpenseVC)
-    }
-        
-    func closePanel() {
-        fpc.willMove(toParent: nil)
-        fpc.hide(animated: true)
+        presentPanModal(newExpenseVC)
     }
     
-    //TODO: Refactor it
-    func initNewCategoryPanel(controller: UIViewController) {
-        fpc.delegate = self
-        fpc.layout = MyFloatingLayout()
-        fpc.surfaceView.appearance.cornerRadius = 24.0
-        fpc.set(contentViewController: controller)
-        fpc.panGestureRecognizer.isEnabled = false
-        fpc.isRemovalInteractionEnabled = false
-       
-        self.view.addSubview(fpc.view)
-        fpc.view.frame = self.view.bounds
-
-        fpc.view.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-          fpc.view.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0.0),
-          fpc.view.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 0.0),
-          fpc.view.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 0.0),
-          fpc.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0.0),
-        ])
-        
-        fpc.show(animated: true) {
-            self.fpc.didMove(toParent: self)
-        }
+    func openAllExpensesPanel() {
+        presentPanModal(allExpensesVC)
     }
     
     func updateData() {
-        self.categories = Array(realm.objects(Category.self))
+        self.categories = categoriesViewModel.categories
         categoriesTableView.reloadData()
     }
     
@@ -250,24 +207,13 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension ViewController: AddNewCategoryDelegate {
     func addNewCategory(categoryName: String, colorIndex: Int) {
-        let category = Category()
-        category.name = categoryName
-        category.colorIndex = colorIndex
-        try! realm.write {
-           realm.add(category)
-        }
-        updateData()
+        categoriesViewModel.addNewCategory(name: categoryName, colorIndex: colorIndex)
+        categoriesTableView.reloadData()
     }
 }
 
 extension ViewController: AddNewExpenseDelegate {
-    func addNewExpense(amount: Int, category: Category, date: Date) {
-        let expense = Expense()
-        expense.amount = amount
-        expense.category = category
-        expense.date = date
-        try! realm.write {
-            realm.add(expense)
-        }
+    func addNewExpense(amount: Int, category: Category, date: Date, info: String) {
+        expensesViewModel.addNewExpense(amount: amount, categoryId: "", date: date, info: info)
     }
 }

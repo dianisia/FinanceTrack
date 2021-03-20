@@ -42,7 +42,7 @@ extension AllExpensesViewController: UITableViewDelegate, UITableViewDataSource 
         let cell = tableView.dequeueReusableCell(withIdentifier: "expenseCell") as! ExpenseTableViewCell
         let currExpense: Expense = Array(expenses)[indexPath.section].value[indexPath.row]
         cell.expenseLabel.text = currExpense.info
-        cell.amountLabel.text = String(currExpense.amount)
+        cell.amountLabel.text = Helper.formateExpense(amount: currExpense.amount)
         cell.iconBackUIView.backgroundColor = Helper
                 .UIColorFromHex(rgbValue: UInt32(Constants.categoryColors[currExpense.category.colorIndex]))
         return cell
@@ -58,6 +58,13 @@ extension AllExpensesViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         Array(expenses)[section].key
+    }
+
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let header = view as? UITableViewHeaderFooterView {
+            header.contentView.backgroundColor = .white
+            header.textLabel?.textColor = .black
+        }
     }
 }
 

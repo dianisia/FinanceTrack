@@ -15,4 +15,8 @@ class Helper {
         df.dateFormat = "d MMM y"
         return df.string(from: date)
     }
+
+    static func formateExpense(amount: Int) -> String {
+        "\(amount) ₽"
+    }
 }

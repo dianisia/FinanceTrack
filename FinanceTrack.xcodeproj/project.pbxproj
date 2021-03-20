@@ -7,7 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		80D6B1E664B04A077AD2B2F2 /* AddIncome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D6B9765036080AB00876E0 /* AddIncome.swift */; };
+		80D6B42E3FF71D2BDE4410F0 /* NewIncomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D6B59B088CC095C9F6555B /* NewIncomeViewController.swift */; };
+		80D6B7C01E67E8D7564A308D /* IncomesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D6B67704D39251FC9CEE65 /* IncomesRepository.swift */; };
+		80D6B91E15ED8AC33A5515AC /* Income.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D6B145FCAA3A4088DE0634 /* Income.swift */; };
+		80D6B92C7C2443457FB5205C /* IncomesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D6BCC8D1909A55CACD0126 /* IncomesViewModel.swift */; };
 		80D6BB5640B94B213C7FC3EF /* ListGroupedExpenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D6B2AB279468320DC8C432 /* ListGroupedExpenses.swift */; };
+		80D6BFCEEE3841B1E50F2BB3 /* RealmIncomesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D6B8B111224EA56CD73BCE /* RealmIncomesRepository.swift */; };
 		CF0926DC507CD11323024BCE /* Pods_FinanceTrack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C33F88AF795EE3C44C0CFA61 /* Pods_FinanceTrack.framework */; };
 		E41DE38F25FAA22C006B5D5D /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41DE38E25FAA22C006B5D5D /* Balance.swift */; };
 		E41DE39425FAA453006B5D5D /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41DE39325FAA453006B5D5D /* Category.swift */; };
@@ -47,7 +53,13 @@
 
 /* Begin PBXFileReference section */
 		3293A4ABFE836951C15ABD7F /* Pods-FinanceTrack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinanceTrack.debug.xcconfig"; path = "Target Support Files/Pods-FinanceTrack/Pods-FinanceTrack.debug.xcconfig"; sourceTree = "<group>"; };
+		80D6B145FCAA3A4088DE0634 /* Income.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Income.swift; sourceTree = "<group>"; };
 		80D6B2AB279468320DC8C432 /* ListGroupedExpenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListGroupedExpenses.swift; sourceTree = "<group>"; };
+		80D6B59B088CC095C9F6555B /* NewIncomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewIncomeViewController.swift; sourceTree = "<group>"; };
+		80D6B67704D39251FC9CEE65 /* IncomesRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomesRepository.swift; sourceTree = "<group>"; };
+		80D6B8B111224EA56CD73BCE /* RealmIncomesRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmIncomesRepository.swift; sourceTree = "<group>"; };
+		80D6B9765036080AB00876E0 /* AddIncome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddIncome.swift; sourceTree = "<group>"; };
+		80D6BCC8D1909A55CACD0126 /* IncomesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomesViewModel.swift; sourceTree = "<group>"; };
 		910BA1954BC675CD4FFEEB10 /* Pods-FinanceTrack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinanceTrack.release.xcconfig"; path = "Target Support Files/Pods-FinanceTrack/Pods-FinanceTrack.release.xcconfig"; sourceTree = "<group>"; };
 		C33F88AF795EE3C44C0CFA61 /* Pods_FinanceTrack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FinanceTrack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E41DE38E25FAA22C006B5D5D /* Balance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Balance.swift; sourceTree = "<group>"; };
@@ -125,6 +137,7 @@
 			children = (
 				E41DE3AF25FBF73B006B5D5D /* CategoriesViewModel.swift */,
 				E41DE3C025FD41AD006B5D5D /* ExpensesViewModel.swift */,
+				80D6BCC8D1909A55CACD0126 /* IncomesViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -139,6 +152,7 @@
 				E485E76925D992E7003850FA /* NewCategoryViewController.swift */,
 				E41DE3BA25FD3664006B5D5D /* AllExpensesViewController.swift */,
 				E46E496925E56C4C00903EAD /* NewExpenseViewController.swift */,
+				80D6B59B088CC095C9F6555B /* NewIncomeViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -149,6 +163,7 @@
 				E41DE38E25FAA22C006B5D5D /* Balance.swift */,
 				E41DE39325FAA453006B5D5D /* Category.swift */,
 				E41DE39725FAA46A006B5D5D /* Expense.swift */,
+				80D6B145FCAA3A4088DE0634 /* Income.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -161,6 +176,7 @@
 				E41DE3C325FD479F006B5D5D /* ListExpenses.swift */,
 				E41DE3C625FD4B29006B5D5D /* AddExpense.swift */,
 				80D6B2AB279468320DC8C432 /* ListGroupedExpenses.swift */,
+				80D6B9765036080AB00876E0 /* AddIncome.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -171,6 +187,7 @@
 				E41DE3A625FAB0B5006B5D5D /* RealmBalanceRepository.swift */,
 				E41DE3A925FBF1EB006B5D5D /* RealmCategoriesRepository.swift */,
 				E41DE3AC25FBF552006B5D5D /* RealmExpensesRepository.swift */,
+				80D6B8B111224EA56CD73BCE /* RealmIncomesRepository.swift */,
 			);
 			path = Adapters;
 			sourceTree = "<group>";
@@ -182,6 +199,7 @@
 				E41DE39F25FAAFA7006B5D5D /* ExpensesRepository.swift */,
 				E41DE3A225FAAFE4006B5D5D /* BalanceRepository.swift */,
 				E41DE39A25FAA6A8006B5D5D /* Adapters */,
+				80D6B67704D39251FC9CEE65 /* IncomesRepository.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -406,6 +424,12 @@
 				E41DE3A025FAAFA7006B5D5D /* ExpensesRepository.swift in Sources */,
 				E4B1294525DE1999004C82FF /* Constants.swift in Sources */,
 				80D6BB5640B94B213C7FC3EF /* ListGroupedExpenses.swift in Sources */,
+				80D6B91E15ED8AC33A5515AC /* Income.swift in Sources */,
+				80D6B7C01E67E8D7564A308D /* IncomesRepository.swift in Sources */,
+				80D6BFCEEE3841B1E50F2BB3 /* RealmIncomesRepository.swift in Sources */,
+				80D6B92C7C2443457FB5205C /* IncomesViewModel.swift in Sources */,
+				80D6B1E664B04A077AD2B2F2 /* AddIncome.swift in Sources */,
+				80D6B42E3FF71D2BDE4410F0 /* NewIncomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

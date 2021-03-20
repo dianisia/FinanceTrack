@@ -15,7 +15,7 @@ class CategoriesViewModel {
     
     var categories: [Category] {
         get {
-            return listCategories()
+            listCategories()
         }
     }
     

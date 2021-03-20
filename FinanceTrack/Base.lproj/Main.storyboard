@@ -872,6 +872,187 @@
             </objects>
             <point key="canvasLocation" x="2530.434782608696" y="-123.21428571428571"/>
         </scene>
+        <!--New Income View Controller-->
+        <scene sceneID="sfK-bs-xrC">
+            <objects>
+                <viewController storyboardIdentifier="newExpense" id="xRQ-MY-AA2" customClass="NewIncomeViewController" customModule="FinanceTrack" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Pvj-fY-hvv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="450"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B11-DZ-aWt">
+                                <rect key="frame" x="16" y="16" width="146" height="25.5"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Добавить">
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <font key="NSFont" size="18" name="Helvetica-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content=" ">
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <font key="NSFont" size="18" name="Poppins-SemiBold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="доход">
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <font key="NSFont" size="18" name="Helvetica-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yrb-OE-QFM">
+                                <rect key="frame" x="369" y="7" width="33" height="24"/>
+                                <state key="normal" image="close-black-24dp"/>
+                                <connections>
+                                    <action selector="onCloseButtonTap:" destination="xRQ-MY-AA2" eventType="touchUpInside" id="vl7-JP-Hsq"/>
+                                    <action selector="onCloseButtonTap:" destination="eoB-OI-jgy" eventType="touchUpInside" id="wL9-89-2aW"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PIW-yf-5wo">
+                                <rect key="frame" x="141.5" y="89.5" width="131.5" height="25.5"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Укажите">
+                                        <attributes>
+                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content=" ">
+                                        <attributes>
+                                            <font key="NSFont" size="18" name="Poppins-Regular"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="доход">
+                                        <attributes>
+                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9M5-SE-4Xl">
+                                <rect key="frame" x="82" y="140" width="250" height="40"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yVd-S7-qXH">
+                                        <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="9Ck-5I-aiT"/>
+                                            <constraint firstAttribute="height" constant="40" id="mvt-l0-vtI"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                        <state key="normal" title="-">
+                                            <color key="titleColor" red="0.1333333333" green="0.76078431369999999" blue="0.82745098039999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onReduceTap:" destination="xRQ-MY-AA2" eventType="touchUpInside" id="vNa-Wc-4e8"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="500" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EGH-Gh-mYA">
+                                        <rect key="frame" x="40" y="0.0" width="170" height="40"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="48"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7j-h4-RZ4">
+                                        <rect key="frame" x="210" y="0.0" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="3eu-GQ-sc1"/>
+                                            <constraint firstAttribute="height" constant="40" id="MuE-9J-cZZ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                        <state key="normal" title="+">
+                                            <color key="titleColor" red="0.1333333333" green="0.76078431369999999" blue="0.82745098039999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onEnlargeTap:" destination="xRQ-MY-AA2" eventType="touchUpInside" id="jKL-Df-mMk"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Oe3-tU-c9F"/>
+                                    <constraint firstAttribute="width" constant="250" id="wHq-L2-yOI"/>
+                                </constraints>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Рублей" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LmO-zc-sik">
+                                <rect key="frame" x="179.5" y="181" width="55" height="22.5"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
+                                <color key="textColor" red="0.72941176470000002" green="0.72549019609999998" blue="0.75686274509999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="highlightedColor" red="0.72941176470000002" green="0.72549019609999998" blue="0.75686274509999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Укажите дату" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycc-8E-0Qb">
+                                <rect key="frame" x="16" y="234" width="113" height="24"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
+                                <color key="textColor" red="0.54117647059999996" green="0.54117647059999996" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <datePicker contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="FXt-0t-dTS">
+                                <rect key="frame" x="12" y="266" width="382" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="W5d-5y-chS"/>
+                                </constraints>
+                            </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dMM-cX-nek">
+                                <rect key="frame" x="12" y="351" width="382" height="48"/>
+                                <color key="backgroundColor" red="0.1333333333" green="0.76078431369999999" blue="0.82745098039999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="8yZ-jf-je2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="16"/>
+                                <state key="normal" title="Добавить расход">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onAddCategory:" destination="eoB-OI-jgy" eventType="touchUpInside" id="c8c-ge-aVr"/>
+                                    <action selector="onAddExpense:" destination="xRQ-MY-AA2" eventType="touchUpInside" id="b1d-Qk-wxZ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="nJN-Ed-X5f"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="PIW-yf-5wo" firstAttribute="centerX" secondItem="Pvj-fY-hvv" secondAttribute="centerX" id="20R-MF-SUs"/>
+                            <constraint firstItem="B11-DZ-aWt" firstAttribute="top" secondItem="Pvj-fY-hvv" secondAttribute="top" constant="16" id="2l0-O9-Wig"/>
+                            <constraint firstItem="dMM-cX-nek" firstAttribute="top" secondItem="FXt-0t-dTS" secondAttribute="bottom" constant="8" id="3KN-OD-QYb"/>
+                            <constraint firstItem="LmO-zc-sik" firstAttribute="top" secondItem="EGH-Gh-mYA" secondAttribute="bottom" constant="1" id="8g1-B1-oCs"/>
+                            <constraint firstItem="ycc-8E-0Qb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="nJN-Ed-X5f" secondAttribute="leading" id="B0r-9m-Nsd"/>
+                            <constraint firstItem="yrb-OE-QFM" firstAttribute="leading" relation="lessThanOrEqual" secondItem="B11-DZ-aWt" secondAttribute="trailing" constant="207" id="BI2-fk-LRQ"/>
+                            <constraint firstItem="nJN-Ed-X5f" firstAttribute="trailing" secondItem="dMM-cX-nek" secondAttribute="trailing" constant="16" id="CTI-Eb-gbK"/>
+                            <constraint firstItem="yrb-OE-QFM" firstAttribute="top" secondItem="Pvj-fY-hvv" secondAttribute="top" constant="7" id="F7o-gR-8Lj"/>
+                            <constraint firstItem="FXt-0t-dTS" firstAttribute="leading" secondItem="Pvj-fY-hvv" secondAttribute="leading" constant="8" id="Lwj-cI-LMW"/>
+                            <constraint firstItem="dMM-cX-nek" firstAttribute="leading" secondItem="nJN-Ed-X5f" secondAttribute="leading" constant="16" id="Qw4-Ic-0ru"/>
+                            <constraint firstItem="PIW-yf-5wo" firstAttribute="top" secondItem="nJN-Ed-X5f" secondAttribute="top" constant="45.5" id="XYM-7b-CCy"/>
+                            <constraint firstItem="LmO-zc-sik" firstAttribute="centerX" secondItem="EGH-Gh-mYA" secondAttribute="centerX" id="hYd-Ob-KZR"/>
+                            <constraint firstItem="B11-DZ-aWt" firstAttribute="leading" secondItem="Pvj-fY-hvv" secondAttribute="leading" constant="16" id="nO9-Gr-eOs"/>
+                            <constraint firstItem="nJN-Ed-X5f" firstAttribute="trailing" secondItem="FXt-0t-dTS" secondAttribute="trailing" constant="24" id="r23-6y-cbX"/>
+                            <constraint firstItem="ycc-8E-0Qb" firstAttribute="leading" secondItem="nJN-Ed-X5f" secondAttribute="leading" constant="16" id="swc-DI-wdt"/>
+                            <constraint firstItem="9M5-SE-4Xl" firstAttribute="centerX" secondItem="Pvj-fY-hvv" secondAttribute="centerX" id="u4X-kN-LZc"/>
+                            <constraint firstItem="9M5-SE-4Xl" firstAttribute="top" secondItem="PIW-yf-5wo" secondAttribute="bottom" constant="25" id="ugE-7E-cWF"/>
+                            <constraint firstAttribute="trailing" secondItem="yrb-OE-QFM" secondAttribute="trailing" constant="12" id="zmr-Yb-PK7"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="414" height="450"/>
+                    <connections>
+                        <outlet property="datePicker" destination="FXt-0t-dTS" id="r8I-WT-m4r"/>
+                        <outlet property="enlargeExpenseButton" destination="a7j-h4-RZ4" id="Y85-CE-acX"/>
+                        <outlet property="expenseTextInput" destination="EGH-Gh-mYA" id="DiC-4u-j5k"/>
+                        <outlet property="reduceExpenseButton" destination="yVd-S7-qXH" id="dp0-fW-zdc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fQv-pQ-ayI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3184" y="-150"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Dot" width="10" height="10"/>

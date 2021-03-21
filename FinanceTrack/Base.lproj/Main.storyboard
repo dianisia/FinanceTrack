@@ -106,6 +106,9 @@
                                         </constraints>
                                         <color key="tintColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
                                         <state key="normal" image="Plus"/>
+                                        <connections>
+                                            <action selector="onAddNewIncomeTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7fj-of-5OF"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aUq-oO-urD">
                                         <rect key="frame" x="24" y="16" width="82" height="34"/>
@@ -875,7 +878,7 @@
         <!--New Income View Controller-->
         <scene sceneID="sfK-bs-xrC">
             <objects>
-                <viewController storyboardIdentifier="newExpense" id="xRQ-MY-AA2" customClass="NewIncomeViewController" customModule="FinanceTrack" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="newIncome" id="xRQ-MY-AA2" customClass="NewIncomeViewController" customModule="FinanceTrack" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Pvj-fY-hvv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="450"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -911,7 +914,6 @@
                                 <rect key="frame" x="369" y="7" width="33" height="24"/>
                                 <state key="normal" image="close-black-24dp"/>
                                 <connections>
-                                    <action selector="onCloseButtonTap:" destination="xRQ-MY-AA2" eventType="touchUpInside" id="vl7-JP-Hsq"/>
                                     <action selector="onCloseButtonTap:" destination="eoB-OI-jgy" eventType="touchUpInside" id="wL9-89-2aW"/>
                                 </connections>
                             </button>
@@ -984,19 +986,19 @@
                                 <color key="textColor" red="0.72941176470000002" green="0.72549019609999998" blue="0.75686274509999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="highlightedColor" red="0.72941176470000002" green="0.72549019609999998" blue="0.75686274509999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Укажите дату" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycc-8E-0Qb">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Укажите дату" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycc-8E-0Qb">
                                 <rect key="frame" x="16" y="234" width="113" height="24"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
                                 <color key="textColor" red="0.54117647059999996" green="0.54117647059999996" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <datePicker contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="FXt-0t-dTS">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="FXt-0t-dTS">
                                 <rect key="frame" x="12" y="266" width="382" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="W5d-5y-chS"/>
                                 </constraints>
                             </datePicker>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dMM-cX-nek">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dMM-cX-nek">
                                 <rect key="frame" x="12" y="351" width="382" height="48"/>
                                 <color key="backgroundColor" red="0.1333333333" green="0.76078431369999999" blue="0.82745098039999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -1013,7 +1015,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="onAddCategory:" destination="eoB-OI-jgy" eventType="touchUpInside" id="c8c-ge-aVr"/>
-                                    <action selector="onAddExpense:" destination="xRQ-MY-AA2" eventType="touchUpInside" id="b1d-Qk-wxZ"/>
+                                    <action selector="onAddIncome:" destination="xRQ-MY-AA2" eventType="touchUpInside" id="OhE-RC-6PM"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1022,31 +1024,32 @@
                         <constraints>
                             <constraint firstItem="PIW-yf-5wo" firstAttribute="centerX" secondItem="Pvj-fY-hvv" secondAttribute="centerX" id="20R-MF-SUs"/>
                             <constraint firstItem="B11-DZ-aWt" firstAttribute="top" secondItem="Pvj-fY-hvv" secondAttribute="top" constant="16" id="2l0-O9-Wig"/>
-                            <constraint firstItem="dMM-cX-nek" firstAttribute="top" secondItem="FXt-0t-dTS" secondAttribute="bottom" constant="8" id="3KN-OD-QYb"/>
+                            <constraint firstItem="dMM-cX-nek" firstAttribute="top" secondItem="FXt-0t-dTS" secondAttribute="bottom" constant="15" id="3KN-OD-QYb"/>
                             <constraint firstItem="LmO-zc-sik" firstAttribute="top" secondItem="EGH-Gh-mYA" secondAttribute="bottom" constant="1" id="8g1-B1-oCs"/>
                             <constraint firstItem="ycc-8E-0Qb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="nJN-Ed-X5f" secondAttribute="leading" id="B0r-9m-Nsd"/>
                             <constraint firstItem="yrb-OE-QFM" firstAttribute="leading" relation="lessThanOrEqual" secondItem="B11-DZ-aWt" secondAttribute="trailing" constant="207" id="BI2-fk-LRQ"/>
-                            <constraint firstItem="nJN-Ed-X5f" firstAttribute="trailing" secondItem="dMM-cX-nek" secondAttribute="trailing" constant="16" id="CTI-Eb-gbK"/>
+                            <constraint firstItem="nJN-Ed-X5f" firstAttribute="trailing" secondItem="dMM-cX-nek" secondAttribute="trailing" constant="20" id="CTI-Eb-gbK"/>
                             <constraint firstItem="yrb-OE-QFM" firstAttribute="top" secondItem="Pvj-fY-hvv" secondAttribute="top" constant="7" id="F7o-gR-8Lj"/>
-                            <constraint firstItem="FXt-0t-dTS" firstAttribute="leading" secondItem="Pvj-fY-hvv" secondAttribute="leading" constant="8" id="Lwj-cI-LMW"/>
-                            <constraint firstItem="dMM-cX-nek" firstAttribute="leading" secondItem="nJN-Ed-X5f" secondAttribute="leading" constant="16" id="Qw4-Ic-0ru"/>
+                            <constraint firstItem="FXt-0t-dTS" firstAttribute="leading" secondItem="Pvj-fY-hvv" secondAttribute="leading" constant="12" id="Lwj-cI-LMW"/>
+                            <constraint firstItem="dMM-cX-nek" firstAttribute="leading" secondItem="nJN-Ed-X5f" secondAttribute="leading" constant="12" id="Qw4-Ic-0ru"/>
                             <constraint firstItem="PIW-yf-5wo" firstAttribute="top" secondItem="nJN-Ed-X5f" secondAttribute="top" constant="45.5" id="XYM-7b-CCy"/>
+                            <constraint firstItem="nJN-Ed-X5f" firstAttribute="trailing" secondItem="ycc-8E-0Qb" secondAttribute="trailing" constant="285" id="dYl-Qv-dnr"/>
                             <constraint firstItem="LmO-zc-sik" firstAttribute="centerX" secondItem="EGH-Gh-mYA" secondAttribute="centerX" id="hYd-Ob-KZR"/>
                             <constraint firstItem="B11-DZ-aWt" firstAttribute="leading" secondItem="Pvj-fY-hvv" secondAttribute="leading" constant="16" id="nO9-Gr-eOs"/>
-                            <constraint firstItem="nJN-Ed-X5f" firstAttribute="trailing" secondItem="FXt-0t-dTS" secondAttribute="trailing" constant="24" id="r23-6y-cbX"/>
-                            <constraint firstItem="ycc-8E-0Qb" firstAttribute="leading" secondItem="nJN-Ed-X5f" secondAttribute="leading" constant="16" id="swc-DI-wdt"/>
+                            <constraint firstItem="ycc-8E-0Qb" firstAttribute="top" secondItem="9M5-SE-4Xl" secondAttribute="bottom" constant="54" id="pm5-Qi-ZPN"/>
+                            <constraint firstItem="nJN-Ed-X5f" firstAttribute="trailing" secondItem="FXt-0t-dTS" secondAttribute="trailing" constant="20" id="r23-6y-cbX"/>
+                            <constraint firstItem="ycc-8E-0Qb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="nJN-Ed-X5f" secondAttribute="leading" id="swc-DI-wdt"/>
                             <constraint firstItem="9M5-SE-4Xl" firstAttribute="centerX" secondItem="Pvj-fY-hvv" secondAttribute="centerX" id="u4X-kN-LZc"/>
                             <constraint firstItem="9M5-SE-4Xl" firstAttribute="top" secondItem="PIW-yf-5wo" secondAttribute="bottom" constant="25" id="ugE-7E-cWF"/>
+                            <constraint firstItem="FXt-0t-dTS" firstAttribute="top" secondItem="ycc-8E-0Qb" secondAttribute="bottom" constant="8" symbolic="YES" id="yNV-QP-YcL"/>
                             <constraint firstAttribute="trailing" secondItem="yrb-OE-QFM" secondAttribute="trailing" constant="12" id="zmr-Yb-PK7"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="414" height="450"/>
                     <connections>
-                        <outlet property="datePicker" destination="FXt-0t-dTS" id="r8I-WT-m4r"/>
-                        <outlet property="enlargeExpenseButton" destination="a7j-h4-RZ4" id="Y85-CE-acX"/>
-                        <outlet property="expenseTextInput" destination="EGH-Gh-mYA" id="DiC-4u-j5k"/>
-                        <outlet property="reduceExpenseButton" destination="yVd-S7-qXH" id="dp0-fW-zdc"/>
+                        <outlet property="datePicker" destination="FXt-0t-dTS" id="R4S-DE-uga"/>
+                        <outlet property="incomeTextInput" destination="EGH-Gh-mYA" id="qBa-18-T2h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fQv-pQ-ayI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

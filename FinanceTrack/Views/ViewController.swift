@@ -27,12 +27,16 @@ class ViewController: UIViewController {
     var newCategoryVC: NewCategoryViewController!
     var newExpenseVC: NewExpenseViewController!
     var allExpensesVC: AllExpensesViewController!
+    var newIncomeVC: NewIncomeViewController!
     
         
     @IBAction func onShowNewExpensesTap(_ sender: Any) {
         openAllExpensesPanel()
     }
     
+    @IBAction func onAddNewIncomeTap(_ sender: Any) {
+        openNewIncomePanel()
+    }
     
     @IBAction func onAddNewExpenseTap(_ sender: Any) {
         openNewExpensePanel()
@@ -96,15 +100,18 @@ class ViewController: UIViewController {
         newExpenseVC.closePanel = updateData
     
         newCategoryVC = storyboard?.instantiateViewController(withIdentifier: "newCategory") as? NewCategoryViewController
-//        newCategoryVC.closePanel = closePanel
         
         allExpensesVC = storyboard?.instantiateViewController(withIdentifier: "allExpenses") as? AllExpensesViewController
-//        allExpensesVC.closePanel = closePanel
-//        allExpensesVC.addNewCategoryDelegate = self
+        
+        newIncomeVC = storyboard?.instantiateViewController(withIdentifier: "newIncome") as? NewIncomeViewController
     }
     
     func openNewCategoryPanel() {
 
+    }
+    
+    func openNewIncomePanel() {
+        presentPanModal(newIncomeVC)
     }
     
     func openNewExpensePanel() {
@@ -199,7 +206,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell") as! CategoriesTableViewCell
-        cell.categoryNameLabel.text = String(self.categories[indexPath.row].name)
+        cell.categoryNameLabel.text = String(categories[indexPath.row].name)
         cell.iconBackUIView.backgroundColor = Helper.UIColorFromHex(rgbValue: UInt32(Constants.categoryColors[self.categories[indexPath.row].colorIndex]))
         return cell
     }

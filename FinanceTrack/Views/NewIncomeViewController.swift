@@ -11,7 +11,9 @@ class NewIncomeViewController: UIViewController {
     
     var closePanel: (() -> ())?
     private var incomesViewModel = IncomesViewModel()
-
+    @IBOutlet weak var incomeTextInput: UITextField!
+    @IBOutlet weak var datePicker: UIDatePicker!
+    
     private var currentIncome = 500;
 
     override func viewDidLoad() {
@@ -30,10 +32,18 @@ class NewIncomeViewController: UIViewController {
     
     @IBAction func onReduceTap(_ sender: Any) {
         currentIncome -= 1
+        incomeTextInput.text = String(currentIncome)
     }
     
     @IBAction func onEnlargeTap(_ sender: Any) {
         currentIncome += 1
+        incomeTextInput.text = String(currentIncome)
+    }
+    
+    @IBAction func onAddIncome(_ sender: Any) {
+        let date = datePicker.date
+        incomesViewModel.addNewIncome(amount: Int(incomeTextInput.text ?? "") ?? 0, date: date)
+        closePanel?()
     }
     
 }

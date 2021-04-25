@@ -11,6 +11,16 @@ protocol AddNewExpenseDelegate {
     func addNewExpense(amount: Int, category: Category, date: Date, info: String)
 }
 
+struct CategoryExpenseGraphData {
+    var color: UIColor
+    var amount: Int
+}
+
+struct GraphData {
+    var labels: [String]
+    var data: [[CategoryExpenseGraphData]]
+}
+
 class ViewController: UIViewController {
     private var categories: [Category] = []
     private var currentBalance = 0
@@ -51,16 +61,8 @@ class ViewController: UIViewController {
         currentBalanceLabel.text = "100500"
         self.categories = categoriesViewModel.categories
         initViews()
-        
-        expensesViewModel.getTotalPeriod(period: .week)
-        
-        let days = Helper.getLastWeekDays().map({$0.monthDateFormate()})
-        
-        var data: [[Double]] = []
-        
-        for _ in 1...categories.count {
-            data.append([10.0, 14.0, 60.0, 13.0, 2.00, 12.0, 3.0])
-        }
+    
+        let graphData = prepareGraphData()
         
         barChartView.noDataText = "No data"
         //legend
@@ -76,7 +78,7 @@ class ViewController: UIViewController {
 
         let xaxis = barChartView.xAxis
         let formatter = CustomLabelsXAxisValueFormatter()
-        formatter.labels = days
+        formatter.labels = graphData.labels
         xaxis.valueFormatter = formatter
         
         xaxis.drawGridLinesEnabled = true
@@ -98,7 +100,26 @@ class ViewController: UIViewController {
 
         barChartView.rightAxis.enabled = false
                  
-        customizeChart(periods: days, data: data)
+        customizeChart(labels: graphData.labels, data: graphData.data)
+    }
+    
+    func prepareGraphData() -> GraphData {
+        let groupedData = expensesViewModel.getTotalPeriod(period: .week)
+        var data: [[CategoryExpenseGraphData]] = []
+
+        groupedData.values.forEach { value in
+            var categoryData: [CategoryExpenseGraphData] = []
+            for (categoryId, amount) in value {
+                let colorIndex = categoriesViewModel.getColorForCategory(id: categoryId)
+                categoryData.append(
+                    CategoryExpenseGraphData(
+                        color: Helper.UIColorFromHex(rgbValue: UInt32(Constants.categoryColors[colorIndex])),
+                        amount: amount
+                    ))
+            }
+            data.append(categoryData)
+        }
+        return GraphData(labels: groupedData.keys.map{ $0 }, data: data)
     }
     
     func initViews() {
@@ -133,24 +154,27 @@ class ViewController: UIViewController {
         categoriesTableView.reloadData()
     }
     
-    func customizeChart(periods: [String], data: [[Double]]) {
+    func customizeChart(labels: [String], data: [[CategoryExpenseGraphData]]) {
         barChartView.noDataText = "Нет данных для отображения"
         var dataEntries: [BarChartDataEntry] = []
-    
-        for i in 0..<periods.count {
-            var yValues: [Double] = []
-            for j in 0..<data.count {
-                yValues.append(data[j][i])
-            }
+
+        for i in 0..<labels.count {
+            let yValues: [Double] = data[i].map{ Double($0.amount) }
             let dataEntry = BarChartDataEntry(x: Double(i), yValues:  yValues, data: "groupChart")
             dataEntries.append(dataEntry)
         }
 
         let chartDataSet = BarChartDataSet(entries: dataEntries, label: "Категории трат")
-       
+        
+        
+        chartDataSet.colors = []
+        for i in 0..<data.count {
+            for j in 0..<data[i].count {
+                chartDataSet.colors.append(data[i][j].color)
+            }
+        }
+        
         let dataSets: [BarChartDataSet] = [chartDataSet]
-        chartDataSet.colors = colorsOfCharts()
-
         let chartData = BarChartData(dataSets: dataSets)
 
         let groupSpace = 0.2
@@ -160,11 +184,11 @@ class ViewController: UIViewController {
         chartData.barWidth = barWidth
         
         barChartView.xAxis.axisMinimum = 0.0
-        barChartView.xAxis.axisMaximum = 0.0 + chartData.groupWidth(groupSpace: groupSpace, barSpace: barSpace) * Double(periods.count)
+        barChartView.xAxis.axisMaximum = 0.0 + chartData.groupWidth(groupSpace: groupSpace, barSpace: barSpace) * Double(labels.count)
         chartData.groupBars(fromX: 0.5, groupSpace: groupSpace, barSpace: barSpace)
         barChartView.notifyDataSetChanged()
         
-        barChartView.xAxis.granularity = barChartView.xAxis.axisMaximum / Double(periods.count)
+        barChartView.xAxis.granularity = barChartView.xAxis.axisMaximum / Double(labels.count)
 
         barChartView.data = chartData
 

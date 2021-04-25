@@ -58,6 +58,7 @@ class RealmExpensesRepository: ExpensesRepository {
         }
         
         let currExpenses = listGroupedByDate()
+    
         for item in periodItems {
             result[item] = [:]
             if let expensesForDate = currExpenses[item] {
@@ -69,7 +70,7 @@ class RealmExpensesRepository: ExpensesRepository {
                 }
             }
         }
-        print(result)
+        
         return result
     }
 }

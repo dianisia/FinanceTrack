@@ -18,4 +18,8 @@ class CategoriesViewModel {
     func addNewCategory(name: String, colorIndex: Int) {
         repository.add(name: name, colorIndex: colorIndex)
     }
+    
+    func getColorForCategory(id: String) -> Int {
+        repository.getForId(categoryId: id).colorIndex
+    }
 }

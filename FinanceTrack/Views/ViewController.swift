@@ -54,7 +54,7 @@ class ViewController: UIViewController {
         
         expensesViewModel.getTotalPeriod(period: .week)
         
-        let days = Helper.getLastWeekDays().map({Helper.formateDate(date: $0)})
+        let days = Helper.getLastWeekDays().map({$0.monthDateFormate()})
         
         var data: [[Double]] = []
         

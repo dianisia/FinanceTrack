@@ -10,12 +10,6 @@ class Helper {
         return UIColor(red:red, green:green, blue:blue, alpha:CGFloat(alpha))
     }
 
-    static func formateDate(date: Date) -> String {
-        let df = DateFormatter()
-        df.dateFormat = "d MMM y"
-        return df.string(from: date)
-    }
-
     static func formateExpense(amount: Int) -> String {
         "\(amount) ₽"
     }
@@ -37,6 +31,12 @@ class Helper {
 extension Date {
     func getDateFor(days:Int) -> Date? {
          return Calendar.current.date(byAdding: .day, value: days, to: Date())
+    }
+    
+    func monthDateFormate() -> String {
+        let df = DateFormatter()
+        df.dateFormat = "dd-MM"
+        return df.string(from: self)
     }
 }
 

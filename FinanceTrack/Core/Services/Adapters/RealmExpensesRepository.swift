@@ -37,7 +37,7 @@ class RealmExpensesRepository: ExpensesRepository {
         let expenses = listAll()
         var result: GroupedExpenses = [:]
         for expense in expenses {
-            let currDate = Helper.formateDate(date: expense.date)
+            let currDate = expense.date.monthDateFormate()
             if result.keys.contains(currDate) {
                 result[currDate]?.append(expense)
             } else {
@@ -52,7 +52,7 @@ class RealmExpensesRepository: ExpensesRepository {
         var periodItems: [String] = []
         switch period {
         case .week:
-            periodItems = Helper.getLastWeekDays().map({Helper.formateDate(date: $0)})
+            periodItems = Helper.getLastWeekDays().map{ $0.monthDateFormate() }
         default:
             periodItems = []
         }

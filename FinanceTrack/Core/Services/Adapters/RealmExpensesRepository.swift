@@ -32,4 +32,44 @@ class RealmExpensesRepository: ExpensesRepository {
             realm.add(expense)
         }
     }
+    
+    func listGroupedByDate() -> GroupedExpenses {
+        let expenses = listAll()
+        var result: GroupedExpenses = [:]
+        for expense in expenses {
+            let currDate = Helper.formateDate(date: expense.date)
+            if result.keys.contains(currDate) {
+                result[currDate]?.append(expense)
+            } else {
+                result[currDate] = [expense]
+            }
+        }
+        return result
+    }
+    
+    func getTotalForPeriod(period: Period) -> GroupedExpensesByPeriod {
+        var result: GroupedExpensesByPeriod = [:]
+        var periodItems: [String] = []
+        switch period {
+        case .week:
+            periodItems = Helper.getLastWeekDays().map({Helper.formateDate(date: $0)})
+        default:
+            periodItems = []
+        }
+        
+        let currExpenses = listGroupedByDate()
+        for item in periodItems {
+            result[item] = [:]
+            if let expensesForDate = currExpenses[item] {
+                expensesForDate.forEach { expense in
+                    let categoryId = expense.category.categoryId
+                    result[item]![categoryId] = result[item]!.keys.contains(categoryId) ?
+                        result[item]![categoryId]! + expense.amount :
+                        expense.amount
+                }
+            }
+        }
+        print(result)
+        return result
+    }
 }

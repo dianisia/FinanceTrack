@@ -111,7 +111,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aUq-oO-urD">
-                                        <rect key="frame" x="24" y="16" width="82" height="34"/>
+                                        <rect key="frame" x="24" y="16" width="84.5" height="28"/>
                                         <attributedString key="attributedText">
                                             <fragment content="16 000 ">
                                                 <attributes>
@@ -122,7 +122,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="abs-0w-xok">
-                                        <rect key="frame" x="105" y="16" width="16" height="34"/>
+                                        <rect key="frame" x="107.5" y="16" width="13.5" height="28"/>
                                         <attributedString key="attributedText">
                                             <fragment content="₽">
                                                 <attributes>
@@ -133,7 +133,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="jBW-7t-gxq">
-                                        <rect key="frame" x="24" y="52" width="168.5" height="12"/>
+                                        <rect key="frame" x="24" y="46" width="170" height="12"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dot" translatesAutoresizingMaskIntoConstraints="NO" id="tu0-Ya-Ukh">
                                                 <rect key="frame" x="0.0" y="0.0" width="10" height="12"/>
@@ -142,7 +142,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Qt-rP-9rv">
-                                                <rect key="frame" x="18" y="0.0" width="150.5" height="12"/>
+                                                <rect key="frame" x="18" y="0.0" width="152" height="12"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="12" id="sVF-dx-hnc"/>
                                                 </constraints>
@@ -217,7 +217,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z8i-C9-sE8">
-                                <rect key="frame" x="169" y="49" width="76" height="22"/>
+                                <rect key="frame" x="173" y="49" width="68.5" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="TnN-uV-jfe"/>
                                 </constraints>
@@ -231,7 +231,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QnB-UI-Bqd">
-                                <rect key="frame" x="160.5" y="76" width="93" height="22"/>
+                                <rect key="frame" x="160.5" y="76" width="93.5" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="if1-1H-kMS"/>
                                 </constraints>
@@ -258,7 +258,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OHa-Hc-W77">
-                                <rect key="frame" x="250" y="49" width="19" height="22"/>
+                                <rect key="frame" x="246.5" y="49" width="22.5" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="2fV-a8-nMM"/>
                                 </constraints>
@@ -775,7 +775,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="58" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="euV-Pt-cf8">
-                                <rect key="frame" x="0.0" y="69" width="414" height="573"/>
+                                <rect key="frame" x="0.0" y="64.5" width="414" height="577.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="expenseCell" rowHeight="70" id="xnQ-pN-nbw" customClass="ExpenseTableViewCell" customModule="FinanceTrack" customModuleProvider="target">
@@ -835,7 +835,7 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ваши траты" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zy0-3q-ozn">
-                                <rect key="frame" x="16" y="16" width="119" height="28"/>
+                                <rect key="frame" x="16" y="16" width="119" height="23.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="119" id="fHv-ia-DF6"/>
                                 </constraints>

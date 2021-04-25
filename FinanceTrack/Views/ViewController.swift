@@ -52,9 +52,15 @@ class ViewController: UIViewController {
         self.categories = categoriesViewModel.categories
         initViews()
         
-        let months = ["Jan", "Feb", "Mar", "Apr", "May"]
-        let unitsSold = [20.0, 4.0, 6.0, 3.0, 12.0]
-        let unitsBought = [10.0, 14.0, 60.0, 13.0, 2.0]
+        expensesViewModel.getTotalPeriod(period: .week)
+        
+        let days = Helper.getLastWeekDays().map({Helper.formateDate(date: $0)})
+        
+        var data: [[Double]] = []
+        
+        for _ in 1...categories.count {
+            data.append([10.0, 14.0, 60.0, 13.0, 2.00, 12.0, 3.0])
+        }
         
         barChartView.noDataText = "No data"
         //legend
@@ -70,7 +76,7 @@ class ViewController: UIViewController {
 
         let xaxis = barChartView.xAxis
         let formatter = CustomLabelsXAxisValueFormatter()
-        formatter.labels = months
+        formatter.labels = days
         xaxis.valueFormatter = formatter
         
         xaxis.drawGridLinesEnabled = true
@@ -91,8 +97,8 @@ class ViewController: UIViewController {
         yaxis.drawGridLinesEnabled = false
 
         barChartView.rightAxis.enabled = false
-        
-        customizeChart(periods: months, data: [unitsSold, unitsBought])
+                 
+        customizeChart(periods: days, data: data)
     }
     
     func initViews() {
@@ -123,12 +129,12 @@ class ViewController: UIViewController {
     }
     
     func updateData() {
-        self.categories = categoriesViewModel.categories
+        categories = categoriesViewModel.categories
         categoriesTableView.reloadData()
     }
     
     func customizeChart(periods: [String], data: [[Double]]) {
-        barChartView.noDataText = "You need to provide data for the chart."
+        barChartView.noDataText = "Нет данных для отображения"
         var dataEntries: [BarChartDataEntry] = []
     
         for i in 0..<periods.count {
@@ -140,22 +146,22 @@ class ViewController: UIViewController {
             dataEntries.append(dataEntry)
         }
 
-        let chartDataSet = BarChartDataSet(entries: dataEntries, label: "Unit sold")
+        let chartDataSet = BarChartDataSet(entries: dataEntries, label: "Категории трат")
        
         let dataSets: [BarChartDataSet] = [chartDataSet]
-        chartDataSet.colors = ChartColorTemplates.colorful()
+        chartDataSet.colors = colorsOfCharts()
 
         let chartData = BarChartData(dataSets: dataSets)
 
-        let groupSpace = 0.8
-        let barSpace = 0.01
-        let barWidth = 0.2
+        let groupSpace = 0.2
+        let barSpace = 0.0
+        let barWidth = 0.5
  
         chartData.barWidth = barWidth
         
         barChartView.xAxis.axisMinimum = 0.0
         barChartView.xAxis.axisMaximum = 0.0 + chartData.groupWidth(groupSpace: groupSpace, barSpace: barSpace) * Double(periods.count)
-        chartData.groupBars(fromX: 0.2, groupSpace: groupSpace, barSpace: barSpace)
+        chartData.groupBars(fromX: 0.5, groupSpace: groupSpace, barSpace: barSpace)
         barChartView.notifyDataSetChanged()
         
         barChartView.xAxis.granularity = barChartView.xAxis.axisMaximum / Double(periods.count)
@@ -169,16 +175,8 @@ class ViewController: UIViewController {
         barChartView.animate(xAxisDuration: 1.5, yAxisDuration: 1.5, easingOption: .linear)
     }
     
-    private func colorsOfCharts(numbersOfColor: Int) -> [UIColor] {
-      var colors: [UIColor] = []
-      for _ in 0..<numbersOfColor {
-        let red = Double(arc4random_uniform(256))
-        let green = Double(arc4random_uniform(256))
-        let blue = Double(arc4random_uniform(256))
-        let color = UIColor(red: CGFloat(red/255), green: CGFloat(green/255), blue: CGFloat(blue/255), alpha: 1)
-        colors.append(color)
-      }
-      return colors
+    private func colorsOfCharts() -> [UIColor] {
+        Constants.categoryColors.map {Helper.UIColorFromHex(rgbValue: UInt32($0))}
     }
 }
 

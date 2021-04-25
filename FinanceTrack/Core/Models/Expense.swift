@@ -8,4 +8,5 @@ protocol Expense {
 }
 
 typealias GroupedExpenses = [String: [Expense]]
+typealias GroupedExpensesByPeriod = [String: [String: Int]]
 

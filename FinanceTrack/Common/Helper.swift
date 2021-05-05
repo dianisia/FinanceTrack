@@ -30,7 +30,7 @@ class Helper {
     
     static func getLastWeekDays() -> [Date] {
         var days: [Date] = []
-        for i in (1...7).reversed() {
+        for i in (0...6).reversed() {
             days.append(Date().getDateFor(days: -i)!.trimTime())
         }
         return days
@@ -38,7 +38,7 @@ class Helper {
     
     static func getLastMonthDays() -> [Date] {
         var days: [Date] = []
-        for i in (1...30).reversed() {
+        for i in (0...29).reversed() {
             days.append(Date().getDateFor(days: -i)!.trimTime())
         }
         return days
@@ -46,10 +46,15 @@ class Helper {
     
     static func getLastQuarterDays() -> [Date] {
         var days: [Date] = []
-        for i in (1...90).reversed() {
+        for i in (0...90).reversed() {
             days.append(Date().getDateFor(days: -i)!.trimTime())
         }
         return days
+    }
+    
+    static func checkDateIsInPeriod(date: Date, period: Period) -> Bool {
+        let lastDays = getLastDays(for: period)
+        return date <= lastDays[lastDays.count - 1] && date >= lastDays[0]
     }
 }
 

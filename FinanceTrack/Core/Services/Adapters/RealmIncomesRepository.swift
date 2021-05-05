@@ -21,13 +21,15 @@ class RealmIncomesRepository: IncomesRepository {
         let realm = try! Realm()
         let income = RealmIncome()
         income._amount = amount
-        income._date = date
+        income._date = date.trimTime()
         try! realm.write {
             realm.add(income)
         }
     }
     
-    func getTotal() -> Double {
-        listAll().reduce(0) { $0 + Double($1.amount) }
+    func getTotal(for period: Period) -> Double {
+        listAll()
+            .filter{ Helper.checkDateIsInPeriod(date: $0.date, period: period) }
+            .reduce(0) { $0 + Double($1.amount) }
     }
 }

@@ -41,7 +41,7 @@ extension AllExpensesViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "expenseCell") as! ExpenseTableViewCell
         let currExpense: Expense = Array(expenses)[indexPath.section].value[indexPath.row]
-        cell.expenseLabel.text = currExpense.info
+        cell.expenseLabel.text = " \(currExpense.category.name) \(currExpense.info)"
         cell.amountLabel.text = Helper.formateExpense(amount: currExpense.amount)
         cell.iconBackUIView.backgroundColor = Helper
                 .UIColorFromHex(rgbValue: UInt32(Constants.categoryColors[currExpense.category.colorIndex]))

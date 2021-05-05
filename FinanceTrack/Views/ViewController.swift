@@ -63,7 +63,7 @@ class ViewController: UIViewController {
     }
     
     func prepareGraphData(period: Period) -> GraphData {
-        let groupedData = expensesViewModel.getTotalPeriod(period: period)
+        let groupedData = expensesViewModel.getTotal(for: period)
         let data: [Double] = groupedData.map { $0.amount }
         return GraphData(labels: groupedData.map { $0.date.monthDateFormate() } , data: data)
     }
@@ -120,7 +120,7 @@ class ViewController: UIViewController {
     }
     
     func updateIncomes() {
-        totalIncomeLabel.text = String(incomesViewModel.getTotal())
+        totalIncomeLabel.text = String(incomesViewModel.getTotal(for: currentPeriod))
         let periods = Helper.getLastDays(for: currentPeriod)
         incomeStartDateLabel.text = String(periods[0].monthDateFormate())
         incomeFinishDateLabel.text = String(periods[periods.count-1].monthDateFormate())

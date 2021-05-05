@@ -11,7 +11,7 @@ class IncomesViewModel {
         repository.add(amount: amount, date: date)
     }
     
-    func getTotal() -> Double {
-        return repository.getTotal()
+    func getTotal(for period: Period) -> Double {
+        return repository.getTotal(for: period)
     }
 }

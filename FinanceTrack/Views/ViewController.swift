@@ -3,14 +3,6 @@ import RealmSwift
 import Charts
 import PanModal
 
-protocol AddNewCategoryDelegate {
-    func addNewCategory(categoryName: String, colorIndex: Int);
-}
-
-protocol AddNewExpenseDelegate {
-    func addNewExpense(amount: Int, category: Category, date: Date, info: String)
-}
-
 struct GraphData {
     var labels: [String]
     var data: [Double]
@@ -21,8 +13,10 @@ class ViewController: UIViewController {
     private var currentBalance = 0
     private var categoriesViewModel = CategoriesViewModel()
     private var expensesViewModel = ExpensesViewModel()
+    private var incomesViewModel = IncomesViewModel()
     
     @IBOutlet weak var categoriesTableView: UITableView!
+    @IBOutlet weak var totalIncomeLabel: UILabel!
     @IBOutlet weak var currentBalanceLabel: UILabel!
     @IBOutlet weak var incomeView: UIView!
     @IBOutlet weak var addIncomeButton: UIButton!
@@ -59,12 +53,9 @@ class ViewController: UIViewController {
         currentBalanceLabel.text = "100500"
         self.categories = categoriesViewModel.categories
         initViews()
-        
+        updateIncomes()
         customizeChart()
-        let graphData = prepareGraphData(period: .week)
-        if (graphData.data.count > 0) {
-            setChartData(labels: graphData.labels, data: graphData.data)
-        }
+        updateGraph()
     }
     
     func prepareGraphData(period: Period) -> GraphData {
@@ -75,13 +66,17 @@ class ViewController: UIViewController {
     
     func initViews() {
         newExpenseVC = storyboard?.instantiateViewController(identifier: "newExpense") as? NewExpenseViewController
-        newExpenseVC.closePanel = updateData
+        newExpenseVC.closePanel = { [weak self] in
+            self?.updateCategories()
+            self?.updateGraph()
+        }
         
         newCategoryVC = storyboard?.instantiateViewController(withIdentifier: "newCategory") as? NewCategoryViewController
         
         allExpensesVC = storyboard?.instantiateViewController(withIdentifier: "allExpenses") as? AllExpensesViewController
         
         newIncomeVC = storyboard?.instantiateViewController(withIdentifier: "newIncome") as? NewIncomeViewController
+        newIncomeVC.closePanel = updateIncomes
     }
     
     @objc func segmentedControlValueChanged(_ sender: UISegmentedControl) {
@@ -119,9 +114,20 @@ class ViewController: UIViewController {
         presentPanModal(allExpensesVC)
     }
     
-    func updateData() {
+    func updateCategories() {
         categories = categoriesViewModel.categories
         categoriesTableView.reloadData()
+    }
+    
+    func updateIncomes() {
+        totalIncomeLabel.text = String(incomesViewModel.getTotal())
+    }
+    
+    func updateGraph() {
+        let graphData = prepareGraphData(period: .week)
+        if (graphData.data.count > 0) {
+            setChartData(labels: graphData.labels, data: graphData.data)
+        }
     }
     
     private func setChartData(labels: [String], data: [Double]) {
@@ -194,18 +200,5 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         cell.categoryNameLabel.text = String(categories[indexPath.row].name)
         cell.iconBackUIView.backgroundColor = Helper.UIColorFromHex(rgbValue: UInt32(Constants.categoryColors[self.categories[indexPath.row].colorIndex]))
         return cell
-    }
-}
-
-extension ViewController: AddNewCategoryDelegate {
-    func addNewCategory(categoryName: String, colorIndex: Int) {
-        categoriesViewModel.addNewCategory(name: categoryName, colorIndex: colorIndex)
-        categoriesTableView.reloadData()
-    }
-}
-
-extension ViewController: AddNewExpenseDelegate {
-    func addNewExpense(amount: Int, category: Category, date: Date, info: String) {
-        expensesViewModel.addNewExpense(amount: amount, categoryId: "", date: date, info: info)
     }
 }

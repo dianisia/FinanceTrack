@@ -19,11 +19,15 @@ class RealmIncomesRepository: IncomesRepository {
     
     func add(amount: Int, date: Date) {
         let realm = try! Realm()
-        let expense = RealmExpense()
-        expense._amount = amount
-        expense._date = date
+        let income = RealmIncome()
+        income._amount = amount
+        income._date = date
         try! realm.write {
-            realm.add(expense)
+            realm.add(income)
         }
+    }
+    
+    func getTotal() -> Double {
+        listAll().reduce(0) { $0 + Double($1.amount) }
     }
 }

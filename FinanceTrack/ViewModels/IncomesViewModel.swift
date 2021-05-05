@@ -10,4 +10,8 @@ class IncomesViewModel {
     func addNewIncome(amount: Int, date: Date) {
         repository.add(amount: amount, date: date)
     }
+    
+    func getTotal() -> Double {
+        return repository.getTotal()
+    }
 }

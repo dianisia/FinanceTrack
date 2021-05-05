@@ -122,7 +122,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="abs-0w-xok">
-                                        <rect key="frame" x="105" y="16" width="16" height="34"/>
+                                        <rect key="frame" x="111" y="16" width="16" height="34"/>
                                         <attributedString key="attributedText">
                                             <fragment content="₽">
                                                 <attributes>
@@ -191,11 +191,10 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="abs-0w-xok" firstAttribute="leading" secondItem="aUq-oO-urD" secondAttribute="trailing" constant="-1" id="1qv-sq-0aQ"/>
+                                    <constraint firstItem="abs-0w-xok" firstAttribute="leading" secondItem="aUq-oO-urD" secondAttribute="trailing" constant="5" id="1qv-sq-0aQ"/>
                                     <constraint firstAttribute="trailing" secondItem="bF3-D3-HDx" secondAttribute="trailing" constant="24" id="8t6-Ze-cie"/>
                                     <constraint firstAttribute="height" constant="76" id="Dgl-X4-R9O"/>
                                     <constraint firstItem="jBW-7t-gxq" firstAttribute="leading" secondItem="aUq-oO-urD" secondAttribute="leading" id="KaW-k3-ZOv"/>
-                                    <constraint firstItem="bF3-D3-HDx" firstAttribute="leading" relation="lessThanOrEqual" secondItem="abs-0w-xok" secondAttribute="trailing" constant="172" id="Pgk-Af-skv"/>
                                     <constraint firstItem="abs-0w-xok" firstAttribute="firstBaseline" secondItem="aUq-oO-urD" secondAttribute="firstBaseline" id="Rw4-4b-KWo"/>
                                     <constraint firstItem="aUq-oO-urD" firstAttribute="top" secondItem="biV-dl-5BG" secondAttribute="top" constant="16" id="c7V-cZ-8FR"/>
                                     <constraint firstItem="jBW-7t-gxq" firstAttribute="top" secondItem="aUq-oO-urD" secondAttribute="bottom" constant="2" id="mgQ-kB-8AY"/>
@@ -348,6 +347,7 @@
                         <outlet property="currentBalanceLabel" destination="z8i-C9-sE8" id="ZlH-bj-usR"/>
                         <outlet property="incomeView" destination="biV-dl-5BG" id="iC9-lY-igg"/>
                         <outlet property="periodsSegmentedControl" destination="4o1-3J-21A" id="kpH-mY-nPt"/>
+                        <outlet property="totalIncomeLabel" destination="aUq-oO-urD" id="iVB-ca-Csk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

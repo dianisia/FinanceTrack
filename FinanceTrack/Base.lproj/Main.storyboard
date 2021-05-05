@@ -805,7 +805,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="58" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="euV-Pt-cf8">
-                                <rect key="frame" x="0.0" y="64.5" width="414" height="577.5"/>
+                                <rect key="frame" x="0.0" y="69" width="414" height="573"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="expenseCell" rowHeight="70" id="xnQ-pN-nbw" customClass="ExpenseTableViewCell" customModule="FinanceTrack" customModuleProvider="target">
@@ -844,9 +844,9 @@
                                             <constraints>
                                                 <constraint firstItem="P2G-u4-1w8" firstAttribute="centerY" secondItem="Aq8-mX-Wij" secondAttribute="centerY" id="1fX-sb-4bZ"/>
                                                 <constraint firstItem="XvW-p5-tod" firstAttribute="centerY" secondItem="Aq8-mX-Wij" secondAttribute="centerY" id="1ox-q6-bFq"/>
+                                                <constraint firstAttribute="trailing" secondItem="P2G-u4-1w8" secondAttribute="trailing" constant="20" symbolic="YES" id="E92-PM-gys"/>
                                                 <constraint firstItem="L0N-8E-wHt" firstAttribute="leading" secondItem="Aq8-mX-Wij" secondAttribute="leadingMargin" id="IyO-Kf-mrK"/>
                                                 <constraint firstItem="P2G-u4-1w8" firstAttribute="trailing" secondItem="Aq8-mX-Wij" secondAttribute="trailingMargin" id="JXs-pM-klR"/>
-                                                <constraint firstItem="P2G-u4-1w8" firstAttribute="leading" secondItem="XvW-p5-tod" secondAttribute="trailing" constant="102" id="WmA-hE-vUp"/>
                                                 <constraint firstItem="L0N-8E-wHt" firstAttribute="centerY" secondItem="XvW-p5-tod" secondAttribute="centerY" id="cg2-lA-SK4"/>
                                                 <constraint firstItem="XvW-p5-tod" firstAttribute="leading" secondItem="L0N-8E-wHt" secondAttribute="trailing" constant="10" id="d82-aW-Gy0"/>
                                                 <constraint firstItem="XvW-p5-tod" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="L0N-8E-wHt" secondAttribute="trailing" constant="8" symbolic="YES" id="vKH-Xk-Ue8"/>
@@ -865,7 +865,7 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ваши траты" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zy0-3q-ozn">
-                                <rect key="frame" x="16" y="16" width="119" height="23.5"/>
+                                <rect key="frame" x="16" y="16" width="119" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="119" id="fHv-ia-DF6"/>
                                 </constraints>

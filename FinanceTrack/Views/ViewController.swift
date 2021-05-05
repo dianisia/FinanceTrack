@@ -120,7 +120,7 @@ class ViewController: UIViewController {
     }
     
     func updateIncomes() {
-        totalIncomeLabel.text = String(incomesViewModel.getTotal(for: currentPeriod))
+        totalIncomeLabel.text = String(incomesViewModel.getTotal(for: currentPeriod).removeZerosFromEnd())
         let periods = Helper.getLastDays(for: currentPeriod)
         incomeStartDateLabel.text = String(periods[0].monthDateFormate())
         incomeFinishDateLabel.text = String(periods[periods.count-1].monthDateFormate())

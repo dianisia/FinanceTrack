@@ -57,7 +57,7 @@ extension AllExpensesViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        Array(expenses)[section].key
+        Array(expenses)[section].key.monthDateFormate()
     }
 
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {

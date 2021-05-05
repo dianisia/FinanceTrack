@@ -26,7 +26,7 @@ class RealmExpensesRepository: ExpensesRepository {
         let expense = RealmExpense()
         expense._amount = amount
         expense._category = RealmCategoriesRepository().getForId(categoryId: categoryId)
-        expense._date = date
+        expense._date = date.trimTime()
         expense._info = info
         try! realm.write {
             realm.add(expense)
@@ -37,7 +37,7 @@ class RealmExpensesRepository: ExpensesRepository {
         let expenses = listAll()
         var result: GroupedExpenses = [:]
         for expense in expenses {
-            let currDate = expense.date.monthDateFormate()
+            let currDate = expense.date
             if result.keys.contains(currDate) {
                 result[currDate]?.append(expense)
             } else {
@@ -47,30 +47,29 @@ class RealmExpensesRepository: ExpensesRepository {
         return result
     }
     
-    func getTotalForPeriod(period: Period) -> GroupedExpensesByPeriod {
-        var result: GroupedExpensesByPeriod = [:]
-        var periodItems: [String] = []
+    func getTotalForPeriod(period: Period) -> [TotalExpenseForDate] {
+        var periodItems: [Date] = []
         switch period {
         case .week:
-            periodItems = Helper.getLastWeekDays().map{ $0.monthDateFormate() }
+            periodItems = Helper.getLastWeekDays()
+        case .month:
+            periodItems = Helper.getLastMonthDays()
+        case .quarter:
+            periodItems = Helper.getLastQuarterDays()
         default:
             periodItems = []
         }
         
-        let currExpenses = listGroupedByDate()
-    
-        for item in periodItems {
-            result[item] = [:]
-            if let expensesForDate = currExpenses[item] {
-                expensesForDate.forEach { expense in
-                    let categoryId = expense.category.categoryId
-                    result[item]![categoryId] = result[item]!.keys.contains(categoryId) ?
-                        result[item]![categoryId]! + expense.amount :
-                        expense.amount
-                }
-            }
+        let allExpenses = listGroupedByDate()
+        var result: [TotalExpenseForDate] = []
+      
+        for periodItem in periodItems {
+            result.append(TotalExpenseForDate(
+                            amount: allExpenses.keys.contains(periodItem) ? allExpenses[periodItem]!.reduce(0) { $0 + Double($1.amount) } : 0.0,
+                            date: periodItem)
+            )
         }
-        
+        result = result.sorted(by: { $0.date < $1.date })
         return result
     }
 }

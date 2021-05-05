@@ -11,14 +11,9 @@ protocol AddNewExpenseDelegate {
     func addNewExpense(amount: Int, category: Category, date: Date, info: String)
 }
 
-struct CategoryExpenseGraphData {
-    var color: UIColor
-    var amount: Int
-}
-
 struct GraphData {
     var labels: [String]
-    var data: [[CategoryExpenseGraphData]]
+    var data: [Double]
 }
 
 class ViewController: UIViewController {
@@ -33,13 +28,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var addIncomeButton: UIButton!
     @IBOutlet weak var addExpenseButton: UIButton!
     @IBOutlet weak var barChartView: BarChartView!
-        
+    @IBOutlet weak var periodsSegmentedControl: UISegmentedControl!
+    
     var newCategoryVC: NewCategoryViewController!
     var newExpenseVC: NewExpenseViewController!
     var allExpensesVC: AllExpensesViewController!
     var newIncomeVC: NewIncomeViewController!
     
-        
+    
     @IBAction func onShowNewExpensesTap(_ sender: Any) {
         openAllExpensesPanel()
     }
@@ -58,74 +54,29 @@ class ViewController: UIViewController {
         addIncomeButton.layer.cornerRadius = 8
         addExpenseButton.layer.cornerRadius = 8
         
+        periodsSegmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: .valueChanged)
+        
         currentBalanceLabel.text = "100500"
         self.categories = categoriesViewModel.categories
         initViews()
-    
-        let graphData = prepareGraphData()
         
-        barChartView.noDataText = "No data"
-        //legend
-        let legend = barChartView.legend
-        legend.enabled = true
-        legend.horizontalAlignment = .right
-        legend.verticalAlignment = .top
-        legend.orientation = .vertical
-        legend.drawInside = true
-        legend.yOffset = 10.0;
-        legend.xOffset = 10.0;
-        legend.yEntrySpace = 0.0;
-
-        let xaxis = barChartView.xAxis
-        let formatter = CustomLabelsXAxisValueFormatter()
-        formatter.labels = graphData.labels
-        xaxis.valueFormatter = formatter
-        
-        xaxis.drawGridLinesEnabled = true
-        xaxis.labelPosition = .bottom
-        xaxis.centerAxisLabelsEnabled = true
-        xaxis.axisLineColor = UIColor.white
-        xaxis.granularityEnabled = true
-        xaxis.enabled = true
-        
-        xaxis.granularity = 1
-
-        let leftAxisFormatter = NumberFormatter()
-        leftAxisFormatter.maximumFractionDigits = 1
-
-        let yaxis = barChartView.leftAxis
-        yaxis.spaceTop = 0.35
-        yaxis.axisMinimum = 0
-        yaxis.drawGridLinesEnabled = false
-
-        barChartView.rightAxis.enabled = false
-                 
-        customizeChart(labels: graphData.labels, data: graphData.data)
+        customizeChart()
+        let graphData = prepareGraphData(period: .week)
+        if (graphData.data.count > 0) {
+            setChartData(labels: graphData.labels, data: graphData.data)
+        }
     }
     
-    func prepareGraphData() -> GraphData {
-        let groupedData = expensesViewModel.getTotalPeriod(period: .week)
-        var data: [[CategoryExpenseGraphData]] = []
-
-        groupedData.values.forEach { value in
-            var categoryData: [CategoryExpenseGraphData] = []
-            for (categoryId, amount) in value {
-                let colorIndex = categoriesViewModel.getColorForCategory(id: categoryId)
-                categoryData.append(
-                    CategoryExpenseGraphData(
-                        color: Helper.UIColorFromHex(rgbValue: UInt32(Constants.categoryColors[colorIndex])),
-                        amount: amount
-                    ))
-            }
-            data.append(categoryData)
-        }
-        return GraphData(labels: groupedData.keys.map{ $0 }, data: data)
+    func prepareGraphData(period: Period) -> GraphData {
+        let groupedData = expensesViewModel.getTotalPeriod(period: period)
+        let data: [Double] = groupedData.map { $0.amount }
+        return GraphData(labels: groupedData.map { $0.date.monthDateFormate() } , data: data)
     }
     
     func initViews() {
         newExpenseVC = storyboard?.instantiateViewController(identifier: "newExpense") as? NewExpenseViewController
         newExpenseVC.closePanel = updateData
-    
+        
         newCategoryVC = storyboard?.instantiateViewController(withIdentifier: "newCategory") as? NewCategoryViewController
         
         allExpensesVC = storyboard?.instantiateViewController(withIdentifier: "allExpenses") as? AllExpensesViewController
@@ -133,8 +84,27 @@ class ViewController: UIViewController {
         newIncomeVC = storyboard?.instantiateViewController(withIdentifier: "newIncome") as? NewIncomeViewController
     }
     
+    @objc func segmentedControlValueChanged(_ sender: UISegmentedControl) {
+        var period: Period = .week
+        switch periodsSegmentedControl.selectedSegmentIndex {
+        case 0:
+            period = .week
+        case 1:
+            period = .month
+        case 2:
+            period = .quarter
+        default:
+            period = .allTime
+        }
+        
+        let graphData = prepareGraphData(period: period)
+        if (graphData.data.count > 0) {
+            setChartData(labels: graphData.labels, data: graphData.data)
+        }
+    }
+    
     func openNewCategoryPanel() {
-
+        
     }
     
     func openNewIncomePanel() {
@@ -154,70 +124,63 @@ class ViewController: UIViewController {
         categoriesTableView.reloadData()
     }
     
-    func customizeChart(labels: [String], data: [[CategoryExpenseGraphData]]) {
+    private func setChartData(labels: [String], data: [Double]) {
         barChartView.noDataText = "Нет данных для отображения"
         var dataEntries: [BarChartDataEntry] = []
-
+        
         for i in 0..<labels.count {
-            let yValues: [Double] = data[i].map{ Double($0.amount) }
-            let dataEntry = BarChartDataEntry(x: Double(i), yValues:  yValues, data: "groupChart")
+            let dataEntry = BarChartDataEntry(x: Double(i), y: data[i])
             dataEntries.append(dataEntry)
         }
-
-        let chartDataSet = BarChartDataSet(entries: dataEntries, label: "Категории трат")
         
+        let chartDataSet = BarChartDataSet(entries: dataEntries, label: "Сумма за день")
         
-        chartDataSet.colors = []
-        for i in 0..<data.count {
-            for j in 0..<data[i].count {
-                chartDataSet.colors.append(data[i][j].color)
-            }
-        }
+        let noZeroFormatter = NumberFormatter()
+        noZeroFormatter.zeroSymbol = ""
+        chartDataSet.valueFormatter = DefaultValueFormatter(formatter: noZeroFormatter)
         
-        let dataSets: [BarChartDataSet] = [chartDataSet]
-        let chartData = BarChartData(dataSets: dataSets)
-
-        let groupSpace = 0.2
-        let barSpace = 0.0
-        let barWidth = 0.5
- 
-        chartData.barWidth = barWidth
+        chartDataSet.colors = [UIColor(red: 230/255, green: 126/255, blue: 34/255, alpha: 1)]
         
-        barChartView.xAxis.axisMinimum = 0.0
-        barChartView.xAxis.axisMaximum = 0.0 + chartData.groupWidth(groupSpace: groupSpace, barSpace: barSpace) * Double(labels.count)
-        chartData.groupBars(fromX: 0.5, groupSpace: groupSpace, barSpace: barSpace)
+        let chartData = BarChartData(dataSet: chartDataSet)
         barChartView.notifyDataSetChanged()
-        
-        barChartView.xAxis.granularity = barChartView.xAxis.axisMaximum / Double(labels.count)
-
         barChartView.data = chartData
-
-        //background color
         barChartView.backgroundColor = UIColor.white
-
-        //chart animation
         barChartView.animate(xAxisDuration: 1.5, yAxisDuration: 1.5, easingOption: .linear)
+        let xaxis = barChartView.xAxis
+        let formatter = CustomLabelsXAxisValueFormatter()
+        formatter.labels = labels
+        xaxis.valueFormatter = formatter
     }
     
-    private func colorsOfCharts() -> [UIColor] {
-        Constants.categoryColors.map {Helper.UIColorFromHex(rgbValue: UInt32($0))}
-    }
-}
-
-class CustomLabelsXAxisValueFormatter : NSObject, IAxisValueFormatter {
-    var labels: [String] = []
-    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-        let count = self.labels.count
-        guard let axis = axis, count > 0 else {
-            return ""
-        }
-
-        let factor = axis.axisMaximum / Double(count)
-        let index = Int((value / factor).rounded())
-        if index >= 0 && index < count {
-            return self.labels[index]
-        }
-        return ""
+    private func customizeChart() {
+        barChartView.noDataText = "No data"
+        //legend
+        let legend = barChartView.legend
+        legend.enabled = true
+        legend.horizontalAlignment = .right
+        legend.verticalAlignment = .top
+        legend.orientation = .vertical
+        legend.drawInside = true
+        legend.yEntrySpace = 0.0;
+        
+        let xaxis = barChartView.xAxis
+        xaxis.drawGridLinesEnabled = true
+        xaxis.labelPosition = .bottom
+        xaxis.axisLineColor = UIColor.white
+        xaxis.granularityEnabled = true
+        xaxis.enabled = true
+        
+        xaxis.granularity = 1
+        
+        let leftAxisFormatter = NumberFormatter()
+        leftAxisFormatter.maximumFractionDigits = 1
+        
+        let yaxis = barChartView.leftAxis
+        yaxis.spaceTop = 0.35
+        yaxis.axisMinimum = 10
+        yaxis.drawGridLinesEnabled = false
+        
+        barChartView.rightAxis.enabled = false
     }
 }
 

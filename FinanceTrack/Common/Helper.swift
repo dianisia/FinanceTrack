@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import Charts
 
 class Helper {
     static func UIColorFromHex(rgbValue:UInt32, alpha:Double=1.0)->UIColor {
@@ -17,12 +18,23 @@ class Helper {
     static func getLastWeekDays() -> [Date] {
         var days: [Date] = []
         for i in (1...7).reversed() {
-            let currDate = Date().getDateFor(days: -i)
-//            let dateFormatter = DateFormatter()
-//            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-//            dateFormatter.dateFormat = "dd-MM"
-//            let lastWeekDateString = dateFormatter.string(from: currDate!)
-            days.append(currDate!)
+            days.append(Date().getDateFor(days: -i)!.trimTime())
+        }
+        return days
+    }
+    
+    static func getLastMonthDays() -> [Date] {
+        var days: [Date] = []
+        for i in (1...30).reversed() {
+            days.append(Date().getDateFor(days: -i)!.trimTime())
+        }
+        return days
+    }
+    
+    static func getLastQuarterDays() -> [Date] {
+        var days: [Date] = []
+        for i in (1...90).reversed() {
+            days.append(Date().getDateFor(days: -i)!.trimTime())
         }
         return days
     }
@@ -38,6 +50,16 @@ extension Date {
         df.dateFormat = "dd-MM"
         return df.string(from: self)
     }
+    
+    func trimTime() -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.calendar = Calendar(identifier: .gregorian)
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        let dateString = dateFormatter.string(from: self)
+        return dateFormatter.date(from: dateString.components(separatedBy: " ").first ?? "")!
+    }
 }
 
 enum Period {
@@ -45,4 +67,22 @@ enum Period {
     case month
     case quarter
     case allTime
+}
+
+class CustomLabelsXAxisValueFormatter : NSObject, IAxisValueFormatter {
+    var labels: [String] = []
+    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+        let count = self.labels.count
+        guard let axis = axis, count > 0 else {
+            return ""
+        }
+        
+        let factor = axis.axisMaximum / Double(count)
+        let index = Int((value / factor).rounded())
+        
+        if index >= 0 && index < count {
+            return self.labels[index]
+        }
+        return ""
+    }
 }

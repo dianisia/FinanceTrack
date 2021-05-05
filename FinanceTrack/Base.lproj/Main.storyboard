@@ -132,8 +132,8 @@
                                         </attributedString>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="jBW-7t-gxq">
-                                        <rect key="frame" x="24" y="52" width="168.5" height="12"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="jBW-7t-gxq">
+                                        <rect key="frame" x="24" y="52" width="166" height="12"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dot" translatesAutoresizingMaskIntoConstraints="NO" id="tu0-Ya-Ukh">
                                                 <rect key="frame" x="0.0" y="0.0" width="10" height="12"/>
@@ -142,7 +142,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Qt-rP-9rv">
-                                                <rect key="frame" x="18" y="0.0" width="150.5" height="12"/>
+                                                <rect key="frame" x="14" y="0.0" width="53.5" height="12"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="12" id="sVF-dx-hnc"/>
                                                 </constraints>
@@ -165,19 +165,46 @@
                                                             <font key="NSFont" metaFont="menu" size="14"/>
                                                         </attributes>
                                                     </fragment>
-                                                    <fragment content=" 01.02 ">
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8xb-gX-Pu8">
+                                                <rect key="frame" x="71.5" y="0.0" width="33.5" height="12"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="12" id="ooI-SN-ljj"/>
+                                                </constraints>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="01.02">
                                                         <attributes>
                                                             <color key="NSColor" red="0.72941176470588232" green="0.72549019607843135" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <font key="NSFont" size="14" name="Poppins-Regular"/>
                                                         </attributes>
                                                     </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ig-k2-8oq">
+                                                <rect key="frame" x="109" y="0.0" width="16.5" height="12"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="12" id="eTj-EU-3Up"/>
+                                                </constraints>
+                                                <attributedString key="attributedText">
                                                     <fragment content="по">
                                                         <attributes>
                                                             <color key="NSColor" red="0.72941176470588232" green="0.72549019607843135" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <font key="NSFont" metaFont="menu" size="14"/>
                                                         </attributes>
                                                     </fragment>
-                                                    <fragment content=" 07.02">
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kVX-i3-q7J">
+                                                <rect key="frame" x="129.5" y="0.0" width="36.5" height="12"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="12" id="YRf-EC-8eq"/>
+                                                </constraints>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="07.02">
                                                         <attributes>
                                                             <color key="NSColor" red="0.72941176470588232" green="0.72549019607843135" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <font key="NSFont" size="14" name="Poppins-Regular"/>
@@ -345,6 +372,8 @@
                         <outlet property="barChartView" destination="joO-TG-dD0" id="hls-9o-Nd7"/>
                         <outlet property="categoriesTableView" destination="sOM-fy-buK" id="VGN-kz-bG3"/>
                         <outlet property="currentBalanceLabel" destination="z8i-C9-sE8" id="ZlH-bj-usR"/>
+                        <outlet property="incomeFinishDateLabel" destination="kVX-i3-q7J" id="faY-r4-M1w"/>
+                        <outlet property="incomeStartDateLabel" destination="8xb-gX-Pu8" id="KDp-Jj-3DH"/>
                         <outlet property="incomeView" destination="biV-dl-5BG" id="iC9-lY-igg"/>
                         <outlet property="periodsSegmentedControl" destination="4o1-3J-21A" id="kpH-mY-nPt"/>
                         <outlet property="totalIncomeLabel" destination="aUq-oO-urD" id="iVB-ca-Csk"/>

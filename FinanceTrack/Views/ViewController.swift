@@ -22,6 +22,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var addIncomeButton: UIButton!
     @IBOutlet weak var addExpenseButton: UIButton!
     @IBOutlet weak var barChartView: BarChartView!
+    @IBOutlet weak var incomeStartDateLabel: UILabel!
+    @IBOutlet weak var incomeFinishDateLabel: UILabel!
     @IBOutlet weak var periodsSegmentedControl: UISegmentedControl!
     
     var newCategoryVC: NewCategoryViewController!
@@ -29,6 +31,7 @@ class ViewController: UIViewController {
     var allExpensesVC: AllExpensesViewController!
     var newIncomeVC: NewIncomeViewController!
     
+    private var currentPeriod: Period = .week
     
     @IBAction func onShowNewExpensesTap(_ sender: Any) {
         openAllExpensesPanel()
@@ -47,6 +50,7 @@ class ViewController: UIViewController {
         incomeView.layer.cornerRadius = 16
         addIncomeButton.layer.cornerRadius = 8
         addExpenseButton.layer.cornerRadius = 8
+        currentPeriod = .week
         
         periodsSegmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: .valueChanged)
         
@@ -80,22 +84,18 @@ class ViewController: UIViewController {
     }
     
     @objc func segmentedControlValueChanged(_ sender: UISegmentedControl) {
-        var period: Period = .week
         switch periodsSegmentedControl.selectedSegmentIndex {
         case 0:
-            period = .week
+            currentPeriod = .week
         case 1:
-            period = .month
+            currentPeriod = .month
         case 2:
-            period = .quarter
+            currentPeriod = .quarter
         default:
-            period = .allTime
+            currentPeriod = .allTime
         }
-        
-        let graphData = prepareGraphData(period: period)
-        if (graphData.data.count > 0) {
-            setChartData(labels: graphData.labels, data: graphData.data)
-        }
+        updateGraph()
+        updateIncomes()
     }
     
     func openNewCategoryPanel() {
@@ -121,10 +121,13 @@ class ViewController: UIViewController {
     
     func updateIncomes() {
         totalIncomeLabel.text = String(incomesViewModel.getTotal())
+        let periods = Helper.getLastDays(for: currentPeriod)
+        incomeStartDateLabel.text = String(periods[0].monthDateFormate())
+        incomeFinishDateLabel.text = String(periods[periods.count-1].monthDateFormate())
     }
     
     func updateGraph() {
-        let graphData = prepareGraphData(period: .week)
+        let graphData = prepareGraphData(period: currentPeriod)
         if (graphData.data.count > 0) {
             setChartData(labels: graphData.labels, data: graphData.data)
         }

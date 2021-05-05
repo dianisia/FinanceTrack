@@ -48,18 +48,7 @@ class RealmExpensesRepository: ExpensesRepository {
     }
     
     func getTotalForPeriod(period: Period) -> [TotalExpenseForDate] {
-        var periodItems: [Date] = []
-        switch period {
-        case .week:
-            periodItems = Helper.getLastWeekDays()
-        case .month:
-            periodItems = Helper.getLastMonthDays()
-        case .quarter:
-            periodItems = Helper.getLastQuarterDays()
-        default:
-            periodItems = []
-        }
-        
+        let periodItems: [Date] = Helper.getLastDays(for: period)
         let allExpenses = listGroupedByDate()
         var result: [TotalExpenseForDate] = []
       

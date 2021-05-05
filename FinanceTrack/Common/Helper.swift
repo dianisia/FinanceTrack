@@ -15,6 +15,19 @@ class Helper {
         "\(amount) ₽"
     }
     
+    static func getLastDays(for period: Period) -> [Date] {
+        switch period {
+        case .week:
+            return getLastWeekDays()
+        case .month:
+            return getLastMonthDays()
+        case .quarter:
+            return getLastQuarterDays()
+        default:
+            return getLastWeekDays()
+        }
+    }
+    
     static func getLastWeekDays() -> [Date] {
         var days: [Date] = []
         for i in (1...7).reversed() {
@@ -47,7 +60,7 @@ extension Date {
     
     func monthDateFormate() -> String {
         let df = DateFormatter()
-        df.dateFormat = "dd-MM"
+        df.dateFormat = "dd.MM"
         return df.string(from: self)
     }
     

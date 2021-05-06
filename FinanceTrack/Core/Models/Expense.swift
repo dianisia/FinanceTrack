@@ -7,5 +7,11 @@ protocol Expense {
     var info: String { get }
 }
 
-typealias GroupedExpenses = [String: [Expense]]
+typealias GroupedExpenses = [Date: [Expense]]
+typealias GroupedExpensesByPeriod = [String: [String: Int]]
+
+struct TotalExpenseForDate {
+    var amount: Double
+    var date: Date
+}
 

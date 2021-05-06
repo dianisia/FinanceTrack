@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import Charts
 
 class Helper {
     static func UIColorFromHex(rgbValue:UInt32, alpha:Double=1.0)->UIColor {
@@ -10,9 +11,106 @@ class Helper {
         return UIColor(red:red, green:green, blue:blue, alpha:CGFloat(alpha))
     }
 
-    static func formateDate(date: Date) -> String {
+    static func formateExpense(amount: Int) -> String {
+        "\(amount) ₽"
+    }
+    
+    static func getLastDays(for period: Period) -> [Date] {
+        switch period {
+        case .week:
+            return getLastWeekDays()
+        case .month:
+            return getLastMonthDays()
+        case .quarter:
+            return getLastQuarterDays()
+        default:
+            return getLastWeekDays()
+        }
+    }
+    
+    static func getLastWeekDays() -> [Date] {
+        var days: [Date] = []
+        for i in (0...6).reversed() {
+            days.append(Date().getDateFor(days: -i)!.trimTime())
+        }
+        return days
+    }
+    
+    static func getLastMonthDays() -> [Date] {
+        var days: [Date] = []
+        for i in (0...29).reversed() {
+            days.append(Date().getDateFor(days: -i)!.trimTime())
+        }
+        return days
+    }
+    
+    static func getLastQuarterDays() -> [Date] {
+        var days: [Date] = []
+        for i in (0...90).reversed() {
+            days.append(Date().getDateFor(days: -i)!.trimTime())
+        }
+        return days
+    }
+    
+    static func checkDateIsInPeriod(date: Date, period: Period) -> Bool {
+        let lastDays = getLastDays(for: period)
+        return date <= lastDays[lastDays.count - 1] && date >= lastDays[0]
+    }
+}
+
+extension Date {
+    func getDateFor(days:Int) -> Date? {
+         return Calendar.current.date(byAdding: .day, value: days, to: Date())
+    }
+    
+    func monthDateFormate() -> String {
         let df = DateFormatter()
-        df.dateFormat = "d MMM y"
-        return df.string(from: date)
+        df.dateFormat = "dd.MM"
+        return df.string(from: self)
+    }
+    
+    func trimTime() -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.calendar = Calendar(identifier: .gregorian)
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        let dateString = dateFormatter.string(from: self)
+        return dateFormatter.date(from: dateString.components(separatedBy: " ").first ?? "")!
+    }
+}
+
+extension Double {
+    func removeZerosFromEnd() -> String {
+        let formatter = NumberFormatter()
+        let number = NSNumber(value: self)
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 16
+        return String(formatter.string(from: number) ?? "")
+    }
+}
+
+enum Period {
+    case week
+    case month
+    case quarter
+    case allTime
+}
+
+class CustomLabelsXAxisValueFormatter : NSObject, IAxisValueFormatter {
+    var labels: [String] = []
+    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+        let count = self.labels.count
+        guard let axis = axis, count > 0 else {
+            return ""
+        }
+        
+        let factor = axis.axisMaximum / Double(count)
+        let index = Int((value / factor).rounded())
+        
+        if index >= 0 && index < count {
+            return self.labels[index]
+        }
+        return ""
     }
 }

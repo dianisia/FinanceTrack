@@ -623,7 +623,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Введите название категории" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="inC-Jb-Y6y">
-                                <rect key="frame" x="16" y="91" width="382" height="34"/>
+                                <rect key="frame" x="16" y="98" width="382" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="vui-U5-q6B"/>
                                 </constraints>
@@ -657,7 +657,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fVF-qh-WdA">
-                                <rect key="frame" x="16" y="16" width="187" height="21.5"/>
+                                <rect key="frame" x="16" y="16" width="187" height="25.5"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Добавить">
                                         <attributes>
@@ -684,7 +684,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y1W-wp-FpJ">
-                                <rect key="frame" x="16" y="61" width="136" height="17"/>
+                                <rect key="frame" x="16" y="65" width="136" height="20"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Название">
                                         <attributes>
@@ -711,7 +711,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xJ5-vQ-aCu">
-                                <rect key="frame" x="16" y="137" width="172" height="17"/>
+                                <rect key="frame" x="16" y="144" width="172" height="20"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Выберите цвет">
                                         <attributes>
@@ -807,58 +807,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="58" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="euV-Pt-cf8">
                                 <rect key="frame" x="0.0" y="69" width="414" height="573"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="expenseCell" rowHeight="70" id="xnQ-pN-nbw" customClass="ExpenseTableViewCell" customModule="FinanceTrack" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="70"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xnQ-pN-nbw" id="Aq8-mX-Wij">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Target" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XvW-p5-tod">
-                                                    <rect key="frame" x="70" y="24.5" width="164" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="164" id="XrW-gl-FhE"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2G-u4-1w8">
-                                                    <rect key="frame" x="336" y="24.5" width="58" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L0N-8E-wHt">
-                                                    <rect key="frame" x="20" y="15" width="40" height="40"/>
-                                                    <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="7vi-DT-Ehi"/>
-                                                        <constraint firstAttribute="height" constant="40" id="CGw-TL-5tP"/>
-                                                        <constraint firstAttribute="width" constant="40" id="aSe-gk-h9n"/>
-                                                        <constraint firstAttribute="width" constant="40" id="cri-RD-IBn"/>
-                                                    </constraints>
-                                                </view>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="P2G-u4-1w8" firstAttribute="centerY" secondItem="Aq8-mX-Wij" secondAttribute="centerY" id="1fX-sb-4bZ"/>
-                                                <constraint firstItem="XvW-p5-tod" firstAttribute="centerY" secondItem="Aq8-mX-Wij" secondAttribute="centerY" id="1ox-q6-bFq"/>
-                                                <constraint firstAttribute="trailing" secondItem="P2G-u4-1w8" secondAttribute="trailing" constant="20" symbolic="YES" id="E92-PM-gys"/>
-                                                <constraint firstItem="L0N-8E-wHt" firstAttribute="leading" secondItem="Aq8-mX-Wij" secondAttribute="leadingMargin" id="IyO-Kf-mrK"/>
-                                                <constraint firstItem="P2G-u4-1w8" firstAttribute="trailing" secondItem="Aq8-mX-Wij" secondAttribute="trailingMargin" id="JXs-pM-klR"/>
-                                                <constraint firstItem="L0N-8E-wHt" firstAttribute="centerY" secondItem="XvW-p5-tod" secondAttribute="centerY" id="cg2-lA-SK4"/>
-                                                <constraint firstItem="XvW-p5-tod" firstAttribute="leading" secondItem="L0N-8E-wHt" secondAttribute="trailing" constant="10" id="d82-aW-Gy0"/>
-                                                <constraint firstItem="XvW-p5-tod" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="L0N-8E-wHt" secondAttribute="trailing" constant="8" symbolic="YES" id="vKH-Xk-Ue8"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="amountLabel" destination="P2G-u4-1w8" id="QnB-6Y-8Sh"/>
-                                            <outlet property="expenseLabel" destination="XvW-p5-tod" id="dav-Mj-I8W"/>
-                                            <outlet property="iconBackUIView" destination="L0N-8E-wHt" id="sV5-bT-eEc"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="eKl-gz-gXY" id="hiy-M7-DsZ"/>
                                     <outlet property="delegate" destination="eKl-gz-gXY" id="bgg-jI-1D6"/>

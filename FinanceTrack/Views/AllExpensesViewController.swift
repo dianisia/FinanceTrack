@@ -3,12 +3,12 @@ import PanModal
 import DropDown
 
 class AllExpensesViewController: UIViewController {
-
+    
     struct CurrConstants {
         static let viewHeight: CGFloat = 600
         static let viewMaxHeightWithTopInset: CGFloat = 40
     }
-
+    
     private var expensesViewModel = ExpensesViewModel()
     private var categoriesViewModel = CategoriesViewModel()
     private var expenses: GroupedExpenses = [:]
@@ -39,19 +39,24 @@ class AllExpensesViewController: UIViewController {
 
 extension AllExpensesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "expenseCell") as! ExpenseTableViewCell
+        var cell = tableView.dequeueReusableCell(withIdentifier: "expenseCell") as? ExpenseTableViewCell
+        if cell == nil {
+            cell = ExpenseTableViewCell.createCell()!
+        }
         let currExpense: Expense = Array(expenses)[indexPath.section].value[indexPath.row]
-        cell.expenseLabel.text = " \(currExpense.category.name) \(currExpense.info)"
-        cell.amountLabel.text = Helper.formateExpense(amount: currExpense.amount)
-        cell.iconBackUIView.backgroundColor = Helper
-                .UIColorFromHex(rgbValue: UInt32(Constants.categoryColors[currExpense.category.colorIndex]))
-        return cell
+        cell?.updateWith(
+            expense: " \(currExpense.category.name) \(currExpense.info)",
+            categoryColor: Helper
+                .UIColorFromHex(rgbValue: UInt32(Constants.categoryColors[currExpense.category.colorIndex])),
+            amount: currExpense.amount
+        )
+        return cell!
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         Array(expenses)[section].value.count
     }
-
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         expenses.keys.count
     }
@@ -59,7 +64,7 @@ extension AllExpensesViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         Array(expenses)[section].key.monthDateFormate()
     }
-
+    
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let header = view as? UITableViewHeaderFooterView {
             header.contentView.backgroundColor = .white
@@ -76,7 +81,7 @@ extension AllExpensesViewController: PanModalPresentable {
     var shortFormHeight: PanModalHeight {
         .contentHeight(CurrConstants.viewHeight)
     }
-
+    
     var longFormHeight: PanModalHeight {
         .maxHeightWithTopInset(CurrConstants.viewMaxHeightWithTopInset)
     }

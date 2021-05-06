@@ -143,6 +143,7 @@ class ViewController: UIViewController {
         }
         
         let chartDataSet = BarChartDataSet(entries: dataEntries, label: "Траты за день")
+        chartDataSet.valueFont = UIFont.systemFont(ofSize: 12)
         
         let noZeroFormatter = NumberFormatter()
         noZeroFormatter.zeroSymbol = ""
@@ -178,6 +179,7 @@ class ViewController: UIViewController {
         xaxis.axisLineColor = UIColor.lightGray
         xaxis.granularityEnabled = true
         xaxis.enabled = true
+        xaxis.labelFont = UIFont.systemFont(ofSize: 12)
         
         xaxis.granularity = 1
         
@@ -189,6 +191,7 @@ class ViewController: UIViewController {
         yaxis.axisMinimum = 10
         yaxis.drawGridLinesEnabled = false
         yaxis.axisLineColor = UIColor.lightGray
+        yaxis.labelFont = UIFont.systemFont(ofSize: 12)
         
         barChartView.rightAxis.enabled = false
     }

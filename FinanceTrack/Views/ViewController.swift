@@ -142,13 +142,13 @@ class ViewController: UIViewController {
             dataEntries.append(dataEntry)
         }
         
-        let chartDataSet = BarChartDataSet(entries: dataEntries, label: "Сумма за день")
+        let chartDataSet = BarChartDataSet(entries: dataEntries, label: "Траты за день")
         
         let noZeroFormatter = NumberFormatter()
         noZeroFormatter.zeroSymbol = ""
         chartDataSet.valueFormatter = DefaultValueFormatter(formatter: noZeroFormatter)
         
-        chartDataSet.colors = [UIColor(red: 230/255, green: 126/255, blue: 34/255, alpha: 1)]
+        chartDataSet.colors = [UIColor(red: 29/255, green: 177/255, blue: 193/255, alpha: 1)]
         
         let chartData = BarChartData(dataSet: chartDataSet)
         barChartView.notifyDataSetChanged()
@@ -173,9 +173,9 @@ class ViewController: UIViewController {
         legend.yEntrySpace = 0.0;
         
         let xaxis = barChartView.xAxis
-        xaxis.drawGridLinesEnabled = true
+        xaxis.drawGridLinesEnabled = false
         xaxis.labelPosition = .bottom
-        xaxis.axisLineColor = UIColor.white
+        xaxis.axisLineColor = UIColor.lightGray
         xaxis.granularityEnabled = true
         xaxis.enabled = true
         
@@ -188,6 +188,7 @@ class ViewController: UIViewController {
         yaxis.spaceTop = 0.35
         yaxis.axisMinimum = 10
         yaxis.drawGridLinesEnabled = false
+        yaxis.axisLineColor = UIColor.lightGray
         
         barChartView.rightAxis.enabled = false
     }

@@ -1034,6 +1034,64 @@
             </objects>
             <point key="canvasLocation" x="3184" y="-150"/>
         </scene>
+        <!--Category Expenses View Controller-->
+        <scene sceneID="ndf-ra-UtB">
+            <objects>
+                <viewController storyboardIdentifier="categoryExpenses" id="PIz-Vj-rOU" customClass="CategoryExpensesViewController" customModule="FinanceTrack" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jJ6-dq-YGp">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="796"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grO-Om-fkh" customClass="BarChartView" customModule="Charts">
+                                <rect key="frame" x="16" y="16" width="382" height="207"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="382" id="aJV-iO-Ehd"/>
+                                    <constraint firstAttribute="height" constant="207" id="jhN-9T-AXy"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="58" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1dA-R9-qEh">
+                                <rect key="frame" x="0.0" y="233" width="414" height="547"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="GVU-Uc-E6K">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="58"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GVU-Uc-E6K" id="OIU-8w-SM0" customClass="ExpenseTableViewCell" customModule="FinanceTrack" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="58"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="eKl-gz-gXY" id="1ZP-gj-rEe"/>
+                                    <outlet property="delegate" destination="eKl-gz-gXY" id="0cv-36-pu0"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="d1p-24-I8j"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="1dA-R9-qEh" firstAttribute="trailing" secondItem="d1p-24-I8j" secondAttribute="trailing" id="7oj-rk-hwh"/>
+                            <constraint firstItem="grO-Om-fkh" firstAttribute="leading" secondItem="d1p-24-I8j" secondAttribute="leading" constant="16" id="8m5-yb-s7L"/>
+                            <constraint firstAttribute="bottom" secondItem="1dA-R9-qEh" secondAttribute="bottom" constant="16" id="FLU-bl-JWu"/>
+                            <constraint firstItem="1dA-R9-qEh" firstAttribute="top" secondItem="grO-Om-fkh" secondAttribute="bottom" constant="10" id="P9y-Qc-olQ"/>
+                            <constraint firstItem="1dA-R9-qEh" firstAttribute="leading" secondItem="d1p-24-I8j" secondAttribute="leading" id="Qke-Os-wIV"/>
+                            <constraint firstItem="grO-Om-fkh" firstAttribute="top" secondItem="jJ6-dq-YGp" secondAttribute="top" constant="16" id="VNj-iN-TOl"/>
+                            <constraint firstItem="d1p-24-I8j" firstAttribute="trailing" secondItem="grO-Om-fkh" secondAttribute="trailing" constant="16" id="g69-MZ-LAV"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="414" height="796"/>
+                    <connections>
+                        <outlet property="barChartView" destination="grO-Om-fkh" id="vxA-Ed-17Y"/>
+                        <outlet property="expensesTableView" destination="1dA-R9-qEh" id="2Sx-dh-N8m"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o7z-cJ-8IJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3833" y="-137"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Dot" width="10" height="10"/>
@@ -1041,6 +1099,9 @@
         <image name="close-black-24dp" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tertiarySystemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

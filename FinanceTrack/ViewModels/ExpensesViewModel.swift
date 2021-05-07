@@ -9,7 +9,7 @@ class ExpensesViewModel {
     
     var expenses: GroupedExpenses {
         get {
-            repository.listGroupedByDate()
+            repository.listGroupedByDate(period: .allTime)
         }
     }
     
@@ -17,7 +17,7 @@ class ExpensesViewModel {
         repository.add(amount: amount, categoryId: categoryId, date: date, info: info)
     }
     
-    func getTotal(for period: Period) -> [TotalExpenseForDate]  {
-        return repository.getTotalForPeriod(period: period)
+    func getTotal(period: Period) -> [TotalExpenseForDate]  {
+        return repository.getTotal(period: period)
     }
 }

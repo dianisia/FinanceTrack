@@ -33,8 +33,32 @@ class RealmExpensesRepository: ExpensesRepository {
         }
     }
     
-    func listGroupedByDate() -> GroupedExpenses {
-        let expenses = listAll()
+    func listGroupedByDate(period: Period = .allTime) -> GroupedExpenses {
+        return groupByDate(
+            expenses: period == .allTime ? listAll() :
+                listAll().filter{ Helper.checkDateIsInPeriod(date: $0.date, period: period) }
+        )
+    }
+    
+    func listGroupedByDate(for categoryId: String, period: Period = .allTime) -> GroupedExpenses {
+        var expenses = listAll()
+            .filter { $0.category.categoryId == categoryId }
+        if (period != .allTime) {
+            expenses = expenses.filter{ Helper.checkDateIsInPeriod(date: $0.date, period: period) }
+        }
+        
+        return groupByDate(expenses: expenses)
+    }
+    
+    func getTotal(period: Period) -> [TotalExpenseForDate] {
+        return countTotalForDays(period: period, expenses: listGroupedByDate())
+    }
+    
+    func getTotal(period: Period, categoryId: String) -> [TotalExpenseForDate] {
+        return countTotalForDays(period: period, expenses: listGroupedByDate(for: categoryId))
+    }
+    
+    private func groupByDate(expenses: [Expense]) -> GroupedExpenses {
         var result: GroupedExpenses = [:]
         for expense in expenses {
             let currDate = expense.date
@@ -47,14 +71,13 @@ class RealmExpensesRepository: ExpensesRepository {
         return result
     }
     
-    func getTotalForPeriod(period: Period) -> [TotalExpenseForDate] {
+    private func countTotalForDays(period: Period, expenses: GroupedExpenses) -> [TotalExpenseForDate] {
         let periodItems: [Date] = Helper.getLastDays(for: period)
-        let allExpenses = listGroupedByDate()
         var result: [TotalExpenseForDate] = []
-      
+        
         for periodItem in periodItems {
             result.append(TotalExpenseForDate(
-                            amount: allExpenses.keys.contains(periodItem) ? allExpenses[periodItem]!.reduce(0) { $0 + Double($1.amount) } : 0.0,
+                            amount: expenses.keys.contains(periodItem) ? expenses[periodItem]!.reduce(0) { $0 + Double($1.amount) } : 0.0,
                             date: periodItem)
             )
         }

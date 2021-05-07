@@ -114,3 +114,75 @@ class CustomLabelsXAxisValueFormatter : NSObject, IAxisValueFormatter {
         return ""
     }
 }
+
+protocol BarChartDrawable {
+    var barChartView: BarChartView! { get set }
+    func customizeChart()
+    func setChartData(labels: [String], data: [Double])
+}
+
+extension BarChartDrawable {
+    func customizeChart() {
+        barChartView.noDataText = "No data"
+        //legend
+        let legend = barChartView.legend
+        legend.enabled = true
+        legend.horizontalAlignment = .right
+        legend.verticalAlignment = .top
+        legend.orientation = .vertical
+        legend.drawInside = true
+        legend.yEntrySpace = 0.0;
+        
+        let xaxis = barChartView.xAxis
+        xaxis.drawGridLinesEnabled = false
+        xaxis.labelPosition = .bottom
+        xaxis.axisLineColor = UIColor.lightGray
+        xaxis.granularityEnabled = true
+        xaxis.enabled = true
+        xaxis.labelFont = UIFont.systemFont(ofSize: 12)
+        
+        xaxis.granularity = 1
+        
+        let leftAxisFormatter = NumberFormatter()
+        leftAxisFormatter.maximumFractionDigits = 1
+        
+        let yaxis = barChartView.leftAxis
+        yaxis.spaceTop = 0.35
+        yaxis.axisMinimum = 10
+        yaxis.drawGridLinesEnabled = false
+        yaxis.axisLineColor = UIColor.lightGray
+        yaxis.labelFont = UIFont.systemFont(ofSize: 12)
+        
+        barChartView.rightAxis.enabled = false
+    }
+    
+    func setChartData(labels: [String], data: [Double]) {
+        barChartView.noDataText = "Нет данных для отображения"
+        var dataEntries: [BarChartDataEntry] = []
+        
+        for i in 0..<labels.count {
+            let dataEntry = BarChartDataEntry(x: Double(i), y: data[i])
+            dataEntries.append(dataEntry)
+        }
+        
+        let chartDataSet = BarChartDataSet(entries: dataEntries, label: "Траты за день")
+        chartDataSet.valueFont = UIFont.systemFont(ofSize: 12)
+        
+        let noZeroFormatter = NumberFormatter()
+        noZeroFormatter.zeroSymbol = ""
+        chartDataSet.valueFormatter = DefaultValueFormatter(formatter: noZeroFormatter)
+        
+        chartDataSet.colors = [UIColor(red: 29/255, green: 177/255, blue: 193/255, alpha: 1)]
+        
+        let chartData = BarChartData(dataSet: chartDataSet)
+        barChartView.notifyDataSetChanged()
+        barChartView.data = chartData
+        barChartView.backgroundColor = UIColor.white
+        barChartView.animate(xAxisDuration: 1.5, yAxisDuration: 1.5, easingOption: .linear)
+        let xaxis = barChartView.xAxis
+        let formatter = CustomLabelsXAxisValueFormatter()
+        formatter.labels = labels
+        xaxis.valueFormatter = formatter
+    }
+}
+

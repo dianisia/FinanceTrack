@@ -39,6 +39,8 @@
 		E49D3D0125C5C7900057C5A3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E49D3CFF25C5C7900057C5A3 /* LaunchScreen.storyboard */; };
 		E49D3D0F25C5CF0D0057C5A3 /* CategoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49D3D0E25C5CF0D0057C5A3 /* CategoriesTableViewCell.swift */; };
 		E4A7EE84264407E5001ABCF4 /* ExpenseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4A7EE83264407E5001ABCF4 /* ExpenseTableViewCell.xib */; };
+		E4A7EE882644445C001ABCF4 /* CategoryExpensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A7EE872644445C001ABCF4 /* CategoryExpensesViewController.swift */; };
+		E4A7EE8B26458A4C001ABCF4 /* CategoryExpensesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A7EE8A26458A4C001ABCF4 /* CategoryExpensesViewModel.swift */; };
 		E4B1294525DE1999004C82FF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B1294425DE1999004C82FF /* Constants.swift */; };
 		E4C0256925CBABFF0085AE40 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4C0256525CBABFF0085AE40 /* Poppins-Regular.ttf */; };
 		E4C0256A25CBABFF0085AE40 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4C0256625CBABFF0085AE40 /* Poppins-SemiBold.ttf */; };
@@ -84,6 +86,8 @@
 		E49D3D0225C5C7900057C5A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E49D3D0E25C5CF0D0057C5A3 /* CategoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewCell.swift; sourceTree = "<group>"; };
 		E4A7EE83264407E5001ABCF4 /* ExpenseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpenseTableViewCell.xib; sourceTree = "<group>"; };
+		E4A7EE872644445C001ABCF4 /* CategoryExpensesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryExpensesViewController.swift; sourceTree = "<group>"; };
+		E4A7EE8A26458A4C001ABCF4 /* CategoryExpensesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryExpensesViewModel.swift; sourceTree = "<group>"; };
 		E4B1294425DE1999004C82FF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E4C0256525CBABFF0085AE40 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		E4C0256625CBABFF0085AE40 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -127,6 +131,7 @@
 				E41DE3AF25FBF73B006B5D5D /* CategoriesViewModel.swift */,
 				E41DE3C025FD41AD006B5D5D /* ExpensesViewModel.swift */,
 				80D6BCC8D1909A55CACD0126 /* IncomesViewModel.swift */,
+				E4A7EE8A26458A4C001ABCF4 /* CategoryExpensesViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -142,6 +147,7 @@
 				E41DE3BA25FD3664006B5D5D /* AllExpensesViewController.swift */,
 				E46E496925E56C4C00903EAD /* NewExpenseViewController.swift */,
 				80D6B59B088CC095C9F6555B /* NewIncomeViewController.swift */,
+				E4A7EE872644445C001ABCF4 /* CategoryExpensesViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -376,6 +382,7 @@
 			files = (
 				E41DE3BE25FD3AEF006B5D5D /* ExpenseTableViewCell.swift in Sources */,
 				E41DE39825FAA46A006B5D5D /* Expense.swift in Sources */,
+				E4A7EE882644445C001ABCF4 /* CategoryExpensesViewController.swift in Sources */,
 				E41DE3C125FD41AD006B5D5D /* ExpensesViewModel.swift in Sources */,
 				E49D3CF925C5C78D0057C5A3 /* ViewController.swift in Sources */,
 				E485E76A25D992E8003850FA /* NewCategoryViewController.swift in Sources */,
@@ -398,6 +405,7 @@
 				E41DE3A025FAAFA7006B5D5D /* ExpensesRepository.swift in Sources */,
 				E4B1294525DE1999004C82FF /* Constants.swift in Sources */,
 				80D6B91E15ED8AC33A5515AC /* Income.swift in Sources */,
+				E4A7EE8B26458A4C001ABCF4 /* CategoryExpensesViewModel.swift in Sources */,
 				80D6B7C01E67E8D7564A308D /* IncomesRepository.swift in Sources */,
 				80D6BFCEEE3841B1E50F2BB3 /* RealmIncomesRepository.swift in Sources */,
 				80D6B92C7C2443457FB5205C /* IncomesViewModel.swift in Sources */,

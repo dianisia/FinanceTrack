@@ -14,6 +14,7 @@ class CategoryExpensesViewController: UIViewController, BarChartDrawable {
     
     private var graphData = GraphData(labels: [], data: [])
     private var expenses: GroupedExpenses = [:]
+    private var dates: [Date] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +29,9 @@ class CategoryExpensesViewController: UIViewController, BarChartDrawable {
     }
     
     func configure(with viewModel: CategoryExpensesViewModel) {
-        self.graphData = viewModel.prepareGraphData(period: .week)
-        self.expenses = viewModel.getExpensesForPeriod(period: .week)
+        graphData = viewModel.prepareGraphData(period: .week)
+        expenses = viewModel.getExpensesForPeriod(period: .week)
+        dates = Array(expenses.keys).sorted(by: <)
     }
 }
 
@@ -53,7 +55,7 @@ extension CategoryExpensesViewController: PanModalPresentable {
 
 extension CategoryExpensesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        Array(expenses)[section].value.count
+        expenses[dates[section]]?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -61,7 +63,7 @@ extension CategoryExpensesViewController: UITableViewDelegate, UITableViewDataSo
         if cell == nil {
             cell = ExpenseTableViewCell.createCell()!
         }
-        let currExpense: Expense = Array(expenses)[indexPath.section].value[indexPath.row]
+        let currExpense: Expense = expenses[dates[indexPath.section]]![indexPath.row]
         cell?.updateWith(
             expense: " \(currExpense.category.name) \(currExpense.info)",
             categoryColor: Helper
@@ -72,11 +74,11 @@ extension CategoryExpensesViewController: UITableViewDelegate, UITableViewDataSo
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return expenses.values.count
+        dates.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        Array(expenses)[section].key.monthDateFormate()
+        dates[section].monthDateFormate()
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {

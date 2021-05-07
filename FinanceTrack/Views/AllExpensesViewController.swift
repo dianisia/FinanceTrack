@@ -12,6 +12,7 @@ class AllExpensesViewController: UIViewController {
     private var expensesViewModel = ExpensesViewModel()
     private var categoriesViewModel = CategoriesViewModel()
     private var expenses: GroupedExpenses = [:]
+    private var dates: [Date] = []
     private var categories: [Category] = []
     @IBOutlet weak var expensesTableView: UITableView!
     
@@ -32,6 +33,7 @@ class AllExpensesViewController: UIViewController {
     
     func updateData() {
         expenses = expensesViewModel.expenses
+        dates = Array(expenses.keys).sorted(by: <)
         categories = categoriesViewModel.categories
         expensesTableView.reloadData()
     }
@@ -43,7 +45,7 @@ extension AllExpensesViewController: UITableViewDelegate, UITableViewDataSource 
         if cell == nil {
             cell = ExpenseTableViewCell.createCell()!
         }
-        let currExpense: Expense = Array(expenses)[indexPath.section].value[indexPath.row]
+        let currExpense: Expense = expenses[dates[indexPath.section]]![indexPath.row]
         cell?.updateWith(
             expense: " \(currExpense.category.name) \(currExpense.info)",
             categoryColor: Helper
@@ -54,15 +56,15 @@ extension AllExpensesViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        Array(expenses)[section].value.count
+        expenses[dates[section]]?.count ?? 0
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        expenses.keys.count
+        dates.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        Array(expenses)[section].key.monthDateFormate()
+        dates[section].monthDateFormate()
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {

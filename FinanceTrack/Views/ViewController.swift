@@ -8,7 +8,7 @@ struct GraphData {
     var data: [Double]
 }
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, BarChartDrawable {
     private var categories: [Category] = []
     private var currentBalance = 0
     private var categoriesViewModel = CategoriesViewModel()
@@ -30,19 +30,20 @@ class ViewController: UIViewController {
     var newExpenseVC: NewExpenseViewController!
     var allExpensesVC: AllExpensesViewController!
     var newIncomeVC: NewIncomeViewController!
+    var categoryExpensesVC: CategoryExpensesViewController!
     
     private var currentPeriod: Period = .week
     
     @IBAction func onShowNewExpensesTap(_ sender: Any) {
-        openAllExpensesPanel()
+        presentPanModal(allExpensesVC)
     }
     
     @IBAction func onAddNewIncomeTap(_ sender: Any) {
-        openNewIncomePanel()
+        presentPanModal(newIncomeVC)
     }
     
     @IBAction func onAddNewExpenseTap(_ sender: Any) {
-        openNewExpensePanel()
+        presentPanModal(newExpenseVC)
     }
     
     override func viewDidLoad() {
@@ -63,7 +64,7 @@ class ViewController: UIViewController {
     }
     
     func prepareGraphData(period: Period) -> GraphData {
-        let groupedData = expensesViewModel.getTotal(for: period)
+        let groupedData = expensesViewModel.getTotal(period: period)
         let data: [Double] = groupedData.map { $0.amount }
         return GraphData(labels: groupedData.map { $0.date.monthDateFormate() } , data: data)
     }
@@ -81,6 +82,8 @@ class ViewController: UIViewController {
         
         newIncomeVC = storyboard?.instantiateViewController(withIdentifier: "newIncome") as? NewIncomeViewController
         newIncomeVC.closePanel = updateIncomes
+        
+        categoryExpensesVC = storyboard?.instantiateViewController(withIdentifier: "categoryExpenses") as? CategoryExpensesViewController
     }
     
     @objc func segmentedControlValueChanged(_ sender: UISegmentedControl) {
@@ -96,22 +99,6 @@ class ViewController: UIViewController {
         }
         updateGraph()
         updateIncomes()
-    }
-    
-    func openNewCategoryPanel() {
-        
-    }
-    
-    func openNewIncomePanel() {
-        presentPanModal(newIncomeVC)
-    }
-    
-    func openNewExpensePanel() {
-        presentPanModal(newExpenseVC)
-    }
-    
-    func openAllExpensesPanel() {
-        presentPanModal(allExpensesVC)
     }
     
     func updateCategories() {
@@ -132,69 +119,6 @@ class ViewController: UIViewController {
             setChartData(labels: graphData.labels, data: graphData.data)
         }
     }
-    
-    private func setChartData(labels: [String], data: [Double]) {
-        barChartView.noDataText = "Нет данных для отображения"
-        var dataEntries: [BarChartDataEntry] = []
-        
-        for i in 0..<labels.count {
-            let dataEntry = BarChartDataEntry(x: Double(i), y: data[i])
-            dataEntries.append(dataEntry)
-        }
-        
-        let chartDataSet = BarChartDataSet(entries: dataEntries, label: "Траты за день")
-        chartDataSet.valueFont = UIFont.systemFont(ofSize: 12)
-        
-        let noZeroFormatter = NumberFormatter()
-        noZeroFormatter.zeroSymbol = ""
-        chartDataSet.valueFormatter = DefaultValueFormatter(formatter: noZeroFormatter)
-        
-        chartDataSet.colors = [UIColor(red: 29/255, green: 177/255, blue: 193/255, alpha: 1)]
-        
-        let chartData = BarChartData(dataSet: chartDataSet)
-        barChartView.notifyDataSetChanged()
-        barChartView.data = chartData
-        barChartView.backgroundColor = UIColor.white
-        barChartView.animate(xAxisDuration: 1.5, yAxisDuration: 1.5, easingOption: .linear)
-        let xaxis = barChartView.xAxis
-        let formatter = CustomLabelsXAxisValueFormatter()
-        formatter.labels = labels
-        xaxis.valueFormatter = formatter
-    }
-    
-    private func customizeChart() {
-        barChartView.noDataText = "No data"
-        //legend
-        let legend = barChartView.legend
-        legend.enabled = true
-        legend.horizontalAlignment = .right
-        legend.verticalAlignment = .top
-        legend.orientation = .vertical
-        legend.drawInside = true
-        legend.yEntrySpace = 0.0;
-        
-        let xaxis = barChartView.xAxis
-        xaxis.drawGridLinesEnabled = false
-        xaxis.labelPosition = .bottom
-        xaxis.axisLineColor = UIColor.lightGray
-        xaxis.granularityEnabled = true
-        xaxis.enabled = true
-        xaxis.labelFont = UIFont.systemFont(ofSize: 12)
-        
-        xaxis.granularity = 1
-        
-        let leftAxisFormatter = NumberFormatter()
-        leftAxisFormatter.maximumFractionDigits = 1
-        
-        let yaxis = barChartView.leftAxis
-        yaxis.spaceTop = 0.35
-        yaxis.axisMinimum = 10
-        yaxis.drawGridLinesEnabled = false
-        yaxis.axisLineColor = UIColor.lightGray
-        yaxis.labelFont = UIFont.systemFont(ofSize: 12)
-        
-        barChartView.rightAxis.enabled = false
-    }
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
@@ -207,5 +131,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         cell.categoryNameLabel.text = String(categories[indexPath.row].name)
         cell.iconBackUIView.backgroundColor = Helper.UIColorFromHex(rgbValue: UInt32(Constants.categoryColors[self.categories[indexPath.row].colorIndex]))
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        categoryExpensesVC.configure(with: CategoryExpensesViewModel(category: categories[indexPath.row]))
+        presentPanModal(categoryExpensesVC)
     }
 }

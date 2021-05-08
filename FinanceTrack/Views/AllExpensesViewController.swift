@@ -11,7 +11,7 @@ class AllExpensesViewController: UIViewController {
     
     private var expensesViewModel = ExpensesViewModel()
     private var categoriesViewModel = CategoriesViewModel()
-    private var expenses: GroupedExpenses = [:]
+    private var expenses: ExpensesForDate = [:]
     private var dates: [Date] = []
     private var categories: [Category] = []
     @IBOutlet weak var expensesTableView: UITableView!

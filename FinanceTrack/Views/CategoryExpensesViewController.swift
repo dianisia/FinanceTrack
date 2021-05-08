@@ -14,7 +14,7 @@ class CategoryExpensesViewController: UIViewController, BarChartDrawable {
     @IBOutlet weak var categoryNameLabel: UILabel!
     
     private var graphData = GraphData(labels: [], data: [])
-    private var expenses: GroupedExpenses = [:]
+    private var expenses: ExpensesForDate = [:]
     private var categoryName: String = ""
     private var dates: [Date] = []
     

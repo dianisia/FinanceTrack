@@ -7,10 +7,16 @@ protocol Expense {
     var info: String { get }
 }
 
-typealias GroupedExpenses = [Date: [Expense]]
+typealias ExpensesForDate = [Date: [Expense]]
+typealias ExpensesForCategory = [String: [Expense]]
 
 struct TotalExpenseForDate {
     var amount: Double
     var date: Date
+}
+
+struct TotalExpenseForCategoryAndPeriod {
+    var amount: Double
+    var category: Category
 }
 

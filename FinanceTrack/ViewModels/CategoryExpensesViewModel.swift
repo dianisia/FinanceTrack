@@ -9,13 +9,13 @@ class CategoryExpensesViewModel {
         self.category = category
     }
     
-    var expenses: GroupedExpenses {
+    var expenses: ExpensesForDate {
         get {
             repository.listGroupedByDate(for: category.categoryId, period: .allTime)
         }
     }
     
-    func getExpensesForPeriod(period: Period) -> GroupedExpenses {
+    func getExpensesForPeriod(period: Period) -> ExpensesForDate {
         repository.listGroupedByDate(for: category.categoryId, period: period)
     }
     

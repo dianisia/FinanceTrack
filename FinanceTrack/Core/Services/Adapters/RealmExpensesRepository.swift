@@ -33,14 +33,14 @@ class RealmExpensesRepository: ExpensesRepository {
         }
     }
     
-    func listGroupedByDate(period: Period = .allTime) -> GroupedExpenses {
+    func listGroupedByDate(period: Period = .allTime) -> ExpensesForDate {
         return groupByDate(
             expenses: period == .allTime ? listAll() :
                 listAll().filter{ Helper.checkDateIsInPeriod(date: $0.date, period: period) }
         )
     }
     
-    func listGroupedByDate(for categoryId: String, period: Period = .allTime) -> GroupedExpenses {
+    func listGroupedByDate(for categoryId: String, period: Period = .allTime) -> ExpensesForDate {
         var expenses = listAll()
             .filter { $0.category.categoryId == categoryId }
         if (period != .allTime) {
@@ -58,20 +58,11 @@ class RealmExpensesRepository: ExpensesRepository {
         return countTotalForDays(period: period, expenses: listGroupedByDate(for: categoryId))
     }
     
-    private func groupByDate(expenses: [Expense]) -> GroupedExpenses {
-        var result: GroupedExpenses = [:]
-        for expense in expenses {
-            let currDate = expense.date
-            if result.keys.contains(currDate) {
-                result[currDate]?.append(expense)
-            } else {
-                result[currDate] = [expense]
-            }
-        }
-        return result
+    private func groupByDate(expenses: [Expense]) -> ExpensesForDate {
+        return Dictionary(grouping: expenses, by: { $0.date })
     }
     
-    private func countTotalForDays(period: Period, expenses: GroupedExpenses) -> [TotalExpenseForDate] {
+    private func countTotalForDays(period: Period, expenses: ExpensesForDate) -> [TotalExpenseForDate] {
         let periodItems: [Date] = Helper.getLastDays(for: period)
         var result: [TotalExpenseForDate] = []
         

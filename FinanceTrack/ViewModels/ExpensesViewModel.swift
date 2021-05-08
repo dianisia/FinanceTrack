@@ -7,7 +7,7 @@ class ExpensesViewModel {
         repository = RealmExpensesRepository()
     }
     
-    var expenses: GroupedExpenses {
+    var expenses: ExpensesForDate {
         get {
             repository.listGroupedByDate(period: .allTime)
         }
@@ -20,4 +20,8 @@ class ExpensesViewModel {
     func getTotal(period: Period) -> [TotalExpenseForDate]  {
         return repository.getTotal(period: period)
     }
+    
+//    func getTotal(period: Period, category: Category) -> [TotalExpenseForCategoryAndPeriod] {
+//
+//    }
 }

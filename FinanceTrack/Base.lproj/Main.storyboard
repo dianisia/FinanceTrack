@@ -805,7 +805,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="58" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="euV-Pt-cf8">
-                                <rect key="frame" x="0.0" y="69" width="414" height="573"/>
+                                <rect key="frame" x="0.0" y="69" width="414" height="546"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="eKl-gz-gXY" id="hiy-M7-DsZ"/>
@@ -840,7 +840,7 @@
                             <constraint firstItem="DmK-Qq-jfS" firstAttribute="top" secondItem="Fif-Kn-y5Z" secondAttribute="top" constant="8" id="kZz-Xn-q7e"/>
                             <constraint firstItem="Zy0-3q-ozn" firstAttribute="leading" secondItem="PLF-Q4-KxW" secondAttribute="leading" constant="16" id="nLW-xO-InL"/>
                             <constraint firstItem="euV-Pt-cf8" firstAttribute="trailing" secondItem="PLF-Q4-KxW" secondAttribute="trailing" id="qp1-oB-fIH"/>
-                            <constraint firstItem="PLF-Q4-KxW" firstAttribute="bottom" secondItem="euV-Pt-cf8" secondAttribute="bottom" constant="58" id="weG-HE-zyq"/>
+                            <constraint firstItem="PLF-Q4-KxW" firstAttribute="bottom" secondItem="euV-Pt-cf8" secondAttribute="bottom" constant="85" id="weG-HE-zyq"/>
                             <constraint firstItem="Zy0-3q-ozn" firstAttribute="top" secondItem="Fif-Kn-y5Z" secondAttribute="top" constant="16" id="yDk-kN-nPU"/>
                         </constraints>
                     </view>
@@ -1043,7 +1043,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grO-Om-fkh" customClass="BarChartView" customModule="Charts">
-                                <rect key="frame" x="16" y="16" width="382" height="207"/>
+                                <rect key="frame" x="16" y="57" width="382" height="207"/>
                                 <color key="backgroundColor" systemColor="systemBlueColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="382" id="aJV-iO-Ehd"/>
@@ -1051,7 +1051,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="58" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1dA-R9-qEh">
-                                <rect key="frame" x="0.0" y="233" width="414" height="547"/>
+                                <rect key="frame" x="0.0" y="291" width="414" height="489"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="GVU-Uc-E6K">
@@ -1068,16 +1068,36 @@
                                     <outlet property="delegate" destination="eKl-gz-gXY" id="0cv-36-pu0"/>
                                 </connections>
                             </tableView>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Oc-c1-ilm">
+                                <rect key="frame" x="49.5" y="16" width="315" height="27"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ваши траты в категории " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1XP-Ss-RgJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="226" height="27"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="19"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qt3-vh-hyU">
+                                        <rect key="frame" x="226" y="0.0" width="89" height="27"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="19"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="d1p-24-I8j"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="grO-Om-fkh" firstAttribute="top" secondItem="3Oc-c1-ilm" secondAttribute="bottom" constant="14" id="0RI-1a-iGe"/>
                             <constraint firstItem="1dA-R9-qEh" firstAttribute="trailing" secondItem="d1p-24-I8j" secondAttribute="trailing" id="7oj-rk-hwh"/>
                             <constraint firstItem="grO-Om-fkh" firstAttribute="leading" secondItem="d1p-24-I8j" secondAttribute="leading" constant="16" id="8m5-yb-s7L"/>
+                            <constraint firstItem="3Oc-c1-ilm" firstAttribute="top" secondItem="jJ6-dq-YGp" secondAttribute="top" constant="16" id="B1O-A8-okt"/>
                             <constraint firstAttribute="bottom" secondItem="1dA-R9-qEh" secondAttribute="bottom" constant="16" id="FLU-bl-JWu"/>
-                            <constraint firstItem="1dA-R9-qEh" firstAttribute="top" secondItem="grO-Om-fkh" secondAttribute="bottom" constant="10" id="P9y-Qc-olQ"/>
+                            <constraint firstItem="3Oc-c1-ilm" firstAttribute="centerX" secondItem="jJ6-dq-YGp" secondAttribute="centerX" id="Ij0-Wk-3p8"/>
+                            <constraint firstItem="1dA-R9-qEh" firstAttribute="top" secondItem="grO-Om-fkh" secondAttribute="bottom" constant="27" id="P9y-Qc-olQ"/>
                             <constraint firstItem="1dA-R9-qEh" firstAttribute="leading" secondItem="d1p-24-I8j" secondAttribute="leading" id="Qke-Os-wIV"/>
-                            <constraint firstItem="grO-Om-fkh" firstAttribute="top" secondItem="jJ6-dq-YGp" secondAttribute="top" constant="16" id="VNj-iN-TOl"/>
+                            <constraint firstItem="3Oc-c1-ilm" firstAttribute="top" secondItem="jJ6-dq-YGp" secondAttribute="topMargin" constant="-28" id="V0m-qW-tAf"/>
                             <constraint firstItem="d1p-24-I8j" firstAttribute="trailing" secondItem="grO-Om-fkh" secondAttribute="trailing" constant="16" id="g69-MZ-LAV"/>
                         </constraints>
                     </view>
@@ -1085,12 +1105,13 @@
                     <size key="freeformSize" width="414" height="796"/>
                     <connections>
                         <outlet property="barChartView" destination="grO-Om-fkh" id="vxA-Ed-17Y"/>
+                        <outlet property="categoryNameLabel" destination="qt3-vh-hyU" id="pP0-wy-Mi6"/>
                         <outlet property="expensesTableView" destination="1dA-R9-qEh" id="2Sx-dh-N8m"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o7z-cJ-8IJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3833" y="-137"/>
+            <point key="canvasLocation" x="3831.884057971015" y="-137.27678571428569"/>
         </scene>
     </scenes>
     <resources>

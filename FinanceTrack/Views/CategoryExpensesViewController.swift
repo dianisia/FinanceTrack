@@ -11,9 +11,11 @@ class CategoryExpensesViewController: UIViewController, BarChartDrawable {
     
     @IBOutlet weak var barChartView: BarChartView!
     @IBOutlet weak var expensesTableView: UITableView!
+    @IBOutlet weak var categoryNameLabel: UILabel!
     
     private var graphData = GraphData(labels: [], data: [])
     private var expenses: GroupedExpenses = [:]
+    private var categoryName: String = ""
     private var dates: [Date] = []
     
     override func viewDidLoad() {
@@ -26,12 +28,14 @@ class CategoryExpensesViewController: UIViewController, BarChartDrawable {
     override func viewWillAppear(_ animated: Bool) {
         setChartData(labels: graphData.labels, data: graphData.data)
         expensesTableView.reloadData()
+        categoryNameLabel.text = categoryName
     }
     
     func configure(with viewModel: CategoryExpensesViewModel) {
         graphData = viewModel.prepareGraphData(period: .week)
         expenses = viewModel.getExpensesForPeriod(period: .week)
         dates = Array(expenses.keys).sorted(by: <)
+        categoryName = viewModel.getCategoryName()
     }
 }
 

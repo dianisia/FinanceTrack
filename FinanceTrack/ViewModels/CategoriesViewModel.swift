@@ -2,9 +2,7 @@ import Foundation
 
 class CategoriesViewModel {
     private var repository: CategoriesRepository
-    
-//    var onCategoryAdd
-    
+        
     init() {
         repository = RealmCategoriesRepository()
     }
@@ -20,6 +18,6 @@ class CategoriesViewModel {
     }
     
     func getColorForCategory(id: String) -> Int {
-        repository.getForId(categoryId: id).colorIndex
+        repository.getColor(id: id)
     }
 }

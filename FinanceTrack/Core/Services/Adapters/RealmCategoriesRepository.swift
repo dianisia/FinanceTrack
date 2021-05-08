@@ -38,6 +38,9 @@ class RealmCategoriesRepository: CategoriesRepository {
         try! realm.write {
            realm.add(category)
         }
-        
+    }
+    
+    func getColor(id: String) -> Int {
+        getForId(categoryId: id).colorIndex
     }
 }

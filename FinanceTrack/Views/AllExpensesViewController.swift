@@ -5,7 +5,7 @@ import DropDown
 class AllExpensesViewController: UIViewController {
     
     struct CurrConstants {
-        static let viewHeight: CGFloat = 600
+        static let viewHeight: CGFloat = 700
         static let viewMaxHeightWithTopInset: CGFloat = 40
     }
     

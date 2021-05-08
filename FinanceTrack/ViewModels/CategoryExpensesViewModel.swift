@@ -28,4 +28,8 @@ class CategoryExpensesViewModel {
         let data: [Double] = groupedData.map { $0.amount }
         return GraphData(labels: groupedData.map { $0.date.monthDateFormate() } , data: data)
     }
+    
+    func getCategoryName() -> String {
+        category.name
+    }
 }

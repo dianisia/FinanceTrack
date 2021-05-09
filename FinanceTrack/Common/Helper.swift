@@ -2,6 +2,13 @@ import Foundation
 import UIKit
 import Charts
 
+enum Period: Int {
+    case week = 7
+    case month = 30
+    case quarter = 90
+    case allTime = 100000
+}
+
 class Helper {
     static func UIColorFromHex(rgbValue:UInt32, alpha:Double=1.0)->UIColor {
         let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
@@ -20,62 +27,24 @@ class Helper {
     }
     
     static func getLastDays(for period: Period) -> [Date] {
-        switch period {
-        case .week:
-            return getLastWeekDays()
-        case .month:
-            return getLastMonthDays()
-        case .quarter:
-            return getLastQuarterDays()
-        default:
-            return getLastWeekDays()
-        }
-    }
-    
-    static func getLastWeekDays() -> [Date] {
         var days: [Date] = []
-        for i in (0...6).reversed() {
-            days.append(Date().getDateFor(days: -i)!.trimTime())
-        }
-        return days
-    }
-    
-    static func getLastMonthDays() -> [Date] {
-        var days: [Date] = []
-        for i in (0...29).reversed() {
-            days.append(Date().getDateFor(days: -i)!.trimTime())
-        }
-        return days
-    }
-    
-    static func getLastQuarterDays() -> [Date] {
-        var days: [Date] = []
-        for i in (0...90).reversed() {
+        for i in (0...period.rawValue-1).reversed() {
             days.append(Date().getDateFor(days: -i)!.trimTime())
         }
         return days
     }
     
     static func getDateInterval(period: Period) -> (start: Date, finish: Date) {
-        let start = Date().trimTime()
-        let finish: Date
-        switch period {
-        case .week:
-            finish = Date().getDateFor(days: -7)!.trimTime()
-        case .month:
-            finish = Date().getDateFor(days: -30)!.trimTime()
-        case .quarter:
-            finish = Date().getDateFor(days: -90)!.trimTime()
-        case .allTime:
-            finish = Date().getDateFor(days: -100000)!.trimTime()
-        }
-        return (start, finish)
+        return (
+            start: Date().trimTime(),
+            finish: Date().getDateFor(days: -period.rawValue)!.trimTime()
+        )
     }
 }
 
 extension Date {
     func getDateFor(days:Int) -> Date? {
-         return Calendar.current.date(byAdding: .day, value: days, to: Date())
+         Calendar.current.date(byAdding: .day, value: days, to: Date())
     }
     
     func monthDateFormate() -> String {
@@ -103,13 +72,6 @@ extension Double {
         formatter.maximumFractionDigits = 16
         return String(formatter.string(from: number) ?? "")
     }
-}
-
-enum Period {
-    case week
-    case month
-    case quarter
-    case allTime
 }
 
 class CustomLabelsXAxisValueFormatter : NSObject, IAxisValueFormatter {

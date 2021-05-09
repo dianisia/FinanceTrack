@@ -21,6 +21,12 @@ class RealmExpensesRepository: ExpensesRepository {
         return Array(realm.objects(RealmExpense.self))
     }
     
+    func listAll(period: Period) -> [Expense] {
+        let realm = try! Realm()
+        let interval = Helper.getDateInterval(period: .week)
+        return Array(realm.objects(RealmExpense.self).filter("_date BETWEEN %@", [interval.finish, interval.start]))
+    }
+        
     func add(amount: Int, categoryId: String, date: Date, info: String) {
         let realm = try! Realm()
         let expense = RealmExpense()
@@ -34,43 +40,37 @@ class RealmExpensesRepository: ExpensesRepository {
     }
     
     func listGroupedByDate(period: Period = .allTime) -> ExpensesForDate {
-        return groupByDate(
-            expenses: period == .allTime ? listAll() :
-                listAll().filter{ Helper.checkDateIsInPeriod(date: $0.date, period: period) }
-        )
+        groupByDate(expenses: listAll(period: period))
     }
     
     func listGroupedByDate(for categoryId: String, period: Period = .allTime) -> ExpensesForDate {
-        var expenses = listAll()
+        let expenses = listAll(period: period)
             .filter { $0.category.categoryId == categoryId }
-        if (period != .allTime) {
-            expenses = expenses.filter{ Helper.checkDateIsInPeriod(date: $0.date, period: period) }
-        }
-        
         return groupByDate(expenses: expenses)
     }
     
     
     func getTotalForDate(period: Period) -> [TotalExpenseForDate] {
-        return countTotalForDays(period: period, expenses: listGroupedByDate())
+        countTotalForDays(period: period, expenses: listGroupedByDate())
     }
     
     func getTotalForDate(period: Period, categoryId: String) -> [TotalExpenseForDate] {
-        return countTotalForDays(period: period, expenses: listGroupedByDate(for: categoryId))
+        countTotalForDays(period: period, expenses: listGroupedByDate(for: categoryId))
     }
     
     func getTotalForCategory(period: Period) -> [TotalExpenseForCategory] {
-        let expenses = period == .allTime ? listAll() :
-            listAll().filter{ Helper.checkDateIsInPeriod(date: $0.date, period: period) }
+        let expenses = listAll(period: period)
         return countTotalForCategories(expenses: groupByCategory(expenses: expenses))
     }
     
+    // Private
+    
     private func groupByDate(expenses: [Expense]) -> ExpensesForDate {
-        return Dictionary(grouping: expenses, by: { $0.date })
+        Dictionary(grouping: expenses, by: { $0.date })
     }
     
     private func groupByCategory(expenses: [Expense]) -> ExpensesForCategory {
-        return Dictionary(grouping: expenses, by: { $0.category.categoryId })
+        Dictionary(grouping: expenses, by: { $0.category.categoryId })
     }
     
     private func countTotalForDays(period: Period, expenses: ExpensesForDate) -> [TotalExpenseForDate] {

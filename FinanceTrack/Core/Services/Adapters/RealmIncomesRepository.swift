@@ -17,6 +17,12 @@ class RealmIncomesRepository: IncomesRepository {
         return Array(realm.objects(RealmIncome.self))
     }
     
+    func listAll(period: Period) -> [Income] {
+        let realm = try! Realm()
+        let interval = Helper.getDateInterval(period: .week)
+        return Array(realm.objects(RealmIncome.self).filter("_date BETWEEN %@", [interval.finish, interval.start]))
+    }
+    
     func add(amount: Int, date: Date) {
         let realm = try! Realm()
         let income = RealmIncome()
@@ -28,8 +34,6 @@ class RealmIncomesRepository: IncomesRepository {
     }
     
     func getTotal(for period: Period) -> Double {
-        listAll()
-            .filter{ Helper.checkDateIsInPeriod(date: $0.date, period: period) }
-            .reduce(0) { $0 + Double($1.amount) }
+        listAll(period: period).reduce(0) { $0 + Double($1.amount) }
     }
 }

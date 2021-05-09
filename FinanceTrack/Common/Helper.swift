@@ -56,9 +56,20 @@ class Helper {
         return days
     }
     
-    static func checkDateIsInPeriod(date: Date, period: Period) -> Bool {
-        let lastDays = getLastDays(for: period)
-        return date <= lastDays[lastDays.count - 1] && date >= lastDays[0]
+    static func getDateInterval(period: Period) -> (start: Date, finish: Date) {
+        let start = Date().trimTime()
+        let finish: Date
+        switch period {
+        case .week:
+            finish = Date().getDateFor(days: -7)!.trimTime()
+        case .month:
+            finish = Date().getDateFor(days: -30)!.trimTime()
+        case .quarter:
+            finish = Date().getDateFor(days: -90)!.trimTime()
+        case .allTime:
+            finish = Date().getDateFor(days: -100000)!.trimTime()
+        }
+        return (start, finish)
     }
 }
 

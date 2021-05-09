@@ -23,7 +23,7 @@ class RealmExpensesRepository: ExpensesRepository {
     
     func listAll(period: Period) -> [Expense] {
         let realm = try! Realm()
-        let interval = Helper.getDateInterval(period: .week)
+        let interval = Helper.getDateInterval(period: period)
         return Array(realm.objects(RealmExpense.self).filter("_date BETWEEN %@", [interval.finish, interval.start]))
     }
         
@@ -40,27 +40,25 @@ class RealmExpensesRepository: ExpensesRepository {
     }
     
     func listGroupedByDate(period: Period = .allTime) -> ExpensesForDate {
-        groupByDate(expenses: listAll(period: period))
+        return groupByDate(expenses: listAll(period: period))
     }
     
     func listGroupedByDate(for categoryId: String, period: Period = .allTime) -> ExpensesForDate {
-        let expenses = listAll(period: period)
-            .filter { $0.category.categoryId == categoryId }
+        let expenses = listAll(period: period).filter { $0.category.categoryId == categoryId }
         return groupByDate(expenses: expenses)
     }
     
     
     func getTotalForDate(period: Period) -> [TotalExpenseForDate] {
-        countTotalForDays(period: period, expenses: listGroupedByDate())
+        countTotalForDays(period: period, expenses: listGroupedByDate(period: period))
     }
     
     func getTotalForDate(period: Period, categoryId: String) -> [TotalExpenseForDate] {
-        countTotalForDays(period: period, expenses: listGroupedByDate(for: categoryId))
+        countTotalForDays(period: period, expenses: listGroupedByDate(for: categoryId, period: period))
     }
     
     func getTotalForCategory(period: Period) -> [TotalExpenseForCategory] {
-        let expenses = listAll(period: period)
-        return countTotalForCategories(expenses: groupByCategory(expenses: expenses))
+        countTotalForCategories(expenses: groupByCategory(expenses: listAll(period: period)))
     }
     
     // Private
@@ -94,6 +92,6 @@ class RealmExpensesRepository: ExpensesRepository {
                             category: expenses[category]![0].category)
             )
         }
-        return result.sorted(by: { $0.amount < $1.amount })
+        return result.sorted(by: { $0.amount > $1.amount })
     }
 }

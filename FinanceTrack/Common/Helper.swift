@@ -3,9 +3,9 @@ import UIKit
 import Charts
 
 enum Period: Int {
-    case week = 7
-    case month = 30
-    case quarter = 90
+    case week = 6
+    case month = 29
+    case quarter = 89
     case allTime = 100000
 }
 
@@ -28,7 +28,7 @@ class Helper {
     
     static func getLastDays(for period: Period) -> [Date] {
         var days: [Date] = []
-        for i in (0...period.rawValue-1).reversed() {
+        for i in (0...period.rawValue).reversed() {
             days.append(Date().getDateFor(days: -i)!.trimTime())
         }
         return days

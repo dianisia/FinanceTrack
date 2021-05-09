@@ -24,4 +24,5 @@ class ExpensesViewModel {
     func getTotalForCategory(period: Period) -> [TotalExpenseForCategory] {
         return repository.getTotalForCategory(period: period)
     }
+    
 }

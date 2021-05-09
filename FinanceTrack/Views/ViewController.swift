@@ -19,6 +19,7 @@ class ViewController: UIViewController, BarChartDrawable {
     @IBOutlet weak var totalIncomeLabel: UILabel!
     @IBOutlet weak var currentBalanceLabel: UILabel!
     @IBOutlet weak var incomeView: UIView!
+    @IBOutlet weak var showExpensesButton: UIButton!
     @IBOutlet weak var addIncomeButton: UIButton!
     @IBOutlet weak var addExpenseButton: UIButton!
     @IBOutlet weak var barChartView: BarChartView!
@@ -56,9 +57,10 @@ class ViewController: UIViewController, BarChartDrawable {
         periodsSegmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: .valueChanged)
         
         currentBalanceLabel.text = "100500"
-        categories = expensesViewModel.getTotalForCategory(period: currentPeriod)
+        
         initViews()
         updateIncomes()
+        updateCategories()
         customizeChart()
         updateGraph()
     }
@@ -105,6 +107,7 @@ class ViewController: UIViewController, BarChartDrawable {
     func updateCategories() {
         categories = expensesViewModel.getTotalForCategory(period: currentPeriod)
         categoriesTableView.reloadData()
+        showExpensesButton.isHidden = categories.count == 0
     }
     
     func updateIncomes() {

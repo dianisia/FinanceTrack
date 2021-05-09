@@ -333,6 +333,7 @@
                         <outlet property="incomeStartDateLabel" destination="8xb-gX-Pu8" id="KDp-Jj-3DH"/>
                         <outlet property="incomeView" destination="biV-dl-5BG" id="iC9-lY-igg"/>
                         <outlet property="periodsSegmentedControl" destination="4o1-3J-21A" id="kpH-mY-nPt"/>
+                        <outlet property="showExpensesButton" destination="Eql-lQ-u02" id="8wF-NY-3tv"/>
                         <outlet property="totalIncomeLabel" destination="aUq-oO-urD" id="iVB-ca-Csk"/>
                     </connections>
                 </viewController>
@@ -1008,14 +1009,14 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="58" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1dA-R9-qEh">
-                                <rect key="frame" x="0.0" y="291" width="414" height="489"/>
+                                <rect key="frame" x="16" y="291" width="382" height="489"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="GVU-Uc-E6K">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="58"/>
+                                        <rect key="frame" x="0.0" y="28" width="382" height="58"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GVU-Uc-E6K" id="OIU-8w-SM0" customClass="ExpenseTableViewCell" customModule="FinanceTrack" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="58"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="382" height="58"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1047,15 +1048,15 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="grO-Om-fkh" firstAttribute="top" secondItem="3Oc-c1-ilm" secondAttribute="bottom" constant="14" id="0RI-1a-iGe"/>
-                            <constraint firstItem="1dA-R9-qEh" firstAttribute="trailing" secondItem="d1p-24-I8j" secondAttribute="trailing" id="7oj-rk-hwh"/>
                             <constraint firstItem="grO-Om-fkh" firstAttribute="leading" secondItem="d1p-24-I8j" secondAttribute="leading" constant="16" id="8m5-yb-s7L"/>
                             <constraint firstItem="3Oc-c1-ilm" firstAttribute="top" secondItem="jJ6-dq-YGp" secondAttribute="top" constant="16" id="B1O-A8-okt"/>
+                            <constraint firstAttribute="trailing" secondItem="1dA-R9-qEh" secondAttribute="trailing" constant="16" id="B38-Gb-Y5N"/>
                             <constraint firstAttribute="bottom" secondItem="1dA-R9-qEh" secondAttribute="bottom" constant="16" id="FLU-bl-JWu"/>
                             <constraint firstItem="3Oc-c1-ilm" firstAttribute="centerX" secondItem="jJ6-dq-YGp" secondAttribute="centerX" id="Ij0-Wk-3p8"/>
                             <constraint firstItem="1dA-R9-qEh" firstAttribute="top" secondItem="grO-Om-fkh" secondAttribute="bottom" constant="27" id="P9y-Qc-olQ"/>
-                            <constraint firstItem="1dA-R9-qEh" firstAttribute="leading" secondItem="d1p-24-I8j" secondAttribute="leading" id="Qke-Os-wIV"/>
                             <constraint firstItem="3Oc-c1-ilm" firstAttribute="top" secondItem="jJ6-dq-YGp" secondAttribute="topMargin" constant="-28" id="V0m-qW-tAf"/>
                             <constraint firstItem="d1p-24-I8j" firstAttribute="trailing" secondItem="grO-Om-fkh" secondAttribute="trailing" constant="16" id="g69-MZ-LAV"/>
+                            <constraint firstItem="1dA-R9-qEh" firstAttribute="leading" secondItem="d1p-24-I8j" secondAttribute="leading" constant="16" id="id4-MD-s8U"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

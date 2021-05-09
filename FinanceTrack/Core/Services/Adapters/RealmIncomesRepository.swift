@@ -19,7 +19,7 @@ class RealmIncomesRepository: IncomesRepository {
     
     func listAll(period: Period) -> [Income] {
         let realm = try! Realm()
-        let interval = Helper.getDateInterval(period: .week)
+        let interval = Helper.getDateInterval(period: period)
         return Array(realm.objects(RealmIncome.self).filter("_date BETWEEN %@", [interval.finish, interval.start]))
     }
     

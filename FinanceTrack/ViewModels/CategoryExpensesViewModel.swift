@@ -20,7 +20,7 @@ class CategoryExpensesViewModel {
     }
     
     func getTotal(period: Period) -> [TotalExpenseForDate]  {
-        return repository.getTotal(period: period, categoryId: self.category.categoryId)
+        return repository.getTotalForDate(period: period, categoryId: self.category.categoryId)
     }
     
     func prepareGraphData(period: Period) -> GraphData {

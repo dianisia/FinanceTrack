@@ -15,6 +15,10 @@ class Helper {
         "\(amount) ₽"
     }
     
+    static func formateExpense(amount: Double) -> String {
+        "\(amount.removeZerosFromEnd()) ₽"
+    }
+    
     static func getLastDays(for period: Period) -> [Date] {
         switch period {
         case .week:

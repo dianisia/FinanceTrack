@@ -50,16 +50,27 @@ class RealmExpensesRepository: ExpensesRepository {
         return groupByDate(expenses: expenses)
     }
     
-    func getTotal(period: Period) -> [TotalExpenseForDate] {
+    
+    func getTotalForDate(period: Period) -> [TotalExpenseForDate] {
         return countTotalForDays(period: period, expenses: listGroupedByDate())
     }
     
-    func getTotal(period: Period, categoryId: String) -> [TotalExpenseForDate] {
+    func getTotalForDate(period: Period, categoryId: String) -> [TotalExpenseForDate] {
         return countTotalForDays(period: period, expenses: listGroupedByDate(for: categoryId))
+    }
+    
+    func getTotalForCategory(period: Period) -> [TotalExpenseForCategory] {
+        let expenses = period == .allTime ? listAll() :
+            listAll().filter{ Helper.checkDateIsInPeriod(date: $0.date, period: period) }
+        return countTotalForCategories(expenses: groupByCategory(expenses: expenses))
     }
     
     private func groupByDate(expenses: [Expense]) -> ExpensesForDate {
         return Dictionary(grouping: expenses, by: { $0.date })
+    }
+    
+    private func groupByCategory(expenses: [Expense]) -> ExpensesForCategory {
+        return Dictionary(grouping: expenses, by: { $0.category.categoryId })
     }
     
     private func countTotalForDays(period: Period, expenses: ExpensesForDate) -> [TotalExpenseForDate] {
@@ -72,7 +83,17 @@ class RealmExpensesRepository: ExpensesRepository {
                             date: periodItem)
             )
         }
-        result = result.sorted(by: { $0.date < $1.date })
-        return result
+        return result.sorted(by: { $0.date < $1.date })
+    }
+    
+    private func countTotalForCategories(expenses: ExpensesForCategory) -> [TotalExpenseForCategory] {
+        var result: [TotalExpenseForCategory] = []
+        for category in expenses.keys {
+            result.append(TotalExpenseForCategory(
+                            amount: expenses.keys.contains(category) ? expenses[category]!.reduce(0) { $0 + Double($1.amount) } : 0.0,
+                            category: expenses[category]![0].category)
+            )
+        }
+        return result.sorted(by: { $0.amount < $1.amount })
     }
 }

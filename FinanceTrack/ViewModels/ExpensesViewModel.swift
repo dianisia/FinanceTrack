@@ -17,11 +17,11 @@ class ExpensesViewModel {
         repository.add(amount: amount, categoryId: categoryId, date: date, info: info)
     }
     
-    func getTotal(period: Period) -> [TotalExpenseForDate]  {
-        return repository.getTotal(period: period)
+    func getTotalForDate(period: Period) -> [TotalExpenseForDate]  {
+        return repository.getTotalForDate(period: period)
     }
     
-//    func getTotal(period: Period, category: Category) -> [TotalExpenseForCategoryAndPeriod] {
-//
-//    }
+    func getTotalForCategory(period: Period) -> [TotalExpenseForCategory] {
+        return repository.getTotalForCategory(period: period)
+    }
 }

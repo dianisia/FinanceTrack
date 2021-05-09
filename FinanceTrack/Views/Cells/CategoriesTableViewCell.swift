@@ -4,6 +4,7 @@ class CategoriesTableViewCell: UITableViewCell {
 
     @IBOutlet weak var categoryNameLabel: UILabel!
     @IBOutlet weak var iconBackUIView: UIView!
+    @IBOutlet weak var expenseAmountLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -9,7 +9,7 @@ struct GraphData {
 }
 
 class ViewController: UIViewController, BarChartDrawable {
-    private var categories: [Category] = []
+    private var categories: [TotalExpenseForCategory] = []
     private var currentBalance = 0
     private var categoriesViewModel = CategoriesViewModel()
     private var expensesViewModel = ExpensesViewModel()
@@ -56,7 +56,7 @@ class ViewController: UIViewController, BarChartDrawable {
         periodsSegmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: .valueChanged)
         
         currentBalanceLabel.text = "100500"
-        self.categories = categoriesViewModel.categories
+        categories = expensesViewModel.getTotalForCategory(period: currentPeriod)
         initViews()
         updateIncomes()
         customizeChart()
@@ -64,7 +64,7 @@ class ViewController: UIViewController, BarChartDrawable {
     }
     
     func prepareGraphData(period: Period) -> GraphData {
-        let groupedData = expensesViewModel.getTotal(period: period)
+        let groupedData = expensesViewModel.getTotalForDate(period: period)
         let data: [Double] = groupedData.map { $0.amount }
         return GraphData(labels: groupedData.map { $0.date.monthDateFormate() } , data: data)
     }
@@ -99,10 +99,11 @@ class ViewController: UIViewController, BarChartDrawable {
         }
         updateGraph()
         updateIncomes()
+        updateCategories()
     }
     
     func updateCategories() {
-        categories = categoriesViewModel.categories
+        categories = expensesViewModel.getTotalForCategory(period: currentPeriod)
         categoriesTableView.reloadData()
     }
     
@@ -127,14 +128,20 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell") as! CategoriesTableViewCell
-        cell.categoryNameLabel.text = String(categories[indexPath.row].name)
-        cell.iconBackUIView.backgroundColor = Helper.UIColorFromHex(rgbValue: UInt32(Constants.categoryColors[self.categories[indexPath.row].colorIndex]))
-        return cell
+        var cell = tableView.dequeueReusableCell(withIdentifier: "expenseCell") as? ExpenseTableViewCell
+        if cell == nil {
+            cell = ExpenseTableViewCell.createCell()!
+        }
+        let category = categories[indexPath.row].category
+        cell?.updateWith(
+            expense: category.name,
+            categoryColor: Helper.UIColorFromHex(rgbValue: UInt32(Constants.categoryColors[category.colorIndex])),
+            amount: Int(categories[indexPath.row].amount))
+        return cell!
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        categoryExpensesVC.configure(with: CategoryExpensesViewModel(category: categories[indexPath.row]))
+        categoryExpensesVC.configure(with: CategoryExpensesViewModel(category: categories[indexPath.row].category))
         presentPanModal(categoryExpensesVC)
     }
 }

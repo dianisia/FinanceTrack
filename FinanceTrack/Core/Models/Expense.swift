@@ -15,7 +15,7 @@ struct TotalExpenseForDate {
     var date: Date
 }
 
-struct TotalExpenseForCategoryAndPeriod {
+struct TotalExpenseForCategory {
     var amount: Double
     var category: Category
 }

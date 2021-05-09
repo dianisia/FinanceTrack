@@ -15,23 +15,33 @@
                 <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Target" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K7F-sd-T1T">
-                        <rect key="frame" x="70" y="24.5" width="164" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K7F-sd-T1T">
+                        <rect key="frame" x="49" y="23" width="164" height="24"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="164" id="0j5-nM-GfH"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
+                        <attributedString key="attributedText">
+                            <fragment content="Target">
+                                <attributes>
+                                    <font key="NSFont" size="17" name="Poppins-SemiBold"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e9v-BF-48u">
-                        <rect key="frame" x="336" y="24.5" width="58" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e9v-BF-48u">
+                        <rect key="frame" x="343" y="23" width="68" height="24"/>
+                        <attributedString key="attributedText">
+                            <fragment content="amount">
+                                <attributes>
+                                    <font key="NSFont" size="17" name="Poppins-Regular"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mhI-Uh-Za5">
-                        <rect key="frame" x="20" y="15" width="40" height="40"/>
+                        <rect key="frame" x="1" y="15" width="40" height="40"/>
                         <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="3Ql-Ah-c4l"/>
@@ -42,14 +52,14 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="K7F-sd-T1T" firstAttribute="leading" secondItem="mhI-Uh-Za5" secondAttribute="trailing" constant="10" id="8IP-KX-r4W"/>
-                    <constraint firstAttribute="trailing" secondItem="e9v-BF-48u" secondAttribute="trailing" constant="20" symbolic="YES" id="TQi-kz-Fyj"/>
+                    <constraint firstItem="K7F-sd-T1T" firstAttribute="leading" secondItem="mhI-Uh-Za5" secondAttribute="trailing" constant="8" id="8IP-KX-r4W"/>
+                    <constraint firstAttribute="trailing" secondItem="e9v-BF-48u" secondAttribute="trailing" constant="3" id="TQi-kz-Fyj"/>
                     <constraint firstItem="K7F-sd-T1T" firstAttribute="centerY" secondItem="tZP-fb-JW5" secondAttribute="centerY" id="XC6-KW-BOm"/>
                     <constraint firstItem="K7F-sd-T1T" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="mhI-Uh-Za5" secondAttribute="trailing" constant="8" symbolic="YES" id="a1R-ZR-c6P"/>
                     <constraint firstItem="e9v-BF-48u" firstAttribute="centerY" secondItem="tZP-fb-JW5" secondAttribute="centerY" id="iUT-T7-et3"/>
-                    <constraint firstItem="mhI-Uh-Za5" firstAttribute="leading" secondItem="tZP-fb-JW5" secondAttribute="leadingMargin" id="lcD-pV-pk6"/>
+                    <constraint firstItem="mhI-Uh-Za5" firstAttribute="leading" secondItem="tZP-fb-JW5" secondAttribute="leadingMargin" constant="-19" id="lcD-pV-pk6"/>
                     <constraint firstItem="mhI-Uh-Za5" firstAttribute="centerY" secondItem="K7F-sd-T1T" secondAttribute="centerY" id="loH-vQ-fQ3"/>
-                    <constraint firstItem="e9v-BF-48u" firstAttribute="trailing" secondItem="tZP-fb-JW5" secondAttribute="trailingMargin" id="uVK-da-GH4"/>
+                    <constraint firstItem="e9v-BF-48u" firstAttribute="trailing" secondItem="tZP-fb-JW5" secondAttribute="trailingMargin" constant="17" id="uVK-da-GH4"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

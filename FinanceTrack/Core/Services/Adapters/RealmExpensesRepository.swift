@@ -2,14 +2,14 @@ import Foundation
 import RealmSwift
 
 class RealmExpense: Object {
-    @objc dynamic var _amount = 0
+    @objc dynamic var _amount = 0.0
     @objc dynamic var _category: RealmCategory?
     @objc dynamic var _date = Date()
     @objc dynamic var _info = ""
 }
 
 extension RealmExpense: Expense {
-    var amount: Int { return _amount }
+    var amount: Double { return _amount }
     var category: Category { return _category ?? RealmCategory() } //TODO
     var date: Date { return _date }
     var info: String { return _info }
@@ -27,7 +27,7 @@ class RealmExpensesRepository: ExpensesRepository {
         return Array(realm.objects(RealmExpense.self).filter("_date BETWEEN %@", [interval.finish, interval.start]))
     }
         
-    func add(amount: Int, categoryId: String, date: Date, info: String) {
+    func add(amount: Double, categoryId: String, date: Date, info: String) {
         let realm = try! Realm()
         let expense = RealmExpense()
         expense._amount = amount

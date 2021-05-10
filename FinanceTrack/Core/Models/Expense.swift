@@ -1,7 +1,7 @@
 import Foundation
 
 protocol Expense {
-    var amount: Int { get }
+    var amount: Double { get }
     var category: Category { get }
     var date: Date { get }
     var info: String { get }

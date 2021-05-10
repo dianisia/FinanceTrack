@@ -11,9 +11,11 @@ struct GraphData {
 class ViewController: UIViewController, BarChartDrawable {
     private var categories: [TotalExpenseForCategory] = []
     private var currentBalance = 0
+    
     private var categoriesViewModel = CategoriesViewModel()
     private var expensesViewModel = ExpensesViewModel()
     private var incomesViewModel = IncomesViewModel()
+    private var balanceViewModel = BalanceViewModel()
     
     @IBOutlet weak var categoriesTableView: UITableView!
     @IBOutlet weak var totalIncomeLabel: UILabel!
@@ -53,16 +55,14 @@ class ViewController: UIViewController, BarChartDrawable {
         addIncomeButton.layer.cornerRadius = 8
         addExpenseButton.layer.cornerRadius = 8
         currentPeriod = .week
-        
         periodsSegmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: .valueChanged)
-        
-        currentBalanceLabel.text = "100500"
         
         initViews()
         updateIncomes()
         updateCategories()
         customizeChart()
         updateGraph()
+        updateCurrentBalance()
     }
     
     func prepareGraphData(period: Period) -> GraphData {
@@ -76,6 +76,7 @@ class ViewController: UIViewController, BarChartDrawable {
         newExpenseVC.closePanel = { [weak self] in
             self?.updateCategories()
             self?.updateGraph()
+            self?.updateCurrentBalance()
         }
         
         newCategoryVC = storyboard?.instantiateViewController(withIdentifier: "newCategory") as? NewCategoryViewController
@@ -104,24 +105,29 @@ class ViewController: UIViewController, BarChartDrawable {
         updateCategories()
     }
     
-    func updateCategories() {
+    private func updateCategories() {
         categories = expensesViewModel.getTotalForCategory(period: currentPeriod)
         categoriesTableView.reloadData()
         showExpensesButton.isHidden = categories.count == 0
     }
     
-    func updateIncomes() {
+    private func updateIncomes() {
         totalIncomeLabel.text = String(incomesViewModel.getTotal(for: currentPeriod).removeZerosFromEnd())
         let periods = Helper.getLastDays(for: currentPeriod)
         incomeStartDateLabel.text = String(periods[0].monthDateFormate())
         incomeFinishDateLabel.text = String(periods[periods.count-1].monthDateFormate())
+        updateCurrentBalance()
     }
     
-    func updateGraph() {
+    private func updateGraph() {
         let graphData = prepareGraphData(period: currentPeriod)
         if (graphData.data.count > 0) {
             setChartData(labels: graphData.labels, data: graphData.data)
         }
+    }
+    
+    private func updateCurrentBalance() {
+        currentBalanceLabel.text = Helper.formateExpense(amount: balanceViewModel.get())
     }
 }
 
@@ -139,7 +145,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         cell?.updateWith(
             expense: category.name,
             categoryColor: Helper.UIColorFromHex(rgbValue: UInt32(Constants.categoryColors[category.colorIndex])),
-            amount: Int(categories[indexPath.row].amount))
+            amount: categories[indexPath.row].amount)
         return cell!
     }
     

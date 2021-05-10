@@ -42,7 +42,7 @@ class NewIncomeViewController: UIViewController {
     
     @IBAction func onAddIncome(_ sender: Any) {
         let date = datePicker.date
-        incomesViewModel.addNewIncome(amount: Int(incomeTextInput.text ?? "") ?? 0, date: date)
+        incomesViewModel.addNewIncome(amount: Double(incomeTextInput.text ?? "") ?? 0, date: date)
         closePanel?()
     }
     

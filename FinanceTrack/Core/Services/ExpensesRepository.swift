@@ -4,7 +4,7 @@ protocol ExpensesRepository {
     func listAll() -> [Expense]
     func listAll(period: Period) -> [Expense]
     
-    func add(amount: Int, categoryId: String, date: Date, info: String)
+    func add(amount: Double, categoryId: String, date: Date, info: String)
     
     func listGroupedByDate(period: Period) -> ExpensesForDate
     func listGroupedByDate(for categoryId: String, period: Period) -> ExpensesForDate

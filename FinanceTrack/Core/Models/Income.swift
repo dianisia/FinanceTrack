@@ -1,6 +1,6 @@
 import Foundation
 
 protocol Income {
-    var amount: Int { get }
+    var amount: Double { get }
     var date: Date { get }
 }

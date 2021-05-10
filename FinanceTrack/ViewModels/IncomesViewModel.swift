@@ -1,17 +1,20 @@
 import Foundation
 
 class IncomesViewModel {
-    private var repository: IncomesRepository
+    private var incomesRepository: IncomesRepository
+    private var balanceRepository: BalanceRepository
     
     init() {
-        repository = RealmIncomesRepository()
+        incomesRepository = RealmIncomesRepository()
+        balanceRepository = RealmBalanceRepository()
     }
     
-    func addNewIncome(amount: Int, date: Date) {
-        repository.add(amount: amount, date: date)
+    func addNewIncome(amount: Double, date: Date) {
+        incomesRepository.add(amount: amount, date: date)
+        balanceRepository.add(amount: amount)
     }
     
     func getTotal(for period: Period) -> Double {
-        return repository.getTotal(for: period)
+        return incomesRepository.getTotal(for: period)
     }
 }

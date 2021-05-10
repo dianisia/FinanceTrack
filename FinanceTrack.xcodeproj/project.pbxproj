@@ -41,6 +41,7 @@
 		E4A7EE84264407E5001ABCF4 /* ExpenseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4A7EE83264407E5001ABCF4 /* ExpenseTableViewCell.xib */; };
 		E4A7EE882644445C001ABCF4 /* CategoryExpensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A7EE872644445C001ABCF4 /* CategoryExpensesViewController.swift */; };
 		E4A7EE8B26458A4C001ABCF4 /* CategoryExpensesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A7EE8A26458A4C001ABCF4 /* CategoryExpensesViewModel.swift */; };
+		E4A7EE8E26493256001ABCF4 /* BalanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A7EE8D26493256001ABCF4 /* BalanceViewModel.swift */; };
 		E4B1294525DE1999004C82FF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B1294425DE1999004C82FF /* Constants.swift */; };
 		E4C0256925CBABFF0085AE40 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4C0256525CBABFF0085AE40 /* Poppins-Regular.ttf */; };
 		E4C0256A25CBABFF0085AE40 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4C0256625CBABFF0085AE40 /* Poppins-SemiBold.ttf */; };
@@ -88,6 +89,7 @@
 		E4A7EE83264407E5001ABCF4 /* ExpenseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpenseTableViewCell.xib; sourceTree = "<group>"; };
 		E4A7EE872644445C001ABCF4 /* CategoryExpensesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryExpensesViewController.swift; sourceTree = "<group>"; };
 		E4A7EE8A26458A4C001ABCF4 /* CategoryExpensesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryExpensesViewModel.swift; sourceTree = "<group>"; };
+		E4A7EE8D26493256001ABCF4 /* BalanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceViewModel.swift; sourceTree = "<group>"; };
 		E4B1294425DE1999004C82FF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E4C0256525CBABFF0085AE40 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		E4C0256625CBABFF0085AE40 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				E41DE3C025FD41AD006B5D5D /* ExpensesViewModel.swift */,
 				80D6BCC8D1909A55CACD0126 /* IncomesViewModel.swift */,
 				E4A7EE8A26458A4C001ABCF4 /* CategoryExpensesViewModel.swift */,
+				E4A7EE8D26493256001ABCF4 /* BalanceViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -180,8 +183,8 @@
 				E41DE39B25FAADEE006B5D5D /* CategoriesRepository.swift */,
 				E41DE39F25FAAFA7006B5D5D /* ExpensesRepository.swift */,
 				E41DE3A225FAAFE4006B5D5D /* BalanceRepository.swift */,
-				E41DE39A25FAA6A8006B5D5D /* Adapters */,
 				80D6B67704D39251FC9CEE65 /* IncomesRepository.swift */,
+				E41DE39A25FAA6A8006B5D5D /* Adapters */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -385,6 +388,7 @@
 				E4A7EE882644445C001ABCF4 /* CategoryExpensesViewController.swift in Sources */,
 				E41DE3C125FD41AD006B5D5D /* ExpensesViewModel.swift in Sources */,
 				E49D3CF925C5C78D0057C5A3 /* ViewController.swift in Sources */,
+				E4A7EE8E26493256001ABCF4 /* BalanceViewModel.swift in Sources */,
 				E485E76A25D992E8003850FA /* NewCategoryViewController.swift in Sources */,
 				E49D3D0F25C5CF0D0057C5A3 /* CategoriesTableViewCell.swift in Sources */,
 				E41DE3AA25FBF1EB006B5D5D /* RealmCategoriesRepository.swift in Sources */,

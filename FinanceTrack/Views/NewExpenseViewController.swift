@@ -40,7 +40,7 @@ class NewExpenseViewController: UIViewController {
             return
         }
         let date = datePicker.date
-        expensesViewModel.addNewExpense(amount: Int(expenseTextInput.text ?? "") ?? 0, categoryId: self.categories[selectedCategoryIndex].categoryId, date: date, info: expenseTargetTextField.text ?? "")
+        expensesViewModel.addNewExpense(amount: Double(expenseTextInput.text ?? "") ?? 0, categoryId: self.categories[selectedCategoryIndex].categoryId, date: date, info: expenseTargetTextField.text ?? "")
         closePanel?()
     }
     

@@ -21,7 +21,7 @@ class ExpenseTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func updateWith(expense: String, categoryColor: UIColor, amount: Int) {
+    func updateWith(expense: String, categoryColor: UIColor, amount: Double) {
         expenseLabel.text = expense
         amountLabel.text = Helper.formateExpense(amount: amount)
         iconBackUIView.backgroundColor = categoryColor

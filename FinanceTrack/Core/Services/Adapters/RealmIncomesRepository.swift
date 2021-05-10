@@ -2,12 +2,12 @@ import Foundation
 import RealmSwift
 
 class RealmIncome: Object {
-    @objc dynamic var _amount = 0
+    @objc dynamic var _amount = 0.0
     @objc dynamic var _date = Date()
 }
 
 extension RealmIncome: Income {
-    var amount: Int { return _amount }
+    var amount: Double { return _amount }
     var date: Date { return _date }
 }
 
@@ -23,7 +23,7 @@ class RealmIncomesRepository: IncomesRepository {
         return Array(realm.objects(RealmIncome.self).filter("_date BETWEEN %@", [interval.finish, interval.start]))
     }
     
-    func add(amount: Int, date: Date) {
+    func add(amount: Double, date: Date) {
         let realm = try! Realm()
         let income = RealmIncome()
         income._amount = amount

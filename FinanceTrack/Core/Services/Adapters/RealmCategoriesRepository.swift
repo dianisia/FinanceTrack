@@ -11,11 +11,10 @@ class RealmCategory: Object {
     }
 }
 
-extension RealmCategory: Category {
+extension RealmCategory: CategoryProtocol {
     var categoryId: String { return  _categoryId}
     var name: String { return _name }
     var colorIndex: Int { return _colorIndex }
-    
 }
 
 class RealmCategoriesRepository: CategoriesRepository {
@@ -28,6 +27,7 @@ class RealmCategoriesRepository: CategoriesRepository {
     func listAll() -> [Category] {
         let realm = try! Realm()
         return Array(realm.objects(RealmCategory.self))
+            .map {Category(realmCategory: $0)}
     }
     
     func add(name: String, colorIndex: Int) {

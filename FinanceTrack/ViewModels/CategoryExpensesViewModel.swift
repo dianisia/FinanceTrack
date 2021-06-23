@@ -1,26 +1,26 @@
 import Foundation
 
-class CategoryExpensesViewModel {
-    private var repository: ExpensesRepository
+class CategoryExpensesViewModel: ExpensesViewModelProtocol {
+    var expensesRepository: ExpensesRepository
     private var category: Category
     
     init(category: Category) {
-        repository = RealmExpensesRepository()
+        expensesRepository = RealmExpensesRepository()
         self.category = category
     }
     
     var expenses: ExpensesForDate {
         get {
-            repository.listGroupedByDate(for: category.categoryId, period: .allTime)
+            listGroupedByDate(for: category.categoryId, period: .allTime)
         }
     }
     
     func getExpensesForPeriod(period: Period) -> ExpensesForDate {
-        repository.listGroupedByDate(for: category.categoryId, period: period)
+        listGroupedByDate(for: category.categoryId, period: period)
     }
     
     func getTotal(period: Period) -> [TotalExpenseForDate]  {
-        return repository.getTotalForDate(period: period, categoryId: self.category.categoryId)
+        return getTotalForDate(period: period, categoryId: self.category.categoryId)
     }
     
     func prepareGraphData(period: Period) -> GraphData {

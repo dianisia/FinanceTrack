@@ -8,27 +8,28 @@ class RealmExpense: Object {
     @objc dynamic var _info = ""
 }
 
-extension RealmExpense: Expense {
+extension RealmExpense: ExpenseProtocol {
     var amount: Double { return _amount }
-    var category: Category { return _category ?? RealmCategory() } //TODO
+    var category: Category { return Category(realmCategory: _category ?? RealmCategory())}
     var date: Date { return _date }
     var info: String { return _info }
 }
 
 class RealmExpensesRepository: ExpensesRepository {
+    private let realm = try! Realm()
+    
     func listAll() -> [Expense] {
         let realm = try! Realm()
-        return Array(realm.objects(RealmExpense.self))
+        return Array(realm.objects(RealmExpense.self)).map{ Expense(realmExpense: $0) }
     }
     
     func listAll(period: Period) -> [Expense] {
-        let realm = try! Realm()
         let interval = Helper.getDateInterval(period: period)
         return Array(realm.objects(RealmExpense.self).filter("_date BETWEEN %@", [interval.finish, interval.start]))
+            .map{ Expense(realmExpense: $0) }
     }
-        
+    
     func add(amount: Double, categoryId: String, date: Date, info: String) {
-        let realm = try! Realm()
         let expense = RealmExpense()
         expense._amount = amount
         expense._category = RealmCategoriesRepository().getForId(categoryId: categoryId)
@@ -37,61 +38,5 @@ class RealmExpensesRepository: ExpensesRepository {
         try! realm.write {
             realm.add(expense)
         }
-    }
-    
-    func listGroupedByDate(period: Period = .allTime) -> ExpensesForDate {
-        return groupByDate(expenses: listAll(period: period))
-    }
-    
-    func listGroupedByDate(for categoryId: String, period: Period = .allTime) -> ExpensesForDate {
-        let expenses = listAll(period: period).filter { $0.category.categoryId == categoryId }
-        return groupByDate(expenses: expenses)
-    }
-    
-    
-    func getTotalForDate(period: Period) -> [TotalExpenseForDate] {
-        countTotalForDays(period: period, expenses: listGroupedByDate(period: period))
-    }
-    
-    func getTotalForDate(period: Period, categoryId: String) -> [TotalExpenseForDate] {
-        countTotalForDays(period: period, expenses: listGroupedByDate(for: categoryId, period: period))
-    }
-    
-    func getTotalForCategory(period: Period) -> [TotalExpenseForCategory] {
-        countTotalForCategories(expenses: groupByCategory(expenses: listAll(period: period)))
-    }
-    
-    // Private
-    
-    private func groupByDate(expenses: [Expense]) -> ExpensesForDate {
-        Dictionary(grouping: expenses, by: { $0.date })
-    }
-    
-    private func groupByCategory(expenses: [Expense]) -> ExpensesForCategory {
-        Dictionary(grouping: expenses, by: { $0.category.categoryId })
-    }
-    
-    private func countTotalForDays(period: Period, expenses: ExpensesForDate) -> [TotalExpenseForDate] {
-        let periodItems: [Date] = Helper.getLastDays(for: period)
-        var result: [TotalExpenseForDate] = []
-        
-        for periodItem in periodItems {
-            result.append(TotalExpenseForDate(
-                            amount: expenses.keys.contains(periodItem) ? expenses[periodItem]!.reduce(0) { $0 + Double($1.amount) } : 0.0,
-                            date: periodItem)
-            )
-        }
-        return result.sorted(by: { $0.date < $1.date })
-    }
-    
-    private func countTotalForCategories(expenses: ExpensesForCategory) -> [TotalExpenseForCategory] {
-        var result: [TotalExpenseForCategory] = []
-        for category in expenses.keys {
-            result.append(TotalExpenseForCategory(
-                            amount: expenses.keys.contains(category) ? expenses[category]!.reduce(0) { $0 + Double($1.amount) } : 0.0,
-                            category: expenses[category]![0].category)
-            )
-        }
-        return result.sorted(by: { $0.amount > $1.amount })
     }
 }

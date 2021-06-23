@@ -38,6 +38,7 @@
 		E49D3CFE25C5C7900057C5A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E49D3CFD25C5C7900057C5A3 /* Assets.xcassets */; };
 		E49D3D0125C5C7900057C5A3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E49D3CFF25C5C7900057C5A3 /* LaunchScreen.storyboard */; };
 		E49D3D0F25C5CF0D0057C5A3 /* CategoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49D3D0E25C5CF0D0057C5A3 /* CategoriesTableViewCell.swift */; };
+		E4A38E0C2683627700E44AD8 /* ExpensesViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A38E0B2683627700E44AD8 /* ExpensesViewModelProtocol.swift */; };
 		E4A7EE84264407E5001ABCF4 /* ExpenseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4A7EE83264407E5001ABCF4 /* ExpenseTableViewCell.xib */; };
 		E4A7EE882644445C001ABCF4 /* CategoryExpensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A7EE872644445C001ABCF4 /* CategoryExpensesViewController.swift */; };
 		E4A7EE8B26458A4C001ABCF4 /* CategoryExpensesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A7EE8A26458A4C001ABCF4 /* CategoryExpensesViewModel.swift */; };
@@ -86,6 +87,7 @@
 		E49D3D0025C5C7900057C5A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E49D3D0225C5C7900057C5A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E49D3D0E25C5CF0D0057C5A3 /* CategoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewCell.swift; sourceTree = "<group>"; };
+		E4A38E0B2683627700E44AD8 /* ExpensesViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesViewModelProtocol.swift; sourceTree = "<group>"; };
 		E4A7EE83264407E5001ABCF4 /* ExpenseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpenseTableViewCell.xib; sourceTree = "<group>"; };
 		E4A7EE872644445C001ABCF4 /* CategoryExpensesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryExpensesViewController.swift; sourceTree = "<group>"; };
 		E4A7EE8A26458A4C001ABCF4 /* CategoryExpensesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryExpensesViewModel.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				80D6BCC8D1909A55CACD0126 /* IncomesViewModel.swift */,
 				E4A7EE8A26458A4C001ABCF4 /* CategoryExpensesViewModel.swift */,
 				E4A7EE8D26493256001ABCF4 /* BalanceViewModel.swift */,
+				E4A38E0B2683627700E44AD8 /* ExpensesViewModelProtocol.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -386,6 +389,7 @@
 				E41DE3BE25FD3AEF006B5D5D /* ExpenseTableViewCell.swift in Sources */,
 				E41DE39825FAA46A006B5D5D /* Expense.swift in Sources */,
 				E4A7EE882644445C001ABCF4 /* CategoryExpensesViewController.swift in Sources */,
+				E4A38E0C2683627700E44AD8 /* ExpensesViewModelProtocol.swift in Sources */,
 				E41DE3C125FD41AD006B5D5D /* ExpensesViewModel.swift in Sources */,
 				E49D3CF925C5C78D0057C5A3 /* ViewController.swift in Sources */,
 				E4A7EE8E26493256001ABCF4 /* BalanceViewModel.swift in Sources */,

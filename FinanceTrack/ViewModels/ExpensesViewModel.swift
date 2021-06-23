@@ -1,8 +1,8 @@
 import Foundation
 
-class ExpensesViewModel {
-    private var expensesRepository: ExpensesRepository
-    private var balanceRepository: BalanceRepository
+class ExpensesViewModel: ExpensesViewModelProtocol {
+    var expensesRepository: ExpensesRepository
+    var balanceRepository: BalanceRepository
     
     init() {
         expensesRepository = RealmExpensesRepository()
@@ -11,7 +11,7 @@ class ExpensesViewModel {
     
     var expenses: ExpensesForDate {
         get {
-            expensesRepository.listGroupedByDate(period: .allTime)
+            listGroupedByDate(period: .allTime)
         }
     }
     
@@ -19,13 +19,16 @@ class ExpensesViewModel {
         expensesRepository.add(amount: amount, categoryId: categoryId, date: date, info: info)
         balanceRepository.substract(amount: amount)
     }
-    
-    func getTotalForDate(period: Period) -> [TotalExpenseForDate]  {
-        return expensesRepository.getTotalForDate(period: period)
+        
+    func getTotalForCategory(period: Period, completion: @escaping ([TotalExpenseForCategory]) -> ()) {
+        let expenses = expensesRepository.listAll(period: period)
+        DispatchQueue.global().async { [unowned self] in
+            let groupedExpenses = self.groupByCategory(expenses: expenses)
+            let total = self.countTotalForCategories(expenses: groupedExpenses)
+            DispatchQueue.main.async {
+                completion(total)
+            }
+        }
+        
     }
-    
-    func getTotalForCategory(period: Period) -> [TotalExpenseForCategory] {
-        return expensesRepository.getTotalForCategory(period: period)
-    }
-    
 }

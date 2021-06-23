@@ -106,9 +106,11 @@ class ViewController: UIViewController, BarChartDrawable {
     }
     
     private func updateCategories() {
-        categories = expensesViewModel.getTotalForCategory(period: currentPeriod)
-        categoriesTableView.reloadData()
-        showExpensesButton.isHidden = categories.count == 0
+        expensesViewModel.getTotalForCategory(period: currentPeriod) { [unowned self] (categories: [TotalExpenseForCategory]) -> Void in
+            self.categories = categories
+            self.categoriesTableView.reloadData()
+            self.showExpensesButton.isHidden = self.categories.count == 0
+        }
     }
     
     private func updateIncomes() {

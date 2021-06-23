@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -437,7 +437,7 @@
                                 <color key="highlightedColor" red="0.72941176470588232" green="0.72549019607843135" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Укажите категорию" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2eE-8J-Nds">
-                                <rect key="frame" x="16" y="221.5" width="167" height="24"/>
+                                <rect key="frame" x="16" y="221.5" width="161.5" height="24"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
                                 <color key="textColor" red="0.54117647058823526" green="0.54117647058823526" blue="0.55686274509803924" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
@@ -510,7 +510,7 @@
                             <constraint firstItem="jOs-Jp-T15" firstAttribute="leading" secondItem="6tW-V3-evc" secondAttribute="leading" constant="16" id="3Ht-TL-kx0"/>
                             <constraint firstItem="SB5-s0-mLQ" firstAttribute="centerX" secondItem="bzN-sJ-DZg" secondAttribute="centerX" id="3UQ-qN-swl"/>
                             <constraint firstItem="4m7-Tv-T4Y" firstAttribute="top" secondItem="bzN-sJ-DZg" secondAttribute="top" constant="16" id="7z5-Bh-Nhr"/>
-                            <constraint firstItem="6tW-V3-evc" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="2eE-8J-Nds" secondAttribute="trailing" constant="231" id="9NA-bg-FoK"/>
+                            <constraint firstItem="uIu-XJ-dWr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2eE-8J-Nds" secondAttribute="trailing" constant="8" symbolic="YES" id="BPG-Yd-RNF"/>
                             <constraint firstItem="0Y3-Vg-zy3" firstAttribute="top" secondItem="bzN-sJ-DZg" secondAttribute="top" constant="7" id="FiX-GO-RKo"/>
                             <constraint firstItem="BUZ-tX-nZe" firstAttribute="leading" secondItem="6tW-V3-evc" secondAttribute="leading" constant="16" id="HHZ-Vj-VpH"/>
                             <constraint firstItem="avR-16-tUh" firstAttribute="top" secondItem="BUZ-tX-nZe" secondAttribute="bottom" constant="7.5" id="M6g-QP-5wf"/>
@@ -534,7 +534,6 @@
                             <constraint firstItem="uIu-XJ-dWr" firstAttribute="centerY" secondItem="2eE-8J-Nds" secondAttribute="centerY" id="jbe-CI-szq"/>
                             <constraint firstItem="39b-PK-tK5" firstAttribute="centerX" secondItem="h8N-Q3-41r" secondAttribute="centerX" id="jmB-Lp-BQ0"/>
                             <constraint firstItem="6tW-V3-evc" firstAttribute="trailing" secondItem="jOs-Jp-T15" secondAttribute="trailing" constant="16" id="lQ7-BX-JnZ"/>
-                            <constraint firstItem="uIu-XJ-dWr" firstAttribute="leading" secondItem="2eE-8J-Nds" secondAttribute="trailing" constant="93" id="r2j-hF-pLj"/>
                             <constraint firstItem="avR-16-tUh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6tW-V3-evc" secondAttribute="leading" id="rc7-9L-FLE"/>
                             <constraint firstItem="Shb-3i-v4n" firstAttribute="centerX" secondItem="bzN-sJ-DZg" secondAttribute="centerX" id="sKK-oJ-6iG"/>
                             <constraint firstItem="2eE-8J-Nds" firstAttribute="leading" secondItem="6tW-V3-evc" secondAttribute="leading" constant="16" id="wQh-AI-efC"/>
@@ -907,6 +906,9 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Укажите дату" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycc-8E-0Qb">
                                 <rect key="frame" x="16" y="234" width="113" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="113" id="bbh-4E-ZPs"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
                                 <color key="textColor" red="0.54117647059999996" green="0.54117647059999996" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
@@ -924,7 +926,7 @@
                                     <constraint firstAttribute="height" constant="48" id="8yZ-jf-je2"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="16"/>
-                                <state key="normal" title="Добавить расход">
+                                <state key="normal" title="Добавить доход">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -944,20 +946,19 @@
                             <constraint firstItem="PIW-yf-5wo" firstAttribute="centerX" secondItem="Pvj-fY-hvv" secondAttribute="centerX" id="20R-MF-SUs"/>
                             <constraint firstItem="B11-DZ-aWt" firstAttribute="top" secondItem="Pvj-fY-hvv" secondAttribute="top" constant="16" id="2l0-O9-Wig"/>
                             <constraint firstItem="dMM-cX-nek" firstAttribute="top" secondItem="FXt-0t-dTS" secondAttribute="bottom" constant="15" id="3KN-OD-QYb"/>
+                            <constraint firstItem="nJN-Ed-X5f" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ycc-8E-0Qb" secondAttribute="trailing" symbolic="YES" id="7na-7x-UT6"/>
                             <constraint firstItem="LmO-zc-sik" firstAttribute="top" secondItem="EGH-Gh-mYA" secondAttribute="bottom" constant="1" id="8g1-B1-oCs"/>
-                            <constraint firstItem="ycc-8E-0Qb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="nJN-Ed-X5f" secondAttribute="leading" id="B0r-9m-Nsd"/>
                             <constraint firstItem="yrb-OE-QFM" firstAttribute="leading" relation="lessThanOrEqual" secondItem="B11-DZ-aWt" secondAttribute="trailing" constant="207" id="BI2-fk-LRQ"/>
                             <constraint firstItem="nJN-Ed-X5f" firstAttribute="trailing" secondItem="dMM-cX-nek" secondAttribute="trailing" constant="20" id="CTI-Eb-gbK"/>
                             <constraint firstItem="yrb-OE-QFM" firstAttribute="top" secondItem="Pvj-fY-hvv" secondAttribute="top" constant="7" id="F7o-gR-8Lj"/>
                             <constraint firstItem="FXt-0t-dTS" firstAttribute="leading" secondItem="Pvj-fY-hvv" secondAttribute="leading" constant="12" id="Lwj-cI-LMW"/>
                             <constraint firstItem="dMM-cX-nek" firstAttribute="leading" secondItem="nJN-Ed-X5f" secondAttribute="leading" constant="12" id="Qw4-Ic-0ru"/>
                             <constraint firstItem="PIW-yf-5wo" firstAttribute="top" secondItem="nJN-Ed-X5f" secondAttribute="top" constant="45.5" id="XYM-7b-CCy"/>
-                            <constraint firstItem="nJN-Ed-X5f" firstAttribute="trailing" secondItem="ycc-8E-0Qb" secondAttribute="trailing" constant="285" id="dYl-Qv-dnr"/>
+                            <constraint firstItem="ycc-8E-0Qb" firstAttribute="leading" secondItem="nJN-Ed-X5f" secondAttribute="leading" constant="16" id="a5W-hp-5mg"/>
                             <constraint firstItem="LmO-zc-sik" firstAttribute="centerX" secondItem="EGH-Gh-mYA" secondAttribute="centerX" id="hYd-Ob-KZR"/>
                             <constraint firstItem="B11-DZ-aWt" firstAttribute="leading" secondItem="Pvj-fY-hvv" secondAttribute="leading" constant="16" id="nO9-Gr-eOs"/>
                             <constraint firstItem="ycc-8E-0Qb" firstAttribute="top" secondItem="9M5-SE-4Xl" secondAttribute="bottom" constant="54" id="pm5-Qi-ZPN"/>
                             <constraint firstItem="nJN-Ed-X5f" firstAttribute="trailing" secondItem="FXt-0t-dTS" secondAttribute="trailing" constant="20" id="r23-6y-cbX"/>
-                            <constraint firstItem="ycc-8E-0Qb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="nJN-Ed-X5f" secondAttribute="leading" id="swc-DI-wdt"/>
                             <constraint firstItem="9M5-SE-4Xl" firstAttribute="centerX" secondItem="Pvj-fY-hvv" secondAttribute="centerX" id="u4X-kN-LZc"/>
                             <constraint firstItem="9M5-SE-4Xl" firstAttribute="top" secondItem="PIW-yf-5wo" secondAttribute="bottom" constant="25" id="ugE-7E-cWF"/>
                             <constraint firstItem="FXt-0t-dTS" firstAttribute="top" secondItem="ycc-8E-0Qb" secondAttribute="bottom" constant="8" symbolic="YES" id="yNV-QP-YcL"/>
@@ -996,7 +997,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="GVU-Uc-E6K">
-                                        <rect key="frame" x="0.0" y="28" width="382" height="58"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="382" height="58"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GVU-Uc-E6K" id="OIU-8w-SM0" customClass="ExpenseTableViewCell" customModule="FinanceTrack" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="382" height="58"/>

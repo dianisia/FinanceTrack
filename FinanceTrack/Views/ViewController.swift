@@ -65,10 +65,14 @@ class ViewController: UIViewController, BarChartDrawable {
         updateCurrentBalance()
     }
     
-    func prepareGraphData(period: Period) -> GraphData {
-        let groupedData = expensesViewModel.getTotalForDate(period: period)
-        let data: [Double] = groupedData.map { $0.amount }
-        return GraphData(labels: groupedData.map { $0.date.monthDateFormate() } , data: data)
+    func updateGraph() {
+        expensesViewModel.getTotalForDate(period: currentPeriod) {[unowned self] (groupedData: [TotalExpenseForDate]) -> Void in
+            let data: [Double] = groupedData.map { $0.amount }
+            let graphData = GraphData(labels: groupedData.map { $0.date.monthDateFormate() } , data: data)
+            if (graphData.data.count > 0) {
+                self.setChartData(labels: graphData.labels, data: graphData.data)
+            }
+        }
     }
     
     func initViews() {
@@ -119,13 +123,6 @@ class ViewController: UIViewController, BarChartDrawable {
         incomeStartDateLabel.text = String(periods[0].monthDateFormate())
         incomeFinishDateLabel.text = String(periods[periods.count-1].monthDateFormate())
         updateCurrentBalance()
-    }
-    
-    private func updateGraph() {
-        let graphData = prepareGraphData(period: currentPeriod)
-        if (graphData.data.count > 0) {
-            setChartData(labels: graphData.labels, data: graphData.data)
-        }
     }
     
     private func updateCurrentBalance() {

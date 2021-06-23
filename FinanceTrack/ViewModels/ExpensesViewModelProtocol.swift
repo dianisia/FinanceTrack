@@ -1,11 +1,11 @@
 import Foundation
 
-protocol ExpensesViewModelProtocol {
+protocol ExpensesViewModelProtocol: AnyObject {
     var expensesRepository: ExpensesRepository { set get }
     
     func listGroupedByDate(period: Period) -> ExpensesForDate
     func listGroupedByDate(for categoryId: String, period: Period) -> ExpensesForDate
-    func getTotalForDate(period: Period) -> [TotalExpenseForDate]
+    func getTotalForDate(period: Period, completion: @escaping ([TotalExpenseForDate]) -> Void)
     func getTotalForDate(period: Period, categoryId: String) -> [TotalExpenseForDate]
     func groupByDate(expenses: [Expense]) -> ExpensesForDate
     func groupByCategory(expenses: [Expense]) -> ExpensesForCategory
@@ -23,9 +23,14 @@ extension ExpensesViewModelProtocol {
         return groupByDate(expenses: expenses)
     }
     
-    
-    func getTotalForDate(period: Period) -> [TotalExpenseForDate] {
-        countTotalForDays(period: period, expenses: listGroupedByDate(period: period))
+    func getTotalForDate(period: Period, completion: @escaping ([TotalExpenseForDate]) -> Void) {
+        let expenses = listGroupedByDate(period: period)
+        DispatchQueue.global().async { [unowned self] in
+            let total = self.countTotalForDays(period: period, expenses: expenses)
+            DispatchQueue.main.async {
+                completion(total)
+            }
+        }
     }
     
     func getTotalForDate(period: Period, categoryId: String) -> [TotalExpenseForDate] {

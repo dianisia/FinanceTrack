@@ -6,7 +6,7 @@ enum Period: Int {
     case week = 6
     case month = 29
     case quarter = 89
-    case allTime = 100000
+    case allTime = 365
 }
 
 class Helper {

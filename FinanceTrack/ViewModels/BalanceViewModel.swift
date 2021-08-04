@@ -4,7 +4,7 @@ class BalanceViewModel {
     private var repository: BalanceRepository
     
     init() {
-        repository = RealmBalanceRepository()
+        repository = DIContainer.balanceRepository
     }
         
     func get() -> Double {

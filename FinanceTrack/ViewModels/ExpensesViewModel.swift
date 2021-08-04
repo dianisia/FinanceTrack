@@ -5,8 +5,8 @@ class ExpensesViewModel: ExpensesViewModelProtocol {
     var balanceRepository: BalanceRepository
     
     init() {
-        expensesRepository = RealmExpensesRepository()
-        balanceRepository = RealmBalanceRepository()
+        expensesRepository = DIContainer.expensesRepository
+        balanceRepository = DIContainer.balanceRepository
     }
     
     var expenses: ExpensesForDate {

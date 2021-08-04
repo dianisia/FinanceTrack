@@ -27,6 +27,7 @@
 		E41DE3BE25FD3AEF006B5D5D /* ExpenseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41DE3BD25FD3AEF006B5D5D /* ExpenseTableViewCell.swift */; };
 		E41DE3C125FD41AD006B5D5D /* ExpensesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41DE3C025FD41AD006B5D5D /* ExpensesViewModel.swift */; };
 		E46E496A25E56C4C00903EAD /* NewExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46E496925E56C4C00903EAD /* NewExpenseViewController.swift */; };
+		E47F450226BAC826004DA9AD /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47F450126BAC826004DA9AD /* DIContainer.swift */; };
 		E485E75725D38925003850FA /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E485E75625D38925003850FA /* Helper.swift */; };
 		E485E75E25D39130003850FA /* ColorItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E485E75D25D39130003850FA /* ColorItemView.swift */; };
 		E485E76125D6283A003850FA /* RadioGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E485E76025D6283A003850FA /* RadioGroup.swift */; };
@@ -74,6 +75,7 @@
 		E41DE3C025FD41AD006B5D5D /* ExpensesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesViewModel.swift; sourceTree = "<group>"; };
 		E46E496925E56C4C00903EAD /* NewExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExpenseViewController.swift; sourceTree = "<group>"; };
 		E46E497325EB751E00903EAD /* iOSDropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = iOSDropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E47F450126BAC826004DA9AD /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 		E485E75625D38925003850FA /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		E485E75D25D39130003850FA /* ColorItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorItemView.swift; sourceTree = "<group>"; };
 		E485E76025D6283A003850FA /* RadioGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioGroup.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 			children = (
 				E485E75625D38925003850FA /* Helper.swift */,
 				E4B1294425DE1999004C82FF /* Constants.swift */,
+				E47F450126BAC826004DA9AD /* DIContainer.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E41DE3BE25FD3AEF006B5D5D /* ExpenseTableViewCell.swift in Sources */,
+				E47F450226BAC826004DA9AD /* DIContainer.swift in Sources */,
 				E41DE39825FAA46A006B5D5D /* Expense.swift in Sources */,
 				E4A7EE882644445C001ABCF4 /* CategoryExpensesViewController.swift in Sources */,
 				E4A38E0C2683627700E44AD8 /* ExpensesViewModelProtocol.swift in Sources */,

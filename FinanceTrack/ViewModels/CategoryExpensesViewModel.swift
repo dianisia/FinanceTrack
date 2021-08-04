@@ -5,7 +5,7 @@ class CategoryExpensesViewModel: ExpensesViewModelProtocol {
     private var category: Category
     
     init(category: Category) {
-        expensesRepository = RealmExpensesRepository()
+        expensesRepository = DIContainer.expensesRepository
         self.category = category
     }
     

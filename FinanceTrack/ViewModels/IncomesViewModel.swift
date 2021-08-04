@@ -5,8 +5,8 @@ class IncomesViewModel {
     private var balanceRepository: BalanceRepository
     
     init() {
-        incomesRepository = RealmIncomesRepository()
-        balanceRepository = RealmBalanceRepository()
+        incomesRepository = DIContainer.incomesRepository
+        balanceRepository = DIContainer.balanceRepository
     }
     
     func addNewIncome(amount: Double, date: Date) {

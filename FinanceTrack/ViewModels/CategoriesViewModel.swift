@@ -4,7 +4,7 @@ class CategoriesViewModel {
     private var repository: CategoriesRepository
         
     init() {
-        repository = RealmCategoriesRepository()
+        repository = DIContainer.categoriesRepository
     }
     
     var categories: [Category] {

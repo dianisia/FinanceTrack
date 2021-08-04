@@ -22,7 +22,8 @@ class ExpensesViewModel: ExpensesViewModelProtocol {
         
     func getTotalForCategory(period: Period, completion: @escaping ([TotalExpenseForCategory]) -> ()) {
         let expenses = expensesRepository.listAll(period: period)
-        DispatchQueue.global().async { [unowned self] in
+        DispatchQueue.global().async { [weak self] in
+            guard let self = self else {return}
             let groupedExpenses = self.groupByCategory(expenses: expenses)
             let total = self.countTotalForCategories(expenses: groupedExpenses)
             DispatchQueue.main.async {

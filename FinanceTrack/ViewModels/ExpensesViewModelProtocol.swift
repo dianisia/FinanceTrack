@@ -25,7 +25,8 @@ extension ExpensesViewModelProtocol {
     
     func getTotalForDate(period: Period, completion: @escaping ([TotalExpenseForDate]) -> Void) {
         let expenses = listGroupedByDate(period: period)
-        DispatchQueue.global().async { [unowned self] in
+        DispatchQueue.global().async { [weak self] in
+            guard let self = self else { return }
             let total = self.countTotalForDays(period: period, expenses: expenses)
             DispatchQueue.main.async {
                 completion(total)

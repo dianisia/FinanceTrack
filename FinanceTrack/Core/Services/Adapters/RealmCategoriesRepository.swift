@@ -18,24 +18,23 @@ extension RealmCategory: CategoryProtocol {
 }
 
 class RealmCategoriesRepository: CategoriesRepository {
+    private let realm = try! Realm()
+    
     func getForId(categoryId: String) -> RealmCategory {
-        let realm = try! Realm()
         //TODO: Fix !
         return realm.object(ofType: RealmCategory.self, forPrimaryKey: categoryId)!
     }
     
     func listAll() -> [Category] {
-        let realm = try! Realm()
         return Array(realm.objects(RealmCategory.self))
             .map {Category(realmCategory: $0)}
     }
     
     func add(name: String, colorIndex: Int) {
-        let realm = try! Realm()
         let category = RealmCategory()
         category._name = name
         category._colorIndex = colorIndex
-        try! realm.write {
+        try? realm.write {
            realm.add(category)
         }
     }

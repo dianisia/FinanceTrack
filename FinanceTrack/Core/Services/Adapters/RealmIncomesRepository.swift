@@ -12,23 +12,22 @@ extension RealmIncome: Income {
 }
 
 class RealmIncomesRepository: IncomesRepository {
+    private let realm = try! Realm()
+    
     func listAll() -> [Income] {
-        let realm = try! Realm()
         return Array(realm.objects(RealmIncome.self))
     }
     
     func listAll(period: Period) -> [Income] {
-        let realm = try! Realm()
         let interval = Helper.getDateInterval(period: period)
         return Array(realm.objects(RealmIncome.self).filter("_date BETWEEN %@", [interval.finish, interval.start]))
     }
     
     func add(amount: Double, date: Date) {
-        let realm = try! Realm()
         let income = RealmIncome()
         income._amount = amount
         income._date = date.trimTime()
-        try! realm.write {
+        try? realm.write {
             realm.add(income)
         }
     }

@@ -29,7 +29,9 @@ class Helper {
     static func getLastDays(for period: Period) -> [Date] {
         var days: [Date] = []
         for i in (0...period.rawValue).reversed() {
-            days.append(Date().getDateFor(days: -i)!.trimTime())
+            if let dateForDays = Date().getDateFor(days: -i) {
+                days.append(dateForDays.trimTime())
+            }
         }
         return days
     }
@@ -60,7 +62,7 @@ extension Date {
         dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         let dateString = dateFormatter.string(from: self)
-        return dateFormatter.date(from: dateString.components(separatedBy: " ").first ?? "")!
+        return dateFormatter.date(from: dateString.components(separatedBy: " ").first ?? "") ?? Date()
     }
 }
 

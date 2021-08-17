@@ -19,7 +19,6 @@ class RealmExpensesRepository: ExpensesRepository {
     private let realm = try! Realm()
     
     func listAll() -> [Expense] {
-        let realm = try! Realm()
         return Array(realm.objects(RealmExpense.self)).map{ Expense(realmExpense: $0) }
     }
     
@@ -35,7 +34,7 @@ class RealmExpensesRepository: ExpensesRepository {
         expense._category = RealmCategoriesRepository().getForId(categoryId: categoryId)
         expense._date = date.trimTime()
         expense._info = info
-        try! realm.write {
+        try? realm.write {
             realm.add(expense)
         }
     }
